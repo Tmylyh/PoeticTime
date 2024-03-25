@@ -9,23 +9,49 @@
 /* Begin PBXBuildFile section */
 		049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AD2BAA8B9C00E667FF /* AppDelegate.swift */; };
 		049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */; };
-		049820B22BAA8B9C00E667FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820B12BAA8B9C00E667FF /* ViewController.swift */; };
+		049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820B12BAA8B9C00E667FF /* HomeTabBarVC.swift */; };
 		049820B52BAA8B9C00E667FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 049820B32BAA8B9C00E667FF /* Main.storyboard */; };
 		049820B82BAA8B9C00E667FF /* PoeticTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 049820B62BAA8B9C00E667FF /* PoeticTime.xcdatamodeld */; };
 		049820BA2BAA8B9E00E667FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 049820B92BAA8B9E00E667FF /* Assets.xcassets */; };
 		049820BD2BAA8B9E00E667FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 049820BB2BAA8B9E00E667FF /* LaunchScreen.storyboard */; };
+		049820C52BAAB79100E667FF /* StudyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820C42BAAB79100E667FF /* StudyVC.swift */; };
+		049820C72BAAB7A500E667FF /* ScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820C62BAAB7A500E667FF /* ScanVC.swift */; };
+		049820C92BAAB7F900E667FF /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820C82BAAB7F900E667FF /* UserVC.swift */; };
+		049820CE2BAAC1D000E667FF /* MyImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 049820CD2BAAC1D000E667FF /* MyImageClassifier.mlmodel */; };
+		04982CB92BAEE2C600E667FF /* PtTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04982CB82BAEE2C600E667FF /* PtTabBar.swift */; };
+		04982CBB2BAEF11A00E667FF /* PtHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04982CBA2BAEF11A00E667FF /* PtHelper.swift */; };
+		04982CBE2BAF022A00E667FF /* PtCardDetailLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04982CBD2BAF022A00E667FF /* PtCardDetailLayout.swift */; };
+		04982CC02BAF03F900E667FF /* PtCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04982CBF2BAF03F900E667FF /* PtCardCollectionViewCell.swift */; };
+		04982CC42BB009CD00E667FF /* PtDynastyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04982CC32BB009CD00E667FF /* PtDynastyCollectionViewCell.swift */; };
+		04982CC62BB01F5E00E667FF /* PtDynastyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04982CC52BB01F5E00E667FF /* PtDynastyLayout.swift */; };
+		04982CC82BB07AF500E667FF /* dynastyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04982CC72BB07AF500E667FF /* dynastyData.swift */; };
+		7F832B079A236992070EE8F5 /* Pods_PoeticTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8D22F5E73180CD34DCEA11 /* Pods_PoeticTime.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		049820AA2BAA8B9C00E667FF /* PoeticTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeticTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049820AD2BAA8B9C00E667FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		049820B12BAA8B9C00E667FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		049820B12BAA8B9C00E667FF /* HomeTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarVC.swift; sourceTree = "<group>"; };
 		049820B42BAA8B9C00E667FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		049820B72BAA8B9C00E667FF /* PoeticTime.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PoeticTime.xcdatamodel; sourceTree = "<group>"; };
 		049820B92BAA8B9E00E667FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		049820BC2BAA8B9E00E667FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		049820BE2BAA8B9E00E667FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		049820C42BAAB79100E667FF /* StudyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyVC.swift; sourceTree = "<group>"; };
+		049820C62BAAB7A500E667FF /* ScanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVC.swift; sourceTree = "<group>"; };
+		049820C82BAAB7F900E667FF /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
+		049820CD2BAAC1D000E667FF /* MyImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MyImageClassifier.mlmodel; sourceTree = "<group>"; };
+		04982CB82BAEE2C600E667FF /* PtTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtTabBar.swift; sourceTree = "<group>"; };
+		04982CBA2BAEF11A00E667FF /* PtHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtHelper.swift; sourceTree = "<group>"; };
+		04982CBD2BAF022A00E667FF /* PtCardDetailLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtCardDetailLayout.swift; sourceTree = "<group>"; };
+		04982CBF2BAF03F900E667FF /* PtCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		04982CC32BB009CD00E667FF /* PtDynastyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtDynastyCollectionViewCell.swift; sourceTree = "<group>"; };
+		04982CC52BB01F5E00E667FF /* PtDynastyLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtDynastyLayout.swift; sourceTree = "<group>"; };
+		04982CC72BB07AF500E667FF /* dynastyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dynastyData.swift; sourceTree = "<group>"; };
+		576CF5919F1D8F498260AD24 /* Pods-PoeticTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeticTime.debug.xcconfig"; path = "Target Support Files/Pods-PoeticTime/Pods-PoeticTime.debug.xcconfig"; sourceTree = "<group>"; };
+		7C8D22F5E73180CD34DCEA11 /* Pods_PoeticTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PoeticTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0B41D80515927CD444C896D /* Pods-PoeticTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeticTime.release.xcconfig"; path = "Target Support Files/Pods-PoeticTime/Pods-PoeticTime.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F832B079A236992070EE8F5 /* Pods_PoeticTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +71,8 @@
 			children = (
 				049820AC2BAA8B9C00E667FF /* PoeticTime */,
 				049820AB2BAA8B9C00E667FF /* Products */,
+				EF70D91F50567E6FA0756D9C /* Pods */,
+				539F585F42BA5B0A1303F68D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,7 +89,12 @@
 			children = (
 				049820AD2BAA8B9C00E667FF /* AppDelegate.swift */,
 				049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */,
-				049820B12BAA8B9C00E667FF /* ViewController.swift */,
+				04982CB72BAEE29D00E667FF /* TabBarVC */,
+				049820CA2BAAB80400E667FF /* Study */,
+				049820CB2BAAB80F00E667FF /* Scan */,
+				049820CC2BAAB81600E667FF /* User */,
+				04982CBC2BAEF12200E667FF /* Helper */,
+				049820CF2BAAC1D300E667FF /* Resources */,
 				049820B32BAA8B9C00E667FF /* Main.storyboard */,
 				049820B92BAA8B9E00E667FF /* Assets.xcassets */,
 				049820BB2BAA8B9E00E667FF /* LaunchScreen.storyboard */,
@@ -70,6 +104,101 @@
 			path = PoeticTime;
 			sourceTree = "<group>";
 		};
+		049820CA2BAAB80400E667FF /* Study */ = {
+			isa = PBXGroup;
+			children = (
+				049820C42BAAB79100E667FF /* StudyVC.swift */,
+				04982CC92BB07AFA00E667FF /* Data */,
+				04982CC12BAF040100E667FF /* Cell */,
+				04982CC22BAF040B00E667FF /* Layout */,
+			);
+			name = Study;
+			sourceTree = "<group>";
+		};
+		049820CB2BAAB80F00E667FF /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				049820C62BAAB7A500E667FF /* ScanVC.swift */,
+			);
+			name = Scan;
+			sourceTree = "<group>";
+		};
+		049820CC2BAAB81600E667FF /* User */ = {
+			isa = PBXGroup;
+			children = (
+				049820C82BAAB7F900E667FF /* UserVC.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		049820CF2BAAC1D300E667FF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				049820CD2BAAC1D000E667FF /* MyImageClassifier.mlmodel */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		04982CB72BAEE29D00E667FF /* TabBarVC */ = {
+			isa = PBXGroup;
+			children = (
+				049820B12BAA8B9C00E667FF /* HomeTabBarVC.swift */,
+				04982CB82BAEE2C600E667FF /* PtTabBar.swift */,
+			);
+			name = TabBarVC;
+			sourceTree = "<group>";
+		};
+		04982CBC2BAEF12200E667FF /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				04982CBA2BAEF11A00E667FF /* PtHelper.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		04982CC12BAF040100E667FF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				04982CBF2BAF03F900E667FF /* PtCardCollectionViewCell.swift */,
+				04982CC32BB009CD00E667FF /* PtDynastyCollectionViewCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		04982CC22BAF040B00E667FF /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				04982CBD2BAF022A00E667FF /* PtCardDetailLayout.swift */,
+				04982CC52BB01F5E00E667FF /* PtDynastyLayout.swift */,
+			);
+			name = Layout;
+			sourceTree = "<group>";
+		};
+		04982CC92BB07AFA00E667FF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				04982CC72BB07AF500E667FF /* dynastyData.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		539F585F42BA5B0A1303F68D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7C8D22F5E73180CD34DCEA11 /* Pods_PoeticTime.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF70D91F50567E6FA0756D9C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				576CF5919F1D8F498260AD24 /* Pods-PoeticTime.debug.xcconfig */,
+				E0B41D80515927CD444C896D /* Pods-PoeticTime.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +206,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 049820C12BAA8B9E00E667FF /* Build configuration list for PBXNativeTarget "PoeticTime" */;
 			buildPhases = (
+				11C17E40135AFDDDBA372E70 /* [CP] Check Pods Manifest.lock */,
 				049820A62BAA8B9C00E667FF /* Sources */,
 				049820A72BAA8B9C00E667FF /* Frameworks */,
 				049820A82BAA8B9C00E667FF /* Resources */,
+				6E657C44A88352E668C7CD6A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -136,15 +267,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		11C17E40135AFDDDBA372E70 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PoeticTime-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E657C44A88352E668C7CD6A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PoeticTime/Pods-PoeticTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PoeticTime/Pods-PoeticTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PoeticTime/Pods-PoeticTime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		049820A62BAA8B9C00E667FF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				049820B22BAA8B9C00E667FF /* ViewController.swift in Sources */,
+				049820C92BAAB7F900E667FF /* UserVC.swift in Sources */,
+				04982CBE2BAF022A00E667FF /* PtCardDetailLayout.swift in Sources */,
+				04982CC02BAF03F900E667FF /* PtCardCollectionViewCell.swift in Sources */,
+				04982CBB2BAEF11A00E667FF /* PtHelper.swift in Sources */,
+				049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */,
 				049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */,
 				049820B82BAA8B9C00E667FF /* PoeticTime.xcdatamodeld in Sources */,
+				04982CB92BAEE2C600E667FF /* PtTabBar.swift in Sources */,
 				049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */,
+				049820C52BAAB79100E667FF /* StudyVC.swift in Sources */,
+				04982CC62BB01F5E00E667FF /* PtDynastyLayout.swift in Sources */,
+				049820C72BAAB7A500E667FF /* ScanVC.swift in Sources */,
+				04982CC82BB07AF500E667FF /* dynastyData.swift in Sources */,
+				04982CC42BB009CD00E667FF /* PtDynastyCollectionViewCell.swift in Sources */,
+				049820CE2BAAC1D000E667FF /* MyImageClassifier.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +470,7 @@
 		};
 		049820C22BAA8B9E00E667FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 576CF5919F1D8F498260AD24 /* Pods-PoeticTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -314,6 +499,7 @@
 		};
 		049820C32BAA8B9E00E667FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0B41D80515927CD444C896D /* Pods-PoeticTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
