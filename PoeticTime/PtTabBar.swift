@@ -11,8 +11,6 @@ import SnapKit
 // 自定义tabbar，设置高度
 class PtTabBar: UITabBar {
     
-    // 切换tabBar
-    public var changeSelectTabBar: ((Int) -> ())?
     
     // 学习tab的imageView
     private lazy var tabBarStudyItemImageView: UIImageView = {
@@ -39,9 +37,6 @@ class PtTabBar: UITabBar {
         stackTabStudyView.addArrangedSubview(tabBarStudyItemImageView)
         stackTabStudyView.addArrangedSubview(tabBarStudyItemLabel)
         stackTabStudyView.isUserInteractionEnabled = true
-        // 添加点击手势识别器
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeSelectTabBarTap(_:)))
-        stackTabStudyView.addGestureRecognizer(tapGesture)
         stackTabStudyView.tag = 0
         return stackTabStudyView
     }()
@@ -70,9 +65,6 @@ class PtTabBar: UITabBar {
         stackTabScanView.spacing = 2
         stackTabScanView.addArrangedSubview(tabBarScanItemImageView)
         stackTabScanView.addArrangedSubview(tabBarScanItemLabel)
-        // 添加点击手势识别器
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeSelectTabBarTap(_:)))
-        stackTabStudyView.addGestureRecognizer(tapGesture)
         stackTabStudyView.tag = 1
         return stackTabScanView
     }()
@@ -101,17 +93,34 @@ class PtTabBar: UITabBar {
         stackTabUserView.spacing = 2
         stackTabUserView.addArrangedSubview(tabBarUserItemImageView)
         stackTabUserView.addArrangedSubview(tabBarUserItemLabel)
-        // 添加点击手势识别器
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeSelectTabBarTap(_:)))
-        stackTabStudyView.addGestureRecognizer(tapGesture)
         stackTabStudyView.tag = 2
         return stackTabUserView
     }()
     
-    @objc private func changeSelectTabBarTap(_ sender: UITapGestureRecognizer) {
+    
+    /// 切换tabBar
+    public func changeSelectTabBarTap(_ tag: Int) {
         // 根据视图的 tag 区分不同的 view
-        guard let changeSelectTabBar = changeSelectTabBar else { return }
-        changeSelectTabBar(sender.view?.tag ?? 0)
+        resetImageAndLabelColor()
+        if tag == 0 {
+            tabBarStudyItemImageView.image = UIImage(named: "poetic_time_study_select_tab_bar")
+            tabBarStudyItemLabel.textColor = "F3C038".pt_argbColor
+        } else if tag == 1 {
+            tabBarScanItemImageView.image = UIImage(named: "poetic_time_scan_select_tab_bar")
+            tabBarScanItemLabel.textColor = "F3C038".pt_argbColor
+        } else if tag == 2 {
+            tabBarUserItemImageView.image = UIImage(named: "poetic_time_user_select_tab_bar")
+            tabBarUserItemLabel.textColor = "F3C038".pt_argbColor
+        }
+    }
+    
+    func resetImageAndLabelColor() {
+        tabBarStudyItemImageView.image = UIImage(named: "poetic_time_study_tab_bar")
+        tabBarStudyItemLabel.textColor = .black
+        tabBarScanItemImageView.image = UIImage(named: "poetic_time_scan_tab_bar")
+        tabBarScanItemLabel.textColor = .black
+        tabBarUserItemImageView.image = UIImage(named: "poetic_time_user_tab_bar")
+        tabBarUserItemLabel.textColor = .black
     }
     
     override func layoutSubviews() {
