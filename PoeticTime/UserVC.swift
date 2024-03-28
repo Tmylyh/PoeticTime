@@ -34,5 +34,4 @@ class UserVC: UIViewController {
     @objc func buttonTapped() {
         print(123)
     }
-
 }

@@ -23,6 +23,19 @@ let Bounds = UIScreen.main.bounds
 // 标准字体
 let standardFont = "SJbangkaijianti"
 
+// 系统状态栏高度
+var statusBarHeight: Int {
+    get {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let statusBarManager = windowScene.statusBarManager {
+                let statusBarFrame = statusBarManager.statusBarFrame
+                let statusBarHeight = statusBarFrame.height
+                return Int(statusBarHeight)
+            }
+        }
+        return 44
+    }
+}
 extension String {
     var pt_argbColor: UIColor? {
         return UIColor(argbString: self)

@@ -92,11 +92,11 @@ open class DBSphereView: UIView, UIGestureRecognizerDelegate {
         
         // 惯性的计时任务，只有当没有UI事件时才触发
         inertia = CADisplayLink(target: self, selector: #selector(inertiaStep))
-        inertia.add(to: .main, forMode: RunLoop.Mode.default)
+        inertia.add(to: .main, forMode: RunLoop.Mode.common)
         
         // 自动旋转的计时任务
         timer = CADisplayLink(target: self, selector: #selector(autoTurnRotation))
-        timer.add(to: .main, forMode: RunLoop.Mode.default)
+        timer.add(to: .main, forMode: RunLoop.Mode.common)
     }
     
     override public init(frame: CGRect) {

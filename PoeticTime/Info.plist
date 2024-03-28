@@ -5,6 +5,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>SanJiBangKaiJianTi.ttf</string>
+		<string>YuWeiShuFaXingShuJianTi-1.ttf</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>将从你的相册选取照片</string>

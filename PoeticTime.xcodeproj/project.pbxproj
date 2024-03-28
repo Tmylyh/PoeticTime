@@ -10,6 +10,9 @@
 		04042DCA2BB4F5CE0085A9DE /* SanJiBangKaiJianTi.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 04042DC92BB4F4A70085A9DE /* SanJiBangKaiJianTi.ttf */; };
 		04042DCC2BB4F6040085A9DE /* SanJiBangKaiJianTi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04042DC92BB4F4A70085A9DE /* SanJiBangKaiJianTi.ttf */; };
 		04042DCE2BB4F93F0085A9DE /* DynastyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04042DCD2BB4F93F0085A9DE /* DynastyVC.swift */; };
+		04042DD02BB519370085A9DE /* BezierText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04042DCF2BB519370085A9DE /* BezierText.swift */; };
+		04042DD22BB51BB90085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 04042DD12BB51B920085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf */; };
+		04042DD32BB51BC10085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04042DD12BB51B920085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf */; };
 		049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AD2BAA8B9C00E667FF /* AppDelegate.swift */; };
 		049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */; };
 		049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820B12BAA8B9C00E667FF /* HomeTabBarVC.swift */; };
@@ -34,6 +37,8 @@
 /* Begin PBXFileReference section */
 		04042DC92BB4F4A70085A9DE /* SanJiBangKaiJianTi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SanJiBangKaiJianTi.ttf; sourceTree = "<group>"; };
 		04042DCD2BB4F93F0085A9DE /* DynastyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynastyVC.swift; sourceTree = "<group>"; };
+		04042DCF2BB519370085A9DE /* BezierText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierText.swift; sourceTree = "<group>"; };
+		04042DD12BB51B920085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YuWeiShuFaXingShuJianTi-1.ttf"; sourceTree = "<group>"; };
 		049820AA2BAA8B9C00E667FF /* PoeticTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeticTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049820AD2BAA8B9C00E667FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +121,7 @@
 			children = (
 				049820C42BAAB79100E667FF /* StudyVC.swift */,
 				04042DCD2BB4F93F0085A9DE /* DynastyVC.swift */,
+				04042DCF2BB519370085A9DE /* BezierText.swift */,
 				04982CC92BB07AFA00E667FF /* Data */,
 				04982CC12BAF040100E667FF /* Cell */,
 				04982CC22BAF040B00E667FF /* Layout */,
@@ -143,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				049820CD2BAAC1D000E667FF /* MyImageClassifier.mlmodel */,
+				04042DD12BB51B920085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf */,
 				04042DC92BB4F4A70085A9DE /* SanJiBangKaiJianTi.ttf */,
 			);
 			name = Resources;
@@ -268,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04042DD32BB51BC10085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf in Resources */,
 				04042DCC2BB4F6040085A9DE /* SanJiBangKaiJianTi.ttf in Resources */,
 				049820BD2BAA8B9E00E667FF /* LaunchScreen.storyboard in Resources */,
 				049820BA2BAA8B9E00E667FF /* Assets.xcassets in Resources */,
@@ -324,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04042DD22BB51BB90085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf in Sources */,
 				04042DCA2BB4F5CE0085A9DE /* SanJiBangKaiJianTi.ttf in Sources */,
 				049820C92BAAB7F900E667FF /* UserVC.swift in Sources */,
 				04982CBE2BAF022A00E667FF /* PtCardDetailLayout.swift in Sources */,
@@ -333,6 +342,7 @@
 				049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */,
 				049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */,
 				049820B82BAA8B9C00E667FF /* PoeticTime.xcdatamodeld in Sources */,
+				04042DD02BB519370085A9DE /* BezierText.swift in Sources */,
 				04982CB92BAEE2C600E667FF /* PtTabBar.swift in Sources */,
 				049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */,
 				049820C52BAAB79100E667FF /* StudyVC.swift in Sources */,
