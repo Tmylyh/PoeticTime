@@ -79,7 +79,7 @@ class PtDynastyCollectionViewCell: UICollectionViewCell {
         dynastyLabel.textAlignment = .center
         dynastyLabel.textColor = .white
         dynastyLabel.numberOfLines = 0
-        dynastyLabel.font = .systemFont(ofSize: 16)
+        dynastyLabel.font = UIFont(name: standardFont, size: 16)
         return dynastyLabel
     }()
     

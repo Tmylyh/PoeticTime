@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04042DCA2BB4F5CE0085A9DE /* SanJiBangKaiJianTi.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 04042DC92BB4F4A70085A9DE /* SanJiBangKaiJianTi.ttf */; };
+		04042DCC2BB4F6040085A9DE /* SanJiBangKaiJianTi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04042DC92BB4F4A70085A9DE /* SanJiBangKaiJianTi.ttf */; };
+		04042DCE2BB4F93F0085A9DE /* DynastyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04042DCD2BB4F93F0085A9DE /* DynastyVC.swift */; };
 		049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AD2BAA8B9C00E667FF /* AppDelegate.swift */; };
 		049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */; };
 		049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820B12BAA8B9C00E667FF /* HomeTabBarVC.swift */; };
@@ -29,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04042DC92BB4F4A70085A9DE /* SanJiBangKaiJianTi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SanJiBangKaiJianTi.ttf; sourceTree = "<group>"; };
+		04042DCD2BB4F93F0085A9DE /* DynastyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynastyVC.swift; sourceTree = "<group>"; };
 		049820AA2BAA8B9C00E667FF /* PoeticTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeticTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049820AD2BAA8B9C00E667FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 		04982CC32BB009CD00E667FF /* PtDynastyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtDynastyCollectionViewCell.swift; sourceTree = "<group>"; };
 		04982CC52BB01F5E00E667FF /* PtDynastyLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtDynastyLayout.swift; sourceTree = "<group>"; };
 		04982CC72BB07AF500E667FF /* dynastyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dynastyData.swift; sourceTree = "<group>"; };
+		04EEEF122BB15D0B00DFDFAF /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		576CF5919F1D8F498260AD24 /* Pods-PoeticTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeticTime.debug.xcconfig"; path = "Target Support Files/Pods-PoeticTime/Pods-PoeticTime.debug.xcconfig"; sourceTree = "<group>"; };
 		7C8D22F5E73180CD34DCEA11 /* Pods_PoeticTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PoeticTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0B41D80515927CD444C896D /* Pods-PoeticTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeticTime.release.xcconfig"; path = "Target Support Files/Pods-PoeticTime/Pods-PoeticTime.release.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +100,7 @@
 				049820CB2BAAB80F00E667FF /* Scan */,
 				049820CC2BAAB81600E667FF /* User */,
 				04982CBC2BAEF12200E667FF /* Helper */,
+				04EEEF122BB15D0B00DFDFAF /* Header.h */,
 				049820CF2BAAC1D300E667FF /* Resources */,
 				049820B32BAA8B9C00E667FF /* Main.storyboard */,
 				049820B92BAA8B9E00E667FF /* Assets.xcassets */,
@@ -108,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				049820C42BAAB79100E667FF /* StudyVC.swift */,
+				04042DCD2BB4F93F0085A9DE /* DynastyVC.swift */,
 				04982CC92BB07AFA00E667FF /* Data */,
 				04982CC12BAF040100E667FF /* Cell */,
 				04982CC22BAF040B00E667FF /* Layout */,
@@ -135,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				049820CD2BAAC1D000E667FF /* MyImageClassifier.mlmodel */,
+				04042DC92BB4F4A70085A9DE /* SanJiBangKaiJianTi.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -259,6 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04042DCC2BB4F6040085A9DE /* SanJiBangKaiJianTi.ttf in Resources */,
 				049820BD2BAA8B9E00E667FF /* LaunchScreen.storyboard in Resources */,
 				049820BA2BAA8B9E00E667FF /* Assets.xcassets in Resources */,
 				049820B52BAA8B9C00E667FF /* Main.storyboard in Resources */,
@@ -314,10 +324,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04042DCA2BB4F5CE0085A9DE /* SanJiBangKaiJianTi.ttf in Sources */,
 				049820C92BAAB7F900E667FF /* UserVC.swift in Sources */,
 				04982CBE2BAF022A00E667FF /* PtCardDetailLayout.swift in Sources */,
 				04982CC02BAF03F900E667FF /* PtCardCollectionViewCell.swift in Sources */,
 				04982CBB2BAEF11A00E667FF /* PtHelper.swift in Sources */,
+				04042DCE2BB4F93F0085A9DE /* DynastyVC.swift in Sources */,
 				049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */,
 				049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */,
 				049820B82BAA8B9C00E667FF /* PoeticTime.xcdatamodeld in Sources */,
@@ -492,6 +504,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.TMYLYH.PoeticTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/mac/Desktop/PoeticTime/PoeticTime/Header.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -521,6 +534,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.TMYLYH.PoeticTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/mac/Desktop/PoeticTime/PoeticTime/Header.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

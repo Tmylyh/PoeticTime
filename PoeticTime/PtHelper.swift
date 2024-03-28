@@ -20,6 +20,8 @@ let kPtDynastyCollectionViewCell = "PtDynastyCollectionViewCell"
 // UIBounds
 let Bounds = UIScreen.main.bounds
 
+// 标准字体
+let standardFont = "SJbangkaijianti"
 
 extension String {
     var pt_argbColor: UIColor? {

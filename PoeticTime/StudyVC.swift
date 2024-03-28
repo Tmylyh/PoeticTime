@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Hero
 
 class StudyVC: UIViewController {
     
@@ -22,7 +23,7 @@ class StudyVC: UIViewController {
     private lazy var dynastyLabel: UILabel = {
         let dynastyLabel = UILabel()
         dynastyLabel.text = "[公元\(dynastyStartTime)-\(dynastyEndTime)年]  \(dynastyName)"
-        dynastyLabel.font = .boldSystemFont(ofSize: 24)
+        dynastyLabel.font = UIFont(name: standardFont, size: 24)
         dynastyLabel.textColor = "#986821".pt_argbColor
         return dynastyLabel
     }()
@@ -31,7 +32,7 @@ class StudyVC: UIViewController {
     private lazy var dynastyDescriptionLabel: UILabel = {
         let dynastyDescriptionLabel = UILabel()
         dynastyDescriptionLabel.text = dynastyDescription
-        dynastyDescriptionLabel.font = .systemFont(ofSize: 18)
+        dynastyDescriptionLabel.font = UIFont(name: standardFont, size: 18)
         dynastyDescriptionLabel.textColor = "#4D2D17".pt_argbColor
         return dynastyDescriptionLabel
     }()
@@ -258,6 +259,17 @@ class StudyVC: UIViewController {
         setUI()
         setCircle()
     }
+    
+    func printZiTi() {
+        // 循环遍历字体
+        for familyName in UIFont.familyNames {
+            print("familyName: '\(familyName)'")
+            for fontName in UIFont.fontNames(forFamilyName: familyName) {
+                print("  fontName: '\(fontName)'")
+            }
+            print("***********")
+        }
+    }
 }
 
 extension StudyVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
@@ -295,5 +307,15 @@ extension StudyVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColle
             cell.bigFactor()
             return
         }
+        if collectionView == self.collectionView {
+            guard let cell = self.collectionView.cellForItem(at: indexPath) as? PtCardCollectionViewCell else { return }
+            let dynastyVC = DynastyVC()
+            cell.hero.id = "123"
+            dynastyVC.hero.isEnabled = true
+            dynastyVC.view.hero.id = "123"
+            dynastyVC.modalPresentationStyle = .fullScreen
+            present(dynastyVC, animated: true)
+        }
+        
     }
 }

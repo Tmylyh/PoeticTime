@@ -1,16 +1,24 @@
 PODS:
+  - DBSphereTagCloudSwift (2.1.0)
+  - Hero (1.6.2)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
+  - DBSphereTagCloudSwift
+  - Hero
   - SnapKit
 
 SPEC REPOS:
   trunk:
+    - DBSphereTagCloudSwift
+    - Hero
     - SnapKit
 
 SPEC CHECKSUMS:
+  DBSphereTagCloudSwift: 4d81884e115464118a372477625b1feeab0ac5f4
+  Hero: c69009dbc9e2f0472e081adc644dba05fcedae72
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: d0ac13926179d11c717bda84655cfde571f1f756
+PODFILE CHECKSUM: d1388cc53925c8bf7a453e2f35ccaa0e7cbd3b41
 
 COCOAPODS: 1.11.3

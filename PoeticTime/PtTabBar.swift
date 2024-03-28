@@ -24,7 +24,7 @@ class PtTabBar: UITabBar {
     private lazy var tabBarStudyItemLabel: UILabel = {
         let tabBarStudyItemLabel = UILabel()
         tabBarStudyItemLabel.text = "学堂"
-        tabBarStudyItemLabel.font = .systemFont(ofSize: 15)
+        tabBarStudyItemLabel.font = UIFont(name: standardFont, size: 18)
         tabBarStudyItemLabel.textAlignment = .center
         return tabBarStudyItemLabel
     }()
@@ -53,7 +53,7 @@ class PtTabBar: UITabBar {
     private lazy var tabBarScanItemLabel: UILabel = {
         let tabBarScanItemLabel = UILabel()
         tabBarScanItemLabel.text = "寻踪"
-        tabBarScanItemLabel.font = .systemFont(ofSize: 15)
+        tabBarScanItemLabel.font = UIFont(name: standardFont, size: 18)
         tabBarScanItemLabel.textAlignment = .center
         return tabBarScanItemLabel
     }()
@@ -81,7 +81,7 @@ class PtTabBar: UITabBar {
     private lazy var tabBarUserItemLabel: UILabel = {
         let tabBarUserItemLabel = UILabel()
         tabBarUserItemLabel.text = "私阁"
-        tabBarUserItemLabel.font = .systemFont(ofSize: 15)
+        tabBarUserItemLabel.font = UIFont(name: standardFont, size: 18)
         tabBarUserItemLabel.textAlignment = .center
         return tabBarUserItemLabel
     }()

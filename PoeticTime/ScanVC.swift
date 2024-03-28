@@ -72,7 +72,21 @@ extension ScanVC: UIImagePickerControllerDelegate, UINavigationControllerDelegat
                 fatalError("不能把图像转化为CIImage")
             }
             
-            guard let model = try? VNCoreMLModel(for: MyImageClassifier().model) else{
+            // 调用你的机器识别函数进行物体检测
+            //1.转化图像
+            let defaultConfig = MLModelConfiguration()
+
+            // Create an instance of the image classifier's wrapper class.
+            let imageClassifierWrapper = try? MyImageClassifier(configuration: defaultConfig)
+
+            guard let imageClassifier = imageClassifierWrapper else {
+                fatalError("App failed to create an image classifier model instance.")
+            }
+
+            // 获取基础模型实例
+            let imageClassifierModel = imageClassifier.model
+            
+            guard let model = try? VNCoreMLModel(for: imageClassifierModel) else{
                 fatalError("加载model失败")
             }
             let request = VNCoreMLRequest(model: model) { (request, error) in

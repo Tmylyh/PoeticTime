@@ -7,4 +7,6 @@ target 'PoeticTime' do
   
   # Pods for PoeticTime
   pod 'SnapKit'
+  pod 'DBSphereTagCloudSwift'
+  pod 'Hero'
 end
