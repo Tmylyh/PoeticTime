@@ -7,23 +7,38 @@
 
 import UIKit
 
-// 初始化imageView的Rect
+/// 初始化imageView的Rect
 let viewInitRect = CGRect(x: 0, y: 0, width: 100, height: 100)
 
-// tabBar高度
+/// tabBar高度
 let ptTabBarHeight: CGFloat = 120
 
-// cellID
+/// cellID
 let kPtCardCollectionViewCell = "PtCardCollectionViewCell"
 let kPtDynastyCollectionViewCell = "PtDynastyCollectionViewCell"
 
-// UIBounds
+/// UIBounds
 let Bounds = UIScreen.main.bounds
 
-// 标准字体
-let standardFont = "SJbangkaijianti"
+/// 字体枚举
+enum ZiTi: String {
+    case pmzd = "PangMenZhengDao-Cu"
+    case sjbkjt = "SJbangkaijianti"
+    case yuweij = "yuweij"
+}
 
-// 系统状态栏高度
+/// 循环遍历字体
+func printZiTi() {
+    for familyName in UIFont.familyNames {
+        print("familyName: '\(familyName)'")
+        for fontName in UIFont.fontNames(forFamilyName: familyName) {
+            print("  fontName: '\(fontName)'")
+        }
+        print("***********")
+    }
+}
+
+/// 系统状态栏高度
 var statusBarHeight: Int {
     get {
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
@@ -36,6 +51,7 @@ var statusBarHeight: Int {
         return 44
     }
 }
+
 extension String {
     var pt_argbColor: UIColor? {
         return UIColor(argbString: self)

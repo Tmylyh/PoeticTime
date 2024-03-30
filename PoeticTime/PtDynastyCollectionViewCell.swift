@@ -22,8 +22,8 @@ class PtDynastyCollectionViewCell: UICollectionViewCell {
     
     /// 活跃的cell颜色
     public func changeActiveColor() {
-        backColorView.backgroundColor = "F1D6A2".pt_argbColor
-        contentColorView.backgroundColor = "F3C038".pt_argbColor
+        backColorView.backgroundColor = "E8EEE5".pt_argbColor
+        contentColorView.backgroundColor = "72A3A0".pt_argbColor
     }
     
     /// 重置
@@ -79,7 +79,7 @@ class PtDynastyCollectionViewCell: UICollectionViewCell {
         dynastyLabel.textAlignment = .center
         dynastyLabel.textColor = .white
         dynastyLabel.numberOfLines = 0
-        dynastyLabel.font = UIFont(name: standardFont, size: 16)
+        dynastyLabel.font = UIFont(name: ZiTi.pmzd.rawValue, size: 16)
         return dynastyLabel
     }()
     
@@ -100,7 +100,7 @@ class PtDynastyCollectionViewCell: UICollectionViewCell {
         
         dynastyLabel.snp.makeConstraints { make in
             make.left.right.centerY.equalToSuperview()
-            make.height.equalTo(44)
+            make.height.equalTo(54)
         }
     }
     

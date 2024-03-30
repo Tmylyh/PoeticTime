@@ -22,9 +22,9 @@ class StudyVC: UIViewController {
     // 朝代label
     private lazy var dynastyLabel: UILabel = {
         let dynastyLabel = UILabel()
-        dynastyLabel.text = "[公元\(dynastyStartTime)-\(dynastyEndTime)年]  \(dynastyName)"
-        dynastyLabel.font = UIFont(name: standardFont, size: 24)
-        dynastyLabel.textColor = "#986821".pt_argbColor
+        dynastyLabel.text = "[公元\(dynastyStartTime)-\(dynastyEndTime)年] \(dynastyName)"
+        dynastyLabel.font = UIFont(name: ZiTi.pmzd.rawValue, size: 32)
+        dynastyLabel.textColor = "#27827C".pt_argbColor
         return dynastyLabel
     }()
     
@@ -32,14 +32,14 @@ class StudyVC: UIViewController {
     private lazy var dynastyDescriptionLabel: UILabel = {
         let dynastyDescriptionLabel = UILabel()
         dynastyDescriptionLabel.text = dynastyDescription
-        dynastyDescriptionLabel.font = UIFont(name: standardFont, size: 18)
-        dynastyDescriptionLabel.textColor = "#4D2D17".pt_argbColor
+        dynastyDescriptionLabel.font = UIFont(name: ZiTi.pmzd.rawValue, size: 22)
+        dynastyDescriptionLabel.textColor = "#175450".pt_argbColor
         return dynastyDescriptionLabel
     }()
     
     private lazy var dynastyDescriptionBackground: UIView = {
         let dynastyDescriptionBackground = UIView(frame: viewInitRect)
-        dynastyDescriptionBackground.backgroundColor = "#F2D87C".pt_argbColor
+        dynastyDescriptionBackground.backgroundColor = "#A7C4C2".pt_argbColor
         return dynastyDescriptionBackground
     }()
     
@@ -52,16 +52,6 @@ class StudyVC: UIViewController {
         backgroundImageView.image = UIImage(named: "poetic_time_study_background")
         backgroundImageView.contentMode = .scaleAspectFit
         return backgroundImageView
-    }()
-    
-    // TODO: - @lyh
-    // nav左侧view
-    lazy var leftBarButtonImageView: UIImageView = {
-        let leftBarButtonImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        leftBarButtonImageView.image = .init(systemName: "camera")
-        leftBarButtonImageView.contentMode = .scaleAspectFit
-        leftBarButtonImageView.layer.masksToBounds = true
-        return leftBarButtonImageView
     }()
     
     private lazy var layout: PtCardDetailLayout = {
@@ -88,7 +78,7 @@ class StudyVC: UIViewController {
     // 分隔线
     private lazy var separateLeftLine: UIView = {
         let separateLeftLine = UIView(frame: viewInitRect)
-        separateLeftLine.backgroundColor = "#F3C038".pt_argbColor
+        separateLeftLine.backgroundColor = "#72A3A0".pt_argbColor
         return separateLeftLine
     }()
     
@@ -99,7 +89,7 @@ class StudyVC: UIViewController {
     
     private lazy var separateRightLine: UIView = {
         let separateRightLine = UIView(frame: viewInitRect)
-        separateRightLine.backgroundColor = "#F3C038".pt_argbColor
+        separateRightLine.backgroundColor = "#72A3A0".pt_argbColor
         return separateRightLine
     }()
     
@@ -134,18 +124,6 @@ class StudyVC: UIViewController {
         preCell.resetColor()
         preIndex = index
     }
-    
-    // 配制nav
-    private func setNav() {
-        // 左侧图
-        let navBarLeftItem = UIBarButtonItem(customView: leftBarButtonImageView)
-        navigationItem.leftBarButtonItem = navBarLeftItem
-        
-        // 右侧按钮
-        let navBarRightItem = UIBarButtonItem(image: UIImage(named: "poetic_time_study_nav_right_item"), style: .done, target: self, action: nil)
-        navBarRightItem.tintColor = "#9D640F".pt_argbColor ?? .brown
-        navigationItem.rightBarButtonItem = navBarRightItem
-    }
 
     // 配制布局UI
     private func setUI() {
@@ -160,8 +138,7 @@ class StudyVC: UIViewController {
         view.addSubview(dynastyCollectionView)
         
         backgroundImageView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-ptTabBarHeight)
+            make.edges.equalToSuperview()
         }
         
         collectionView.snp.makeConstraints { make in
@@ -171,16 +148,16 @@ class StudyVC: UIViewController {
         }
         
         dynastyLabel.snp.makeConstraints { make in
-            make.top.equalTo(100)
+            make.top.equalTo(78)
             make.centerX.equalToSuperview()
-            make.height.equalTo(24)
+            make.height.equalTo(34)
         }
         
         dynastyDescriptionBackground.snp.makeConstraints { make in
             make.top.equalTo(dynastyLabel.snp.bottom).offset(24)
             make.centerX.equalToSuperview()
             make.height.equalTo(16)
-            make.width.equalTo(200)
+            make.width.equalTo(240)
         }
         
         dynastyDescriptionLabel.snp.makeConstraints { make in
@@ -235,7 +212,7 @@ class StudyVC: UIViewController {
 
         // 设置填充颜色和边框颜色
         shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.strokeColor = "#F3C038".pt_argbColor?.cgColor
+        shapeLayer.strokeColor = "#72A3A0".pt_argbColor?.cgColor
         shapeLayer.lineWidth = 2
 
         // 将 CAShapeLayer 添加到 separateCircle 的 layer 上
@@ -246,29 +223,17 @@ class StudyVC: UIViewController {
     private func updateDynastyLabel(index: Int) {
         self.dynastyStartTime = dynastyStartTimeData[index]
         self.dynastyEndTime = dynastyEndTimeData[index]
-        self.dynastyName = dynastyData[index]
+        self.dynastyName = dynastyNameData[index]
         self.dynastyDescription = dynastyDescriptionData[index]
         // 更新 dynastyLabel 的文本内容
-        self.dynastyLabel.text = "[公元\(self.dynastyStartTime)-\(self.dynastyEndTime)年]  \(self.dynastyName)"
+        self.dynastyLabel.text = "[公元\(self.dynastyStartTime)-\(self.dynastyEndTime)年] \(self.dynastyName)"
         self.dynastyDescriptionLabel.text = dynastyDescription
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNav()
         setUI()
         setCircle()
-    }
-    
-    func printZiTi() {
-        // 循环遍历字体
-        for familyName in UIFont.familyNames {
-            print("familyName: '\(familyName)'")
-            for fontName in UIFont.fontNames(forFamilyName: familyName) {
-                print("  fontName: '\(fontName)'")
-            }
-            print("***********")
-        }
     }
 }
 
@@ -281,10 +246,11 @@ extension StudyVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kPtCardCollectionViewCell, for: indexPath) as? PtCardCollectionViewCell else { return UICollectionViewCell() }
+            cell.contentImageView.image = UIImage(named: dynastyCardImage[indexPath.row])
             return cell
         } else if collectionView == self.dynastyCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kPtDynastyCollectionViewCell, for: indexPath) as? PtDynastyCollectionViewCell else { return UICollectionViewCell() }
-            cell.dynastyText = dynastyData[indexPath.row]
+            cell.dynastyText = dynastyNameData[indexPath.row]
             if indexPath.row == collectionView.numberOfItems(inSection: 0) / 2 {
                 updateDynastyLabel(index: indexPath.row)
                 cell.changeActiveColor()
@@ -310,12 +276,15 @@ extension StudyVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColle
         if collectionView == self.collectionView {
             guard let cell = self.collectionView.cellForItem(at: indexPath) as? PtCardCollectionViewCell else { return }
             let dynastyVC = DynastyVC()
-            cell.hero.id = "123"
+            cell.hero.id = "StudyVC2DynastyVC\(indexPath.row)"
             dynastyVC.hero.isEnabled = true
-            dynastyVC.view.hero.id = "123"
+            dynastyVC.view.hero.id = "StudyVC2DynastyVC\(indexPath.row)"
             dynastyVC.modalPresentationStyle = .fullScreen
+            dynastyVC.dynastyStoryData = dynastyData[indexPath.row]
+            // 查询当朝诗人
+            let poetsWithDynasty = poetData.filter { $0.dynastyId == dynastyVC.dynastyStoryData.dynastyId }
+            dynastyVC.poetWithDynastyData = poetsWithDynasty
             present(dynastyVC, animated: true)
         }
-        
     }
 }

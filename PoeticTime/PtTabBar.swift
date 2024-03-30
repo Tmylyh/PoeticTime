@@ -11,7 +11,6 @@ import SnapKit
 // 自定义tabbar，设置高度
 class PtTabBar: UITabBar {
     
-    
     // 学习tab的imageView
     private lazy var tabBarStudyItemImageView: UIImageView = {
         let tabBarStudyItemImageView = UIImageView(frame: viewInitRect)
@@ -24,7 +23,7 @@ class PtTabBar: UITabBar {
     private lazy var tabBarStudyItemLabel: UILabel = {
         let tabBarStudyItemLabel = UILabel()
         tabBarStudyItemLabel.text = "学堂"
-        tabBarStudyItemLabel.font = UIFont(name: standardFont, size: 18)
+        tabBarStudyItemLabel.font = UIFont(name: ZiTi.pmzd.rawValue, size: 22)
         tabBarStudyItemLabel.textAlignment = .center
         return tabBarStudyItemLabel
     }()
@@ -53,7 +52,7 @@ class PtTabBar: UITabBar {
     private lazy var tabBarScanItemLabel: UILabel = {
         let tabBarScanItemLabel = UILabel()
         tabBarScanItemLabel.text = "寻踪"
-        tabBarScanItemLabel.font = UIFont(name: standardFont, size: 18)
+        tabBarScanItemLabel.font = UIFont(name: ZiTi.pmzd.rawValue, size: 22)
         tabBarScanItemLabel.textAlignment = .center
         return tabBarScanItemLabel
     }()
@@ -81,7 +80,7 @@ class PtTabBar: UITabBar {
     private lazy var tabBarUserItemLabel: UILabel = {
         let tabBarUserItemLabel = UILabel()
         tabBarUserItemLabel.text = "私阁"
-        tabBarUserItemLabel.font = UIFont(name: standardFont, size: 18)
+        tabBarUserItemLabel.font = UIFont(name: ZiTi.pmzd.rawValue, size: 22)
         tabBarUserItemLabel.textAlignment = .center
         return tabBarUserItemLabel
     }()
@@ -104,13 +103,13 @@ class PtTabBar: UITabBar {
         resetImageAndLabelColor()
         if tag == 0 {
             tabBarStudyItemImageView.image = UIImage(named: "poetic_time_study_select_tab_bar")
-            tabBarStudyItemLabel.textColor = "F3C038".pt_argbColor
+            tabBarStudyItemLabel.textColor = "#67CEC8".pt_argbColor
         } else if tag == 1 {
             tabBarScanItemImageView.image = UIImage(named: "poetic_time_scan_select_tab_bar")
-            tabBarScanItemLabel.textColor = "F3C038".pt_argbColor
+            tabBarScanItemLabel.textColor = "#67CEC8".pt_argbColor
         } else if tag == 2 {
             tabBarUserItemImageView.image = UIImage(named: "poetic_time_user_select_tab_bar")
-            tabBarUserItemLabel.textColor = "F3C038".pt_argbColor
+            tabBarUserItemLabel.textColor = "#67CEC8".pt_argbColor
         }
     }
     
@@ -130,6 +129,7 @@ class PtTabBar: UITabBar {
         frame.size.height = ptTabBarHeight // 设置指定高度
         frame.origin.y = self.superview!.frame.size.height - frame.size.height
         self.frame = frame
+        self.backgroundColor = .clear
     }
     
     // 添加view并布局

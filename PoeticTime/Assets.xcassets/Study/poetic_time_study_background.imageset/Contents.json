@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "背景.png",
+      "filename" : "转场动画页面.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "背景@2x.png",
+      "filename" : "转场动画页面@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "背景@3x.png",
+      "filename" : "转场动画页面@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

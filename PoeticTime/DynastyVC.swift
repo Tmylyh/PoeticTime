@@ -8,6 +8,7 @@
 import UIKit
 import DBSphereTagCloudSwift
 import SnapKit
+import Hero
 
 class DynastyVC: UIViewController {
     
@@ -15,7 +16,7 @@ class DynastyVC: UIViewController {
     let sphereRaius = 120
     
     // animationView的字体
-    let animationFont = "yuweij"
+    let animationFont = ZiTi.yuweij
     
     // infoView的子视图集合
     var infoSubViews: [UIView] = []
@@ -34,6 +35,12 @@ class DynastyVC: UIViewController {
         }
     }
     
+    // 朝代故事的数据
+    var dynastyStoryData: Dynasty = Dynasty(dynastyId: "", dynastyName: "", dynastyInfo: "")
+    
+    // 当朝诗人数据
+    var poetWithDynastyData: [Poet] = []
+    
     // 中转动画
     lazy var animationView: BezierText = {
         let width = self.view.frame.height - 150
@@ -41,7 +48,7 @@ class DynastyVC: UIViewController {
         let text = BezierText(frame: CGRect(x: -(width - height) / 2, y: 0 , width: width, height: self.view.frame.height))
         text.dismissAnimationBlock = dismissAnimationHandle
         text.backgroundColor = .clear
-        text.show(text: "长太息以掩涕兮，哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。长太息以掩涕兮，哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。")
+        text.show(text: "长太息以掩涕兮，哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。长太息以掩涕兮，哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。多艰。")
         text.isUserInteractionEnabled = true
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(finishAnimationHandle))
         // 双击手势
@@ -53,27 +60,68 @@ class DynastyVC: UIViewController {
     // 动画手写字体的背景
     lazy var animationBackgroundView: UIImageView = {
         let animationBackgroundView = UIImageView(frame: viewInitRect)
-        animationBackgroundView.backgroundColor = .white
+        animationBackgroundView.backgroundColor = "#D8F0EC".pt_argbColor
         animationBackgroundView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissAnimationHandle))
         animationBackgroundView.addGestureRecognizer(tap)
         return animationBackgroundView
     }()
     
+    // 附着在手写体动画背景上的图
+    lazy var animationAttatchView: UIImageView = {
+        let animationAttatchView = UIImageView(frame: viewInitRect)
+        animationAttatchView.image = UIImage(named: "poetic_time_dynasty_attach_image")
+        animationAttatchView.contentMode = .scaleAspectFit
+        return animationAttatchView
+    }()
+    
     // 诗人球体
     var sphereView: DBSphereView!
+    
+    // 返回按钮
+    lazy var backButton: UIButton = {
+        let backButton = UIButton()
+        backButton.setImage(UIImage(named: "poetic_time_dynasty_back_image"), for: .normal)
+        backButton.contentMode = .scaleAspectFit
+        backButton.addTarget(self, action: #selector(dismissCurrentVC), for: .touchUpInside)
+        return backButton
+    }()
+    
+    // 朝代标签
+    lazy var tagLabel: UILabel = {
+        let tagLabel = UILabel()
+        tagLabel.text = "\(dynastyStoryData.dynastyName.prefix(1))\n\(dynastyStoryData.dynastyName.suffix(1))"
+        tagLabel.textColor = .white
+        tagLabel.numberOfLines = 0
+        tagLabel.textAlignment = .center
+        tagLabel.font = UIFont(name: ZiTi.yuweij.rawValue, size: 62)
+        return tagLabel
+    }()
+    
+    // stackView的分割线
+    lazy var seperateStackLine1: UIView = {
+        let seperateStackLine = UIView(frame: viewInitRect)
+        seperateStackLine.backgroundColor = "#F5FCFB".pt_argbColor
+        seperateStackLine.layer.cornerRadius = 10
+        return seperateStackLine
+    }()
+    
+    lazy var seperateStackLine2: UIView = {
+        let seperateStackLine = UIView(frame: viewInitRect)
+        seperateStackLine.backgroundColor = "#F5FCFB".pt_argbColor
+        seperateStackLine.layer.cornerRadius = 10
+        return seperateStackLine
+    }()
     
     // 朝代背景
     lazy var dynastyStoryButton: UIButton = {
         let dynastyStoryButton = UIButton()
-        dynastyStoryButton.backgroundColor = .red
-        dynastyStoryButton.setTitle("朝代背景", for: .normal)
-        dynastyStoryButton.setTitle("选中背景", for: .selected)
+        dynastyStoryButton.backgroundColor = "#7EB5B1".pt_argbColor
+        dynastyStoryButton.setTitle("诗史纪元", for: .normal)
         dynastyStoryButton.isSelected = true
-        dynastyStoryButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        dynastyStoryButton.titleLabel?.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 20)
         dynastyStoryButton.setTitleColor(.black, for: .normal)
-        dynastyStoryButton.tag = 0
-//        dynastyStoryButton.layer.cornerRadius = 20
+        dynastyStoryButton.tag = 1
         dynastyStoryButton.addTarget(self, action: #selector(changeInfoView), for: .touchUpInside)
         return dynastyStoryButton
     }()
@@ -81,13 +129,11 @@ class DynastyVC: UIViewController {
     // 个人作诗
     lazy var diyPoemButton: UIButton = {
         let diyPoemButton = UIButton()
-        diyPoemButton.backgroundColor = .blue
-        diyPoemButton.setTitle("个人作诗", for: .normal)
-        diyPoemButton.setTitle("选中作诗", for: .selected)
-        diyPoemButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        diyPoemButton.setTitleColor(.black, for: .normal)
-        diyPoemButton.tag = 1
-//        diyPoemButton.layer.cornerRadius = 20
+        diyPoemButton.backgroundColor = "#7EB5B1".pt_argbColor
+        diyPoemButton.setTitle("笔下生花", for: .normal)
+        diyPoemButton.titleLabel?.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 20)
+        diyPoemButton.setTitleColor(.white, for: .normal)
+        diyPoemButton.tag = 2
         diyPoemButton.addTarget(self, action: #selector(changeInfoView), for: .touchUpInside)
         return diyPoemButton
     }()
@@ -95,50 +141,130 @@ class DynastyVC: UIViewController {
     // 诗词列表
     lazy var poemListButton: UIButton = {
         let poemListButton = UIButton()
-        poemListButton.backgroundColor = .yellow
-        poemListButton.setTitle("诗词列表", for: .normal)
-        poemListButton.setTitle("选中列表", for: .selected)
-        poemListButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        poemListButton.setTitleColor(.black, for: .normal)
-        poemListButton.tag = 2
-//        poemListButton.layer.cornerRadius = 20
+        poemListButton.backgroundColor = "#7EB5B1".pt_argbColor
+        poemListButton.setTitle("华章荟萃", for: .normal)
+        poemListButton.titleLabel?.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 20)
+        poemListButton.setTitleColor(.white, for: .normal)
+        poemListButton.tag = 3
         poemListButton.addTarget(self, action: #selector(changeInfoView), for: .touchUpInside)
         return poemListButton
     }()
     
     // infoView的页面切换控制器
-    private lazy var stackButtonView: UIStackView = {
+    lazy var stackButtonView: UIStackView = {
         let stackButtonView = UIStackView()
+        stackButtonView.backgroundColor = "7EB5B1".pt_argbColor
         stackButtonView.axis = .horizontal
-//        stackButtonView.spacing = 8
+        stackButtonView.spacing = 2
         stackButtonView.addArrangedSubview(dynastyStoryButton)
         stackButtonView.addArrangedSubview(diyPoemButton)
         stackButtonView.addArrangedSubview(poemListButton)
         return stackButtonView
     }()
     
+    // 朝代背景的翻页控制器
+    var pageControl: UIPageControl?
+    
     // 朝代背景、作诗、诗词列表所在的View
     lazy var infoScrollView: UIScrollView = {
-        let infoScrollView = UIScrollView(frame: CGRect(x: 0, y: sphereRaius * 2 + statusBarHeight + 32, width: Int(Bounds.width), height: 800))
+        let infoScrollViewY = sphereRaius * 2 + statusBarHeight + 32
+        let infoScrollView = UIScrollView(frame: CGRect(x: 0, y: infoScrollViewY, width: Int(Bounds.width), height: Int(Bounds.height) - infoScrollViewY - statusBarHeight))
+        
         // 使用页面控制器
         infoScrollView.isPagingEnabled = true
         // 禁止边界弹性滚动
         infoScrollView.bounces = false
         // 设置滚动视图范围
-        infoScrollView.contentSize = CGSize(width: Bounds.width * 3, height: infoScrollView.frame.height)
+        infoScrollView.contentSize = CGSize(width: Bounds.width * 3, height: 0)
         // 禁止滚动视图的滚动条
         infoScrollView.showsHorizontalScrollIndicator = false
         infoScrollView.showsVerticalScrollIndicator = false
-        
         infoScrollView.delegate = self
         return infoScrollView
     }()
     
+    // 诗史纪元
+    lazy var dynastyStoryView: UIImageView = {
+        let dynastyStoryView = UIImageView(frame: viewInitRect)
+        dynastyStoryView.image = UIImage(named: "poetic_time_dynasty_story_image")
+        dynastyStoryView.contentMode = .scaleAspectFill
+        return dynastyStoryView
+    }()
+    
+    // 装字的ScrollView
+    lazy var dynastyStoryContentView: UIScrollView = {
+        let dynastyStoryContentView = UIScrollView(frame: viewInitRect)
+        // 使用页面控制器
+        dynastyStoryContentView.isPagingEnabled = true
+        // 禁止边界弹性滚动
+        dynastyStoryContentView.bounces = false
+        // 设置滚动视图范围
+        dynastyStoryContentView.contentSize = CGSize(width: Bounds.width * 3, height: 0)
+        // 禁止滚动视图的滚动条
+        dynastyStoryContentView.showsHorizontalScrollIndicator = false
+        dynastyStoryContentView.showsVerticalScrollIndicator = false
+        
+        dynastyStoryContentView.delegate = self
+        dynastyStoryContentView.layer.cornerRadius = 20
+        dynastyStoryContentView.backgroundColor = "#CCCCCC".pt_argbColor
+        dynastyStoryContentView.layer.masksToBounds = true
+        dynastyStoryContentView.layer.opacity = 0.8
+        return dynastyStoryContentView
+    }()
+    
+    // 装字的View
+    lazy var dynastyStoryLabel1: UILabel = {
+        let dynastyStoryLabel1 = UILabel(frame: viewInitRect)
+        dynastyStoryLabel1.layer.cornerRadius = 20
+        dynastyStoryLabel1.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 22)
+        dynastyStoryLabel1.backgroundColor = "#CCCCCC".pt_argbColor
+        dynastyStoryLabel1.layer.masksToBounds = true
+        dynastyStoryLabel1.numberOfLines = 0
+        dynastyStoryLabel1.layer.opacity = 0.8
+        return dynastyStoryLabel1
+    }()
+    
+    lazy var dynastyStoryLabel2: UILabel = {
+        let dynastyStoryLabel2 = UILabel(frame: viewInitRect)
+        dynastyStoryLabel2.layer.cornerRadius = 20
+        dynastyStoryLabel2.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 22)
+        dynastyStoryLabel2.backgroundColor = "#CCCCCC".pt_argbColor
+        dynastyStoryLabel2.layer.masksToBounds = true
+        dynastyStoryLabel2.numberOfLines = 0
+        dynastyStoryLabel2.layer.opacity = 0.8
+        return dynastyStoryLabel2
+    }()
+    
+    lazy var dynastyStoryLabel3: UILabel = {
+        let dynastyStoryLabel3 = UILabel(frame: viewInitRect)
+        dynastyStoryLabel3.layer.cornerRadius = 20
+        dynastyStoryLabel3.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 22)
+        dynastyStoryLabel3.backgroundColor = "#CCCCCC".pt_argbColor
+        dynastyStoryLabel3.layer.masksToBounds = true
+        dynastyStoryLabel3.numberOfLines = 0
+        dynastyStoryLabel3.layer.opacity = 0.8
+        return dynastyStoryLabel3
+    }()
+    
+    lazy var dynastyStoryLabel4: UILabel = {
+        let dynastyStoryLabel4 = UILabel(frame: viewInitRect)
+        dynastyStoryLabel4.layer.cornerRadius = 20
+        dynastyStoryLabel4.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 22)
+        dynastyStoryLabel4.backgroundColor = "#CCCCCC".pt_argbColor
+        dynastyStoryLabel4.layer.masksToBounds = true
+        dynastyStoryLabel4.numberOfLines = 0
+        dynastyStoryLabel4.layer.opacity = 0.8
+        return dynastyStoryLabel4
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = "#0E3036".pt_argbColor
         sphereView = DBSphereView(frame: CGRect(x: Int(Bounds.width) / 2 - sphereRaius, y: statusBarHeight + 8, width: sphereRaius * 2, height: sphereRaius * 2))
-        setSphereUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setUIAndLayout()
         setInfoSubViewUI()
     }
@@ -148,10 +274,23 @@ class DynastyVC: UIViewController {
         setAnimationUI()
     }
     
+    // 状态栏颜色
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent // 或者 .default，取决于你想要的状态栏颜色
+    }
+    
+    // dimiss当前View
+    @objc func dismissCurrentVC() {
+        hero.dismissViewController()
+    }
+    
     // dismiss掉动画View
     @objc func dismissAnimationHandle() {
         animationBackgroundView.removeFromSuperview()
         animationView.removeFromSuperview()
+        // 动画页面关闭再播放球动画
+        setSphereUI()
+        self.view.addSubview(sphereView)
     }
     
     @objc func finishAnimationHandle() {
@@ -160,109 +299,9 @@ class DynastyVC: UIViewController {
         animationView.pathLayer.removeAnimation(forKey: "strokeEnd")
     }
     
-    // 控制器切换页面操作
-    @objc func changeInfoView(_ sender: UIButton) {
-        let index = sender.tag
-        self.currentPage = index
-    }
-    
     // 配制中转动画
     func setAnimationUI() {
         animationView.transform = CGAffineTransform(rotationAngle: .pi / 2)
         self.view.addSubview(animationView)
     }
-    
-    // 配制页面UI和布局
-    func setUIAndLayout() {
-        self.view.addSubview(sphereView)
-        self.view.addSubview(stackButtonView)
-        self.view.addSubview(infoScrollView)
-        self.view.addSubview(animationBackgroundView)
-        
-        diyPoemButton.snp.makeConstraints { (make) in
-            make.width.equalTo(dynastyStoryButton)
-        }
-    
-        poemListButton.snp.makeConstraints { (make) in
-            make.width.equalTo(dynastyStoryButton)
-        }
-        
-        stackButtonView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalToSuperview().offset(sphereRaius * 2 + statusBarHeight + 32)
-            make.height.equalTo(44)
-            make.width.equalTo(250)
-        }
-        
-        infoScrollView.snp.makeConstraints { make in
-            make.top.equalTo(stackButtonView.snp.bottom)
-            make.left.right.bottom.equalToSuperview()
-        }
-        
-        animationBackgroundView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-    
-    // 配制info的子View
-    func setInfoSubViewUI() {
-        let view1 = UIView(frame: viewInitRect)
-        view1.backgroundColor = .red
-        let view2 = UIView(frame: viewInitRect)
-        view2.backgroundColor = .blue
-        let view3 = UIView(frame: viewInitRect)
-        view3.backgroundColor = .yellow
-        infoSubViews.append(view1)
-        infoSubViews.append(view2)
-        infoSubViews.append(view3)
-        for (index, view) in infoSubViews.enumerated() {
-            view.frame = CGRect(x: index * Int(Bounds.width), y: 0, width: Int(Bounds.width), height: Int(infoScrollView.frame.height))
-            infoScrollView.addSubview(view)
-        }
-    }
-    
-    // 配制球体UI
-    func setSphereUI() {
-        var array = [UIButton]()
-        for i in 1..<40 {
-            let btn = UIButton(type: UIButton.ButtonType.system)
-            btn.setTitle("李白\(i)", for: .normal)
-            btn.setTitleColor(.darkGray, for: .normal)
-            btn.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: UIFont.Weight.light)
-            btn.frame = CGRect(x: 0, y: 0, width: 100, height: 24)
-            btn.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
-            array.append(btn)
-            sphereView.addSubview(btn)
-        }
-        sphereView.setCloudTags(array)
-        sphereView.backgroundColor = .clear
-    }
-    
-    // pageControl点击后的联动
-    func pageControlValueChanged() {
-        let targetOffsetX = CGFloat(self.currentPage) * Bounds.width
-        infoScrollView.setContentOffset(CGPoint(x: targetOffsetX, y: 0), animated: true)
-        guard let viewWithTag = self.view.viewWithTag(currentPage) as? UIButton else { return }
-        clearSelected()
-        viewWithTag.isSelected = true
-    }
-    
-    func clearSelected() {
-        dynastyStoryButton.isSelected = false
-        diyPoemButton.isSelected = false
-        poemListButton.isSelected = false
-    }
-    
-    @objc func buttonTapped() {
-        print(123)
-    }
-}
-
-
-extension DynastyVC: UIScrollViewDelegate {
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        self.currentPage = Int(scrollView.contentOffset.x / Bounds.width)
-    }
-    
 }

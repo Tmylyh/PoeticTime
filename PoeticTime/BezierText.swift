@@ -78,7 +78,7 @@ class BezierText: UIView {
     private func bezierPathFrom(string:String) -> UIBezierPath{
         let fontSize: CGFloat = 32 // 字体大小
         let paths = CGMutablePath()
-        let fontName = __CFStringMakeConstantString("yuweij")!
+        let fontName = __CFStringMakeConstantString(ZiTi.yuweij.rawValue)!
         let fontRef:AnyObject = CTFontCreateWithName(fontName, fontSize, nil)
         let paragraphStyle = NSMutableParagraphStyle()
         let attributes: [NSAttributedString.Key: Any] = [

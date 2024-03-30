@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SQLite
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        PoeticTimeDao.initDB()
+        PoeticTimeDao.readData()
+//        let info = DBInfo()
+//        info.tableType = .dynasty
+//        let info1 = DBInfo()
+//        info1.tableType = .poet
+//        PoeticTimeDao.printTable(info: info)
+//        let newInfo = DBInfo(dynastyId: "yuan", dynastyName: "元代", dynastyInfo: "近宋临清")
+//        PoeticTimeDao.insertElement(info: newInfo)
+//        let deleteInfo = DBInfo(dynastyId: "yuan", dynastyName: "", dynastyInfo: "")
+//        PoeticTimeDao.deleteElement(info: deleteInfo)
+//        PoeticTimeDao.printTable(info: info)
+//        PoeticTimeDao.printTable(info: info1)
         return true
     }
 

@@ -10,9 +10,9 @@ import SnapKit
 
 class PtCardCollectionViewCell: UICollectionViewCell {
     
-    private lazy var contentImageView: UIImageView = {
+    public lazy var contentImageView: UIImageView = {
         let contentImageView = UIImageView(frame: viewInitRect)
-        contentImageView.image = UIImage(named: "poetic_time_study_tang_card_image")
+        contentImageView.image = UIImage(named: "poetic_time_study_shengtang_card_image")
         contentImageView.contentMode = .scaleAspectFit
         return contentImageView
     }()
