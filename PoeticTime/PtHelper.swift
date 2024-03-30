@@ -7,24 +7,24 @@
 
 import UIKit
 
-/// 初始化imageView的Rect
-let viewInitRect = CGRect(x: 0, y: 0, width: 100, height: 100)
-
-/// tabBar高度
-let ptTabBarHeight: CGFloat = 120
-
-/// cellID
-let kPtCardCollectionViewCell = "PtCardCollectionViewCell"
-let kPtDynastyCollectionViewCell = "PtDynastyCollectionViewCell"
-
-/// UIBounds
-let Bounds = UIScreen.main.bounds
-
 /// 字体枚举
 enum ZiTi: String {
     case pmzd = "PangMenZhengDao-Cu"
     case sjbkjt = "SJbangkaijianti"
     case yuweij = "yuweij"
+}
+
+/// 每个字符后添加换行符，使文字纵向排列
+func verticalText(text: String) -> String {
+    var vText = ""
+    for (index, char) in text.enumerated() {
+        if index < text.count - 1 {
+            vText += "\(char)\n"
+        } else {
+            vText += "\(char)"
+        }
+    }
+    return vText
 }
 
 /// 循环遍历字体

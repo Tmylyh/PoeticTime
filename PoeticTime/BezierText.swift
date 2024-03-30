@@ -10,7 +10,7 @@ import UIKit
 class BezierText: UIView {
      
     // 字迹动画时间
-    private var duration:TimeInterval = 5
+    private var duration: TimeInterval = 5
      
     // 字迹书写图层
     let pathLayer = CAShapeLayer()
@@ -76,7 +76,7 @@ class BezierText: UIView {
      
     //将字符串转为贝塞尔曲线
     private func bezierPathFrom(string:String) -> UIBezierPath{
-        let fontSize: CGFloat = 32 // 字体大小
+        let fontSize: CGFloat = 64 // 字体大小
         let paths = CGMutablePath()
         let fontName = __CFStringMakeConstantString(ZiTi.yuweij.rawValue)!
         let fontRef:AnyObject = CTFontCreateWithName(fontName, fontSize, nil)

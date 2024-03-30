@@ -5,7 +5,7 @@
 //  Created by 李跃行 on 2024/3/30.
 //
 
-import Foundation
+import UIKit
 
 // 朝代
 struct Dynasty {
@@ -30,6 +30,24 @@ struct Poet {
     let dynastyId: String
 }
 
+// 总数据
 var dynastyData: [Dynasty] = []
 var poemData: [Poem] = []
 var poetData: [Poet] = []
+
+// 跳转动画文本
+let animationText: [String] = ["贞观之治四海宁             文化初兴气象新", "开元盛世歌繁华             万国衣冠拜冕旒", "安史之乱山河破             风雨飘摇度时艰", "末世衰微叹奈何             夕阳无限映江波", "庆历新政启新篇             文化昌盛耀九天", "偏安一隅保家国             临安城下思故国", "蒙古雄风扫欧亚             文化交融显华章", "永乐大典耀古今             海上丝绸扬国威", "康乾盛世百业兴             闭关锁国渐沉沦"]
+
+/// 初始化imageView的Rect
+let viewInitRect = CGRect(x: 0, y: 0, width: 100, height: 100)
+
+/// tabBar高度
+let ptTabBarHeight: CGFloat = 120
+
+/// cellID
+let kPtCardCollectionViewCell = "PtCardCollectionViewCell"
+let kPtDynastyCollectionViewCell = "PtDynastyCollectionViewCell"
+let kPtPoemCell = "PtPoemCell"
+
+/// UIBounds
+let Bounds = UIScreen.main.bounds

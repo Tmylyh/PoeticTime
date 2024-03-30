@@ -240,7 +240,7 @@ class StudyVC: UIViewController {
 extension StudyVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9  // section数量是一个较大的值，用来模拟无限循环效果
+        return 9  // section数量9个朝代
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -281,9 +281,13 @@ extension StudyVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColle
             dynastyVC.view.hero.id = "StudyVC2DynastyVC\(indexPath.row)"
             dynastyVC.modalPresentationStyle = .fullScreen
             dynastyVC.dynastyStoryData = dynastyData[indexPath.row]
+            dynastyVC.animationText = animationText[indexPath.row]
             // 查询当朝诗人
             let poetsWithDynasty = poetData.filter { $0.dynastyId == dynastyVC.dynastyStoryData.dynastyId }
             dynastyVC.poetWithDynastyData = poetsWithDynasty
+            // 查询当朝诗词
+            let poemsWithDynasty = poemData.filter { $0.dynastyId == dynastyVC.dynastyStoryData.dynastyId }
+            dynastyVC.poemWithDynastyData = poemsWithDynasty
             present(dynastyVC, animated: true)
         }
     }

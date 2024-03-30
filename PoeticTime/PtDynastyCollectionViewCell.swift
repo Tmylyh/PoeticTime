@@ -44,15 +44,7 @@ class PtDynastyCollectionViewCell: UICollectionViewCell {
         }
         set {
             // 每个字符后添加换行符，使文字纵向排列
-            var verticalText = ""
-            for (index, char) in newValue.enumerated() {
-                if index < newValue.count - 1 {
-                    verticalText += "\(char)\n"
-                } else {
-                    verticalText += "\(char)"
-                }
-            }
-            dynastyLabel.text = verticalText
+            dynastyLabel.text = verticalText(text: newValue)
         }
     }
     

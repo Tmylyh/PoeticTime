@@ -24,6 +24,9 @@ class DynastyVC: UIViewController {
     // 当前页面
     var _currentPage: Int = 0
     
+    // 诗人字典
+    var tagWithPoet: [Int: String] = [:]
+    
     // 页面的计算属性，实现pageControl和View联动
     var currentPage: Int {
         get {
@@ -41,14 +44,20 @@ class DynastyVC: UIViewController {
     // 当朝诗人数据
     var poetWithDynastyData: [Poet] = []
     
+    // 当朝诗词诗句
+    var poemWithDynastyData: [Poem] = []
+    
+    // 跳转动画文本
+    var animationText: String = ""
+    
     // 中转动画
     lazy var animationView: BezierText = {
         let width = self.view.frame.height - 150
         let height = self.view.frame.width
-        let text = BezierText(frame: CGRect(x: -(width - height) / 2, y: 0 , width: width, height: self.view.frame.height))
+        let text = BezierText(frame: CGRect(x: -44, y: -44, width: width, height: self.view.frame.height))
         text.dismissAnimationBlock = dismissAnimationHandle
         text.backgroundColor = .clear
-        text.show(text: "长太息以掩涕兮，哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。长太息以掩涕兮，哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。哀民生之多艰。长太息以掩涕兮，哀民生之多艰。多艰。")
+        text.show(text: animationText)
         text.isUserInteractionEnabled = true
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(finishAnimationHandle))
         // 双击手势
@@ -255,6 +264,19 @@ class DynastyVC: UIViewController {
         dynastyStoryLabel4.numberOfLines = 0
         dynastyStoryLabel4.layer.opacity = 0.8
         return dynastyStoryLabel4
+    }()
+    
+    lazy var poemListCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let poemListCollectionView = UICollectionView(frame: CGRect(x: 0, y: 88, width: view.bounds.width, height: Bounds.height - 88), collectionViewLayout: layout)
+        poemListCollectionView.backgroundColor = "#7EB5B1".pt_argbColor
+        poemListCollectionView.delegate = self
+        poemListCollectionView.dataSource = self
+        poemListCollectionView.contentInset = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
+        poemListCollectionView.showsVerticalScrollIndicator = false
+        poemListCollectionView.register(PtPoemCell.self, forCellWithReuseIdentifier: kPtPoemCell)
+        poemListCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        return poemListCollectionView
     }()
     
     override func viewDidLoad() {

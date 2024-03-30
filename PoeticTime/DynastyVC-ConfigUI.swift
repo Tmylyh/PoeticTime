@@ -14,10 +14,13 @@ extension DynastyVC {
         var array = [UIButton]()
         for i in 1..<40 {
             let btn = UIButton(type: UIButton.ButtonType.system)
-            btn.setTitle("\(poetWithDynastyData[i % poetWithDynastyData.count].poetName)", for: .normal)
+            let poetName = poetWithDynastyData[i % poetWithDynastyData.count].poetName
+            btn.setTitle("\(poetName)", for: .normal)
             btn.setTitleColor("#72F2DD".pt_argbColor, for: .normal)
             btn.titleLabel?.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 24)
             btn.frame = CGRect(x: 0, y: 0, width: 100, height: 24)
+            btn.tag = i
+            tagWithPoet[btn.tag] = "poetDetailVC\(poetName)"
             btn.addTarget(self, action: #selector(self.poetButtonTapped), for: .touchUpInside)
             array.append(btn)
             sphereView.addSubview(btn)
@@ -26,8 +29,13 @@ extension DynastyVC {
         sphereView.backgroundColor = .clear
     }
     
-    @objc func poetButtonTapped() {
-        print(123)
+    @objc func poetButtonTapped(sender: UIButton) {
+        let poetDetailVC = PoetDetailVC()
+        poetDetailVC.hero.isEnabled = true
+        poetDetailVC.modalPresentationStyle = .overFullScreen
+        poetDetailVC.heroModalAnimationType = .zoom
+        poetDetailVC.poetName = tagWithPoet[sender.tag] ?? ""
+        present(poetDetailVC, animated: true)
     }
     
     // 配制页面UI和布局
@@ -52,7 +60,7 @@ extension DynastyVC {
         backButton.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(44)
-            make.width.height.equalTo(30)
+            make.width.height.equalTo(32)
         }
         
         seperateStackLine1.snp.makeConstraints { (make) in
@@ -104,10 +112,8 @@ extension DynastyVC {
         infoSubViews.append(dynastyStoryView)
         let view2 = UIView(frame: viewInitRect)
         view2.backgroundColor = .blue
-        let view3 = UIView(frame: viewInitRect)
-        view3.backgroundColor = .yellow
         infoSubViews.append(view2)
-        infoSubViews.append(view3)
+        infoSubViews.append(poemListCollectionView)
         for (index, view) in infoSubViews.enumerated() {
             view.frame = CGRect(x: index * Int(Bounds.width), y: 0, width: Int(Bounds.width), height: Int(infoScrollView.frame.height))
             infoScrollView.addSubview(view)

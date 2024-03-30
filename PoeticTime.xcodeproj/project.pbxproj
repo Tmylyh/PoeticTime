@@ -17,11 +17,14 @@
 		040439CB2BB6AAAD0085A9DE /* PangMenZhengDaoCuShuTi-2.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 040439CA2BB6AA970085A9DE /* PangMenZhengDaoCuShuTi-2.ttf */; };
 		040439CC2BB6AAB30085A9DE /* PangMenZhengDaoCuShuTi-2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 040439CA2BB6AA970085A9DE /* PangMenZhengDaoCuShuTi-2.ttf */; };
 		040439D02BB7E6D00085A9DE /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439CF2BB7E6D00085A9DE /* Constant.swift */; };
-		040439D52BB804CC0085A9DE /* dynasty.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 040439D22BB804CB0085A9DE /* dynasty.rtf */; };
-		040439D62BB804CC0085A9DE /* poet.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 040439D32BB804CC0085A9DE /* poet.rtf */; };
-		040439D72BB804CC0085A9DE /* poem.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 040439D42BB804CC0085A9DE /* poem.rtf */; };
 		040439D92BB805E80085A9DE /* DynastyVC-ConfigUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439D82BB805E80085A9DE /* DynastyVC-ConfigUI.swift */; };
 		040439DB2BB806EA0085A9DE /* DynastyVC-ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439DA2BB806EA0085A9DE /* DynastyVC-ScrollView.swift */; };
+		040439DD2BB812C50085A9DE /* PtPoemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439DC2BB812C50085A9DE /* PtPoemCell.swift */; };
+		040439DF2BB8134D0085A9DE /* DynastyVC-CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439DE2BB8134D0085A9DE /* DynastyVC-CollectionView.swift */; };
+		040439E32BB81AD50085A9DE /* poet.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 040439E02BB81AD50085A9DE /* poet.rtf */; };
+		040439E42BB81AD50085A9DE /* poem.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 040439E12BB81AD50085A9DE /* poem.rtf */; };
+		040439E52BB81AD50085A9DE /* dynasty.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 040439E22BB81AD50085A9DE /* dynasty.rtf */; };
+		040439E82BB834300085A9DE /* PoetDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439E72BB834300085A9DE /* PoetDetailVC.swift */; };
 		049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AD2BAA8B9C00E667FF /* AppDelegate.swift */; };
 		049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */; };
 		049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820B12BAA8B9C00E667FF /* HomeTabBarVC.swift */; };
@@ -51,11 +54,14 @@
 		040439BC2BB640CE0085A9DE /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
 		040439CA2BB6AA970085A9DE /* PangMenZhengDaoCuShuTi-2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PangMenZhengDaoCuShuTi-2.ttf"; sourceTree = "<group>"; };
 		040439CF2BB7E6D00085A9DE /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		040439D22BB804CB0085A9DE /* dynasty.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = dynasty.rtf; sourceTree = "<group>"; };
-		040439D32BB804CC0085A9DE /* poet.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = poet.rtf; sourceTree = "<group>"; };
-		040439D42BB804CC0085A9DE /* poem.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = poem.rtf; sourceTree = "<group>"; };
 		040439D82BB805E80085A9DE /* DynastyVC-ConfigUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DynastyVC-ConfigUI.swift"; sourceTree = "<group>"; };
 		040439DA2BB806EA0085A9DE /* DynastyVC-ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DynastyVC-ScrollView.swift"; sourceTree = "<group>"; };
+		040439DC2BB812C50085A9DE /* PtPoemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtPoemCell.swift; sourceTree = "<group>"; };
+		040439DE2BB8134D0085A9DE /* DynastyVC-CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DynastyVC-CollectionView.swift"; sourceTree = "<group>"; };
+		040439E02BB81AD50085A9DE /* poet.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = poet.rtf; sourceTree = "<group>"; };
+		040439E12BB81AD50085A9DE /* poem.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = poem.rtf; sourceTree = "<group>"; };
+		040439E22BB81AD50085A9DE /* dynasty.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = dynasty.rtf; sourceTree = "<group>"; };
+		040439E72BB834300085A9DE /* PoetDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetDetailVC.swift; sourceTree = "<group>"; };
 		049820AA2BAA8B9C00E667FF /* PoeticTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeticTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049820AD2BAA8B9C00E667FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +124,17 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		040439E62BB8340F0085A9DE /* DynastyVC */ = {
+			isa = PBXGroup;
+			children = (
+				04042DCD2BB4F93F0085A9DE /* DynastyVC.swift */,
+				040439DE2BB8134D0085A9DE /* DynastyVC-CollectionView.swift */,
+				040439DA2BB806EA0085A9DE /* DynastyVC-ScrollView.swift */,
+				040439D82BB805E80085A9DE /* DynastyVC-ConfigUI.swift */,
+			);
+			name = DynastyVC;
+			sourceTree = "<group>";
+		};
 		049820A12BAA8B9C00E667FF = {
 			isa = PBXGroup;
 			children = (
@@ -163,9 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				049820C42BAAB79100E667FF /* StudyVC.swift */,
-				04042DCD2BB4F93F0085A9DE /* DynastyVC.swift */,
-				040439DA2BB806EA0085A9DE /* DynastyVC-ScrollView.swift */,
-				040439D82BB805E80085A9DE /* DynastyVC-ConfigUI.swift */,
+				040439E62BB8340F0085A9DE /* DynastyVC */,
+				040439E72BB834300085A9DE /* PoetDetailVC.swift */,
 				04042DCF2BB519370085A9DE /* BezierText.swift */,
 				04982CC92BB07AFA00E667FF /* Data */,
 				04982CC12BAF040100E667FF /* Cell */,
@@ -194,12 +210,12 @@
 			isa = PBXGroup;
 			children = (
 				049820CD2BAAC1D000E667FF /* MyImageClassifier.mlmodel */,
+				040439E22BB81AD50085A9DE /* dynasty.rtf */,
+				040439E12BB81AD50085A9DE /* poem.rtf */,
+				040439E02BB81AD50085A9DE /* poet.rtf */,
 				04042DD12BB51B920085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf */,
 				040439CA2BB6AA970085A9DE /* PangMenZhengDaoCuShuTi-2.ttf */,
 				04042DC92BB4F4A70085A9DE /* SanJiBangKaiJianTi.ttf */,
-				040439D22BB804CB0085A9DE /* dynasty.rtf */,
-				040439D42BB804CC0085A9DE /* poem.rtf */,
-				040439D32BB804CC0085A9DE /* poet.rtf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -224,6 +240,7 @@
 		04982CC12BAF040100E667FF /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				040439DC2BB812C50085A9DE /* PtPoemCell.swift */,
 				04982CBF2BAF03F900E667FF /* PtCardCollectionViewCell.swift */,
 				04982CC32BB009CD00E667FF /* PtDynastyCollectionViewCell.swift */,
 			);
@@ -325,14 +342,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				040439CC2BB6AAB30085A9DE /* PangMenZhengDaoCuShuTi-2.ttf in Resources */,
-				040439D72BB804CC0085A9DE /* poem.rtf in Resources */,
 				04042DD32BB51BC10085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf in Resources */,
-				040439D62BB804CC0085A9DE /* poet.rtf in Resources */,
-				040439D52BB804CC0085A9DE /* dynasty.rtf in Resources */,
 				04042DCC2BB4F6040085A9DE /* SanJiBangKaiJianTi.ttf in Resources */,
+				040439E42BB81AD50085A9DE /* poem.rtf in Resources */,
+				040439E52BB81AD50085A9DE /* dynasty.rtf in Resources */,
 				049820BD2BAA8B9E00E667FF /* LaunchScreen.storyboard in Resources */,
 				049820BA2BAA8B9E00E667FF /* Assets.xcassets in Resources */,
 				049820B52BAA8B9C00E667FF /* Main.storyboard in Resources */,
+				040439E32BB81AD50085A9DE /* poet.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,11 +420,14 @@
 				04982CB92BAEE2C600E667FF /* PtTabBar.swift in Sources */,
 				049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */,
 				049820C52BAAB79100E667FF /* StudyVC.swift in Sources */,
+				040439DF2BB8134D0085A9DE /* DynastyVC-CollectionView.swift in Sources */,
 				04982CC62BB01F5E00E667FF /* PtDynastyLayout.swift in Sources */,
+				040439DD2BB812C50085A9DE /* PtPoemCell.swift in Sources */,
 				049820C72BAAB7A500E667FF /* ScanVC.swift in Sources */,
 				04982CC82BB07AF500E667FF /* dynastyData.swift in Sources */,
 				040439D02BB7E6D00085A9DE /* Constant.swift in Sources */,
 				04982CC42BB009CD00E667FF /* PtDynastyCollectionViewCell.swift in Sources */,
+				040439E82BB834300085A9DE /* PoetDetailVC.swift in Sources */,
 				049820CE2BAAC1D000E667FF /* MyImageClassifier.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
