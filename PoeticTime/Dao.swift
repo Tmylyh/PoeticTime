@@ -19,6 +19,7 @@ enum TableType: String, CaseIterable {
 public class DBInfo {
     var poetId = ""
     var poetName = ""
+    var poetInfo = ""
     var poemId = ""
     var poemName = ""
     var poemBody = ""
@@ -46,10 +47,11 @@ public class DBInfo {
     }
     
     /// 诗人数据的初始化方法
-    init(poetId: String, poetName: String, dynastyId: String) {
+    init(poetId: String, poetName: String, dynastyId: String, poetInfo: String) {
         self.poetId = poetId
         self.poetName = poetName
         self.dynastyId = dynastyId
+        self.poetInfo = poetInfo
         self.tableType = .poet
     }
     
@@ -66,6 +68,7 @@ public class PoeticTimeDao: NSObject {
     static let poetTable = Table("poetTable")
     static let poetId = Expression<String>("poetId")
     static let poetName = Expression<String>("poetName")
+    static let poetInfo = Expression<String>("poetInfo")
     
     // 诗词表
     static let poemTable = Table("poemTable")
@@ -136,6 +139,7 @@ public class PoeticTimeDao: NSObject {
                     poetTable.column(poetId, primaryKey: true)
                     poetTable.column(poetName)
                     poetTable.column(dynastyId)
+                    poetTable.column(poetInfo)
                     poetTable.foreignKey(dynastyId, references: dynastyTable, dynastyId)
                 }
                 try self.database.run(createTable)
@@ -226,14 +230,16 @@ public class PoeticTimeDao: NSObject {
                 let poetId = PoeticTimeDao.poetId
                 let poetName = PoeticTimeDao.poetName
                 let dynastyId = PoeticTimeDao.dynastyId
+                let poetInfo = PoeticTimeDao.poetInfo
                 try db.transaction {
                     for row in rows {
                         let components = row.components(separatedBy: ",,")
-                        if components.count == 3 {
+                        if components.count == 4 {
                             let string1 = components[0].trimmingCharacters(in: .whitespacesAndNewlines)
                             let string2 = components[1].trimmingCharacters(in: .whitespacesAndNewlines)
                             let string3 = components[2].trimmingCharacters(in: .whitespacesAndNewlines)
-                            try db.run(poetTable.insert(poetId <- string1, poetName <- string2, dynastyId <- string3))
+                            let string4 = components[3].trimmingCharacters(in: .whitespacesAndNewlines)
+                            try db.run(poetTable.insert(poetId <- string1, poetName <- string2, dynastyId <- string3, poetInfo <- string4))
                         } else {
                             print("Invalid format for row: \(row)")
                         }
@@ -314,7 +320,7 @@ public class PoeticTimeDao: NSObject {
                     }
                 case .poet:
                     for poet in try db.prepare(poetTable) {
-                        print("poetId: \(poet[poetId]), poetName: \(poet[poetName]), dynastyId: \(poet[dynastyId])")
+                        print("poetId: \(poet[poetId]), poetName: \(poet[poetName]), dynastyId: \(poet[dynastyId]), poetInfo: \(poet[poetInfo])")
                     }
                 }
             }
@@ -336,7 +342,7 @@ public class PoeticTimeDao: NSObject {
                     poemData.append(poemElement)
                 }
                 for poet in try db.prepare(poetTable) {
-                    let poetElement = Poet(poetId: poet[poetId], poetName: poet[poetName], dynastyId: poet[dynastyId])
+                    let poetElement = Poet(poetId: poet[poetId], poetName: poet[poetName], dynastyId: poet[dynastyId], poetInfo: poet[poetInfo])
                     poetData.append(poetElement)
                 }
             }
@@ -353,7 +359,7 @@ public class PoeticTimeDao: NSObject {
                 case .dynasty:
                     try db.run(dynastyTable.insert(dynastyId <- info.dynastyId, dynastyName <- info.dynastyName, dynastyInfo <- info.dynastyInfo))
                 case .poet:
-                    try db.run(poetTable.insert(poetId <- info.poetId, poetName <- info.poetName, dynastyId <- info.dynastyId))
+                    try db.run(poetTable.insert(poetId <- info.poetId, poetName <- info.poetName, dynastyId <- info.dynastyId, poetInfo <- info.poetInfo))
                 case .poem:
                     try db.run(poemTable.insert(poemId <- info.poemId, poemName <- info.poemName, poetId <- info.poetId, dynastyId <- info.dynastyId, poemBody <- info.poemBody))
                 }
@@ -375,7 +381,7 @@ public class PoeticTimeDao: NSObject {
             case.poet:
                 updateId = info.poetId
                 let updateElement = poetTable.filter(poetId == updateId)
-                try database.run(updateElement.update(poetId <- info.poetId, poetName <- info.poetName, dynastyId <- info.dynastyId))
+                try database.run(updateElement.update(poetId <- info.poetId, poetName <- info.poetName, dynastyId <- info.dynastyId, poetInfo <- info.poetInfo))
             case .poem:
                 updateId = info.poemId
                 let updateElement = poemTable.filter(poemId == updateId)

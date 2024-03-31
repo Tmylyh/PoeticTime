@@ -8,6 +8,7 @@
 import UIKit
 import CoreML
 import Vision
+import AVFoundation
 
 class ScanVC: UIViewController {
     
@@ -57,6 +58,7 @@ class ScanVC: UIViewController {
         picker.delegate = self
         picker.sourceType = .camera
         present(picker, animated: true, completion: nil)
+        TorchController().turnTorchOn()
     }
 
 }
@@ -113,6 +115,48 @@ extension ScanVC: UIImagePickerControllerDelegate, UINavigationControllerDelegat
             }
         }
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+class TorchController {
+    
+    // 手电筒开关状态
+    var isTorchOn: Bool {
+        return torchMode == .on
+    }
+    
+    // AVCaptureDevice 实例
+    private let device = AVCaptureDevice.default(for: AVMediaType.video)
+    
+    // 手电筒模式
+    private var torchMode: AVCaptureDevice.TorchMode {
+        return device?.torchMode ?? .off
+    }
+    
+    // 打开手电筒
+    public func turnTorchOn() {
+        guard let device = device else { return }
+        
+        do {
+            try device.lockForConfiguration()
+            device.torchMode = .on
+            device.unlockForConfiguration()
+        } catch {
+            print("无法打开手电筒: \(error.localizedDescription)")
+        }
+    }
+    
+    // 关闭手电筒
+    func turnTorchOff() {
+        guard let device = device else { return }
+        
+        do {
+            try device.lockForConfiguration()
+            device.torchMode = .off
+            device.unlockForConfiguration()
+        } catch {
+            print("无法关闭手电筒: \(error.localizedDescription)")
+        }
     }
 }
 

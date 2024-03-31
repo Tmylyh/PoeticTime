@@ -38,18 +38,33 @@ func printZiTi() {
     }
 }
 
-/// 系统状态栏高度
-var statusBarHeight: Int {
-    get {
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            if let statusBarManager = windowScene.statusBarManager {
-                let statusBarFrame = statusBarManager.statusBarFrame
-                let statusBarHeight = statusBarFrame.height
-                return Int(statusBarHeight)
-            }
+/// 按钮动画
+func ButtonAnimate(_ sender: UIView){
+    UIView.animate(withDuration: 0.25, animations: {
+        sender.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+    }) { (finished) in
+        UIView.animate(withDuration: 0.25) {
+            sender.transform = CGAffineTransform.identity
         }
-        return 44
     }
+}
+
+/// 手机重量级震动
+func weightFeedBack() {
+    // 重量级触碰
+    let generator = UINotificationFeedbackGenerator()
+    // 确保震动反馈能够准备就绪并在调用 impactOccurred() 时表现最佳
+    generator.prepare()
+    // 执行震动
+    generator.notificationOccurred(.success) // 选择震动类型，这里选择成功的反馈
+}
+
+/// 手机轻量级震动
+func lightFeedBack() {
+    let generator = UIImpactFeedbackGenerator(style: .light)
+    // 确保震动反馈能够准备就绪并在调用 impactOccurred() 时表现最佳
+    generator.prepare()
+    generator.impactOccurred()
 }
 
 extension String {

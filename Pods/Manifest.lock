@@ -1,6 +1,7 @@
 PODS:
   - DBSphereTagCloudSwift (2.1.0)
   - Hero (1.6.2)
+  - lottie-ios (4.2.0)
   - SnapKit (5.6.0)
   - SQLite.swift (0.14.1):
     - SQLite.swift/standard (= 0.14.1)
@@ -9,6 +10,7 @@ PODS:
 DEPENDENCIES:
   - DBSphereTagCloudSwift
   - Hero
+  - lottie-ios
   - SnapKit
   - SQLite.swift (~> 0.14.0)
 
@@ -16,15 +18,17 @@ SPEC REPOS:
   trunk:
     - DBSphereTagCloudSwift
     - Hero
+    - lottie-ios
     - SnapKit
     - SQLite.swift
 
 SPEC CHECKSUMS:
   DBSphereTagCloudSwift: 4d81884e115464118a372477625b1feeab0ac5f4
   Hero: c69009dbc9e2f0472e081adc644dba05fcedae72
+  lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SQLite.swift: 2992550ebf3c5b268bf4352603e3df87d2a4ed72
 
-PODFILE CHECKSUM: 1cf5ec61620794253b828ec9f2454ca528cc7b91
+PODFILE CHECKSUM: 59475ee6acb74e64fedbd74be4371174a00bc24c
 
 COCOAPODS: 1.11.3

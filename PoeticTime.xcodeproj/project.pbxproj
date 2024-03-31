@@ -21,10 +21,14 @@
 		040439DB2BB806EA0085A9DE /* DynastyVC-ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439DA2BB806EA0085A9DE /* DynastyVC-ScrollView.swift */; };
 		040439DD2BB812C50085A9DE /* PtPoemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439DC2BB812C50085A9DE /* PtPoemCell.swift */; };
 		040439DF2BB8134D0085A9DE /* DynastyVC-CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439DE2BB8134D0085A9DE /* DynastyVC-CollectionView.swift */; };
-		040439E32BB81AD50085A9DE /* poet.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 040439E02BB81AD50085A9DE /* poet.rtf */; };
 		040439E42BB81AD50085A9DE /* poem.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 040439E12BB81AD50085A9DE /* poem.rtf */; };
 		040439E52BB81AD50085A9DE /* dynasty.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 040439E22BB81AD50085A9DE /* dynasty.rtf */; };
 		040439E82BB834300085A9DE /* PoetDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439E72BB834300085A9DE /* PoetDetailVC.swift */; };
+		040439EA2BB8430E0085A9DE /* poet.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 040439E92BB8430E0085A9DE /* poet.rtf */; };
+		040439EC2BB932D80085A9DE /* PoetAnswerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439EB2BB932D80085A9DE /* PoetAnswerVC.swift */; };
+		040439EE2BB9C4990085A9DE /* soundAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 040439ED2BB9C4990085A9DE /* soundAnimation.json */; };
+		040439F02BB9C9040085A9DE /* PoetAnswerVC-logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439EF2BB9C9040085A9DE /* PoetAnswerVC-logic.swift */; };
+		040439F32BB9D2020085A9DE /* PoetAnswerVC-Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439F22BB9D2020085A9DE /* PoetAnswerVC-Record.swift */; };
 		049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AD2BAA8B9C00E667FF /* AppDelegate.swift */; };
 		049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */; };
 		049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820B12BAA8B9C00E667FF /* HomeTabBarVC.swift */; };
@@ -58,10 +62,14 @@
 		040439DA2BB806EA0085A9DE /* DynastyVC-ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DynastyVC-ScrollView.swift"; sourceTree = "<group>"; };
 		040439DC2BB812C50085A9DE /* PtPoemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtPoemCell.swift; sourceTree = "<group>"; };
 		040439DE2BB8134D0085A9DE /* DynastyVC-CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DynastyVC-CollectionView.swift"; sourceTree = "<group>"; };
-		040439E02BB81AD50085A9DE /* poet.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = poet.rtf; sourceTree = "<group>"; };
 		040439E12BB81AD50085A9DE /* poem.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = poem.rtf; sourceTree = "<group>"; };
 		040439E22BB81AD50085A9DE /* dynasty.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = dynasty.rtf; sourceTree = "<group>"; };
 		040439E72BB834300085A9DE /* PoetDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetDetailVC.swift; sourceTree = "<group>"; };
+		040439E92BB8430E0085A9DE /* poet.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = poet.rtf; sourceTree = "<group>"; };
+		040439EB2BB932D80085A9DE /* PoetAnswerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetAnswerVC.swift; sourceTree = "<group>"; };
+		040439ED2BB9C4990085A9DE /* soundAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = soundAnimation.json; sourceTree = "<group>"; };
+		040439EF2BB9C9040085A9DE /* PoetAnswerVC-logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoetAnswerVC-logic.swift"; sourceTree = "<group>"; };
+		040439F22BB9D2020085A9DE /* PoetAnswerVC-Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoetAnswerVC-Record.swift"; sourceTree = "<group>"; };
 		049820AA2BAA8B9C00E667FF /* PoeticTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeticTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049820AD2BAA8B9C00E667FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +143,16 @@
 			name = DynastyVC;
 			sourceTree = "<group>";
 		};
+		040439F12BB9C90D0085A9DE /* PoetAnswerVC */ = {
+			isa = PBXGroup;
+			children = (
+				040439EB2BB932D80085A9DE /* PoetAnswerVC.swift */,
+				040439EF2BB9C9040085A9DE /* PoetAnswerVC-logic.swift */,
+				040439F22BB9D2020085A9DE /* PoetAnswerVC-Record.swift */,
+			);
+			name = PoetAnswerVC;
+			sourceTree = "<group>";
+		};
 		049820A12BAA8B9C00E667FF = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +200,7 @@
 				049820C42BAAB79100E667FF /* StudyVC.swift */,
 				040439E62BB8340F0085A9DE /* DynastyVC */,
 				040439E72BB834300085A9DE /* PoetDetailVC.swift */,
+				040439F12BB9C90D0085A9DE /* PoetAnswerVC */,
 				04042DCF2BB519370085A9DE /* BezierText.swift */,
 				04982CC92BB07AFA00E667FF /* Data */,
 				04982CC12BAF040100E667FF /* Cell */,
@@ -211,11 +230,12 @@
 			children = (
 				049820CD2BAAC1D000E667FF /* MyImageClassifier.mlmodel */,
 				040439E22BB81AD50085A9DE /* dynasty.rtf */,
+				040439E92BB8430E0085A9DE /* poet.rtf */,
 				040439E12BB81AD50085A9DE /* poem.rtf */,
-				040439E02BB81AD50085A9DE /* poet.rtf */,
 				04042DD12BB51B920085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf */,
 				040439CA2BB6AA970085A9DE /* PangMenZhengDaoCuShuTi-2.ttf */,
 				04042DC92BB4F4A70085A9DE /* SanJiBangKaiJianTi.ttf */,
+				040439ED2BB9C4990085A9DE /* soundAnimation.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -342,14 +362,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				040439CC2BB6AAB30085A9DE /* PangMenZhengDaoCuShuTi-2.ttf in Resources */,
+				040439EA2BB8430E0085A9DE /* poet.rtf in Resources */,
 				04042DD32BB51BC10085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf in Resources */,
 				04042DCC2BB4F6040085A9DE /* SanJiBangKaiJianTi.ttf in Resources */,
 				040439E42BB81AD50085A9DE /* poem.rtf in Resources */,
 				040439E52BB81AD50085A9DE /* dynasty.rtf in Resources */,
 				049820BD2BAA8B9E00E667FF /* LaunchScreen.storyboard in Resources */,
 				049820BA2BAA8B9E00E667FF /* Assets.xcassets in Resources */,
+				040439EE2BB9C4990085A9DE /* soundAnimation.json in Resources */,
 				049820B52BAA8B9C00E667FF /* Main.storyboard in Resources */,
-				040439E32BB81AD50085A9DE /* poet.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +429,7 @@
 				04042DCA2BB4F5CE0085A9DE /* SanJiBangKaiJianTi.ttf in Sources */,
 				049820C92BAAB7F900E667FF /* UserVC.swift in Sources */,
 				04982CBE2BAF022A00E667FF /* PtCardDetailLayout.swift in Sources */,
+				040439EC2BB932D80085A9DE /* PoetAnswerVC.swift in Sources */,
 				04982CC02BAF03F900E667FF /* PtCardCollectionViewCell.swift in Sources */,
 				04982CBB2BAEF11A00E667FF /* PtHelper.swift in Sources */,
 				04042DCE2BB4F93F0085A9DE /* DynastyVC.swift in Sources */,
@@ -421,8 +443,10 @@
 				049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */,
 				049820C52BAAB79100E667FF /* StudyVC.swift in Sources */,
 				040439DF2BB8134D0085A9DE /* DynastyVC-CollectionView.swift in Sources */,
+				040439F02BB9C9040085A9DE /* PoetAnswerVC-logic.swift in Sources */,
 				04982CC62BB01F5E00E667FF /* PtDynastyLayout.swift in Sources */,
 				040439DD2BB812C50085A9DE /* PtPoemCell.swift in Sources */,
+				040439F32BB9D2020085A9DE /* PoetAnswerVC-Record.swift in Sources */,
 				049820C72BAAB7A500E667FF /* ScanVC.swift in Sources */,
 				04982CC82BB07AF500E667FF /* dynastyData.swift in Sources */,
 				040439D02BB7E6D00085A9DE /* Constant.swift in Sources */,
@@ -579,6 +603,7 @@
 				DEVELOPMENT_TEAM = 3QQ3H2NRD9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PoeticTime/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "诗韵时光机";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -609,6 +634,7 @@
 				DEVELOPMENT_TEAM = 3QQ3H2NRD9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PoeticTime/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "诗韵时光机";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

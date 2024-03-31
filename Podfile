@@ -10,4 +10,5 @@ target 'PoeticTime' do
   pod 'DBSphereTagCloudSwift'
   pod 'Hero'
   pod 'SQLite.swift', '~> 0.14.0'
+  pod 'lottie-ios'
 end

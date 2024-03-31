@@ -28,6 +28,7 @@ struct Poet {
     let poetId: String
     let poetName: String
     let dynastyId: String
+    let poetInfo: String
 }
 
 // 总数据
@@ -51,3 +52,17 @@ let kPtPoemCell = "PtPoemCell"
 
 /// UIBounds
 let Bounds = UIScreen.main.bounds
+
+/// 系统状态栏高度
+var statusBarHeight: Int {
+    get {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let statusBarManager = windowScene.statusBarManager {
+                let statusBarFrame = statusBarManager.statusBarFrame
+                let statusBarHeight = statusBarFrame.height
+                return Int(statusBarHeight)
+            }
+        }
+        return 44
+    }
+}

@@ -20,7 +20,7 @@ extension DynastyVC {
             btn.titleLabel?.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 24)
             btn.frame = CGRect(x: 0, y: 0, width: 100, height: 24)
             btn.tag = i
-            tagWithPoet[btn.tag] = "poetDetailVC\(poetName)"
+            tagWithPoet[btn.tag] = poetName
             btn.addTarget(self, action: #selector(self.poetButtonTapped), for: .touchUpInside)
             array.append(btn)
             sphereView.addSubview(btn)
@@ -49,28 +49,28 @@ extension DynastyVC {
         animationBackgroundView.addSubview(animationAttatchView)
         self.view.addSubview(animationBackgroundView)
         
-        diyPoemButton.snp.makeConstraints { (make) in
+        diyPoemButton.snp.makeConstraints { make in
             make.width.equalTo(dynastyStoryButton)
         }
     
-        poemListButton.snp.makeConstraints { (make) in
+        poemListButton.snp.makeConstraints { make in
             make.width.equalTo(dynastyStoryButton)
         }
         
-        backButton.snp.makeConstraints { (make) in
+        backButton.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(44)
             make.width.height.equalTo(32)
         }
         
-        seperateStackLine1.snp.makeConstraints { (make) in
+        seperateStackLine1.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(Bounds.width / 3 - 1)
             make.width.equalTo(2)
             make.height.equalTo(33)
             make.centerY.equalToSuperview()
         }
         
-        seperateStackLine2.snp.makeConstraints { (make) in
+        seperateStackLine2.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(Bounds.width / 3 * 2 - 1)
             make.width.equalTo(2)
             make.height.equalTo(33)

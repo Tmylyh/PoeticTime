@@ -18,8 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         PoeticTimeDao.initDB()
         PoeticTimeDao.readData()
+        // 删表
+//        do {
+//            try PoeticTimeDao.database.run(PoeticTimeDao.poetTable.drop(ifExists: true))
+//            print("Table dropped successfully")
+//        } catch {
+//            print("Error dropping table: \(error)")
+//        }
+        
 //        let info = DBInfo()
-//        info.tableType = .dynasty
+//        info.tableType = .poet
 //        let info1 = DBInfo()
 //        info1.tableType = .poet
 //        PoeticTimeDao.printTable(info: info)

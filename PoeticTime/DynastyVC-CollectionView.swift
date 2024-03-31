@@ -24,7 +24,7 @@ extension DynastyVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
             tmpText = poemWithDynastyData[indexPath.row].poemName
         }
         cell.poemText = tmpText
-        var poet = poetWithDynastyData.filter { $0.poetId == poemWithDynastyData[indexPath.row].poetId }
+        let poet = poetWithDynastyData.filter { $0.poetId == poemWithDynastyData[indexPath.row].poetId }
         cell.poetText = verticalText(text: poet.first?.poetName ?? "")
         cell.contentView.hero.id = "poemCell\(indexPath.row)"
         return cell
