@@ -70,6 +70,9 @@ class PoetDetailVC: UIViewController {
         let poemListButton = UIButton()
         poemListButton.setImage(UIImage(named: "poetic_time_poet_poem_list_button_image"), for: .normal)
         poemListButton.imageView?.contentMode = .scaleAspectFit
+        poemListButton.imageView?.layer.borderColor = UIColor.black.cgColor
+        poemListButton.imageView?.layer.borderWidth = 1
+        poemListButton.imageView?.layer.cornerRadius = 20
         // 去掉按钮原生的点击变暗效果
         poemListButton.adjustsImageWhenHighlighted = false
         poemListButton.addTarget(self, action: #selector(presentPoemListVC), for: .touchUpInside)
@@ -90,6 +93,9 @@ class PoetDetailVC: UIViewController {
         let answerButton = UIButton()
         answerButton.setImage(UIImage(named: "poetic_time_poet_answer_button_image"), for: .normal)
         answerButton.imageView?.contentMode = .scaleAspectFit
+        answerButton.imageView?.layer.borderColor = UIColor.black.cgColor
+        answerButton.imageView?.layer.borderWidth = 1
+        answerButton.imageView?.layer.cornerRadius = 20
         answerButton.addTarget(self, action: #selector(presentAnswerPoemVC), for: .touchUpInside)
         // 去掉按钮原生的点击变暗效果
         answerButton.adjustsImageWhenHighlighted = false
@@ -110,6 +116,9 @@ class PoetDetailVC: UIViewController {
         let chatButton = UIButton()
         chatButton.setImage(UIImage(named: "poetic_time_poet_chat_button_image"), for: .normal)
         chatButton.imageView?.contentMode = .scaleAspectFit
+        chatButton.imageView?.layer.borderColor = UIColor.black.cgColor
+        chatButton.imageView?.layer.borderWidth = 1
+        chatButton.imageView?.layer.cornerRadius = 20
         chatButton.addTarget(self, action: #selector(presentChatVC), for: .touchUpInside)
         // 去掉按钮原生的点击变暗效果
         chatButton.adjustsImageWhenHighlighted = false

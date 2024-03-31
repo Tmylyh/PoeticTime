@@ -177,6 +177,13 @@ extension PoetAnswerVC {
         nextQuestionButton.setTitle("下一题", for: .normal)
     }
     
+    // 隐藏键盘
+    @objc func hideKeyboard() {
+        // 取消 textField 的第一响应者状态，即隐藏键盘
+        poemAnswerTextField1.resignFirstResponder()
+        poemAnswerTextField2.resignFirstResponder()
+    }
+    
     // dimiss当前View
     @objc func dismissCurrentVC() {
         hero.dismissViewController()

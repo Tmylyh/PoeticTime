@@ -192,6 +192,8 @@ class PoetAnswerVC: UIViewController {
         let poemAnswerTextField1 = UITextField()
         poemAnswerTextField1.text = "日照香炉生紫烟"
         poemAnswerTextField1.delegate = self
+        // 设置 Return 键的文字为 "完成"
+        poemAnswerTextField1.returnKeyType = .done
         poemAnswerTextField1.font = UIFont(name: ZiTi.pmzd.rawValue, size: 29)
         return poemAnswerTextField1
     }()
@@ -201,6 +203,8 @@ class PoetAnswerVC: UIViewController {
         let poemAnswerTextField2 = UITextField()
         poemAnswerTextField2.text = "遥看瀑布挂前川"
         poemAnswerTextField2.delegate = self
+        // 设置 Return 键的文字为 "完成"
+        poemAnswerTextField2.returnKeyType = .done
         poemAnswerTextField2.font = UIFont(name: ZiTi.pmzd.rawValue, size: 29)
         return poemAnswerTextField2
     }()
@@ -229,6 +233,15 @@ class PoetAnswerVC: UIViewController {
         setAnswerViewUI()
         getCurrentQuestion()
         setQuestionUI()
+        // 设置网络状态改变的处理闭包
+        NetworkManager.shared.networkStatusChangeHandler = { isReachable in
+            if !isReachable {
+                // 回主线程操作
+                OperationQueue.main.addOperation {
+                    self.poemAnswerSoundButton.setTitle("连网识别", for: .normal)
+                }
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -267,6 +280,10 @@ class PoetAnswerVC: UIViewController {
     // 配制UI
     func setAnswerViewUI() {
         self.view.backgroundColor = .white
+        // 添加手势识别器来隐藏键盘
+        let hideKeyBoardTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        // 将手势识别器添加到视图上
+        view.addGestureRecognizer(hideKeyBoardTap)
         view.addSubview(backgroundImageView)
         view.addSubview(backButton)
         view.addSubview(poetImageView)
@@ -391,5 +408,12 @@ extension PoetAnswerVC: UITextFieldDelegate {
     // 编辑时保持字体黑色
     func textFieldDidChangeSelection(_ textField: UITextField) {
         textField.textColor = .black
+    }
+    
+    // 当用户按下 Return 键时调用
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // 取消 textField 的第一响应者状态，即结束编辑
+        textField.resignFirstResponder()
+        return true
     }
 }

@@ -29,6 +29,7 @@
 		040439EE2BB9C4990085A9DE /* soundAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 040439ED2BB9C4990085A9DE /* soundAnimation.json */; };
 		040439F02BB9C9040085A9DE /* PoetAnswerVC-logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439EF2BB9C9040085A9DE /* PoetAnswerVC-logic.swift */; };
 		040439F32BB9D2020085A9DE /* PoetAnswerVC-Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439F22BB9D2020085A9DE /* PoetAnswerVC-Record.swift */; };
+		040439F52BB9E3050085A9DE /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439F42BB9E3050085A9DE /* NetWorkManager.swift */; };
 		049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AD2BAA8B9C00E667FF /* AppDelegate.swift */; };
 		049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */; };
 		049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820B12BAA8B9C00E667FF /* HomeTabBarVC.swift */; };
@@ -70,6 +71,7 @@
 		040439ED2BB9C4990085A9DE /* soundAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = soundAnimation.json; sourceTree = "<group>"; };
 		040439EF2BB9C9040085A9DE /* PoetAnswerVC-logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoetAnswerVC-logic.swift"; sourceTree = "<group>"; };
 		040439F22BB9D2020085A9DE /* PoetAnswerVC-Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoetAnswerVC-Record.swift"; sourceTree = "<group>"; };
+		040439F42BB9E3050085A9DE /* NetWorkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		049820AA2BAA8B9C00E667FF /* PoeticTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeticTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049820AD2BAA8B9C00E667FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				04982CBA2BAEF11A00E667FF /* PtHelper.swift */,
+				040439F42BB9E3050085A9DE /* NetWorkManager.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				049820B82BAA8B9C00E667FF /* PoeticTime.xcdatamodeld in Sources */,
 				04042DD02BB519370085A9DE /* BezierText.swift in Sources */,
 				04982CB92BAEE2C600E667FF /* PtTabBar.swift in Sources */,
+				040439F52BB9E3050085A9DE /* NetWorkManager.swift in Sources */,
 				049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */,
 				049820C52BAAB79100E667FF /* StudyVC.swift in Sources */,
 				040439DF2BB8134D0085A9DE /* DynastyVC-CollectionView.swift in Sources */,
