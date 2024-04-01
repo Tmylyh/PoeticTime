@@ -11,4 +11,6 @@ target 'PoeticTime' do
   pod 'Hero'
   pod 'SQLite.swift', '~> 0.14.0'
   pod 'lottie-ios'
+  pod 'MessageKit'
+  pod 'SwiftyJSON', '~> 4.0'
 end

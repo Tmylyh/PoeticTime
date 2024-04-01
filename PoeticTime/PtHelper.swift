@@ -14,6 +14,9 @@ enum ZiTi: String {
     case yuweij = "yuweij"
 }
 
+/// 网络状态
+var isReachable: Bool = true
+
 /// 每个字符后添加换行符，使文字纵向排列
 func verticalText(text: String) -> String {
     var vText = ""

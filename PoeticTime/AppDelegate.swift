@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         PoeticTimeDao.initDB()
         PoeticTimeDao.readData()
+        NetworkManager.shared.networkStatusChangeHandler = { isReach in
+            isReachable = isReach
+        }
         // 删表
 //        do {
 //            try PoeticTimeDao.database.run(PoeticTimeDao.poetTable.drop(ifExists: true))

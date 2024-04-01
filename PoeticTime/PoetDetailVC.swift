@@ -156,6 +156,15 @@ class PoetDetailVC: UIViewController {
     // 跳转到聊天
     @objc func presentChatVC(sender: UIButton) {
         ButtonAnimate(sender)
+        sender.hero.id = "poetChat"
+        let poet = poetData.filter { $0.poetName == poetName }
+        guard let poetId = poet.first?.poetId else { return }
+        let vc = PoetChatVC(poetId: poetId)
+        vc.view.hero.id = "poetChat"
+        vc.hero.isEnabled = true
+        vc.heroModalAnimationType = .zoom
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
     // dimiss当前View

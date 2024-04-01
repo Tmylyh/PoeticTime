@@ -1,34 +1,48 @@
 PODS:
   - DBSphereTagCloudSwift (2.1.0)
   - Hero (1.6.2)
+  - InputBarAccessoryView (5.5.0):
+    - InputBarAccessoryView/Core (= 5.5.0)
+  - InputBarAccessoryView/Core (5.5.0)
   - lottie-ios (4.2.0)
+  - MessageKit (3.8.0):
+    - InputBarAccessoryView (~> 5.5.0)
   - SnapKit (5.6.0)
   - SQLite.swift (0.14.1):
     - SQLite.swift/standard (= 0.14.1)
   - SQLite.swift/standard (0.14.1)
+  - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - DBSphereTagCloudSwift
   - Hero
   - lottie-ios
+  - MessageKit
   - SnapKit
   - SQLite.swift (~> 0.14.0)
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   trunk:
     - DBSphereTagCloudSwift
     - Hero
+    - InputBarAccessoryView
     - lottie-ios
+    - MessageKit
     - SnapKit
     - SQLite.swift
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   DBSphereTagCloudSwift: 4d81884e115464118a372477625b1feeab0ac5f4
   Hero: c69009dbc9e2f0472e081adc644dba05fcedae72
+  InputBarAccessoryView: 1d7b0a672b36e370f01f264b3907ef39d03328e3
   lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
+  MessageKit: a1ba0c69ebead94029867853eb44dd05b9b3f453
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SQLite.swift: 2992550ebf3c5b268bf4352603e3df87d2a4ed72
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 59475ee6acb74e64fedbd74be4371174a00bc24c
+PODFILE CHECKSUM: 61380b7ea9c66806a60875aec38e188cebaab856
 
 COCOAPODS: 1.11.3

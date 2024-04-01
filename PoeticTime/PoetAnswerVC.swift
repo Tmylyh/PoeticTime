@@ -84,6 +84,7 @@ class PoetAnswerVC: UIViewController {
     lazy var poetImageView: UIImageView = {
         let poetImageView = UIImageView(frame: viewInitRect)
         poetImageView.image = UIImage(named: "poetic_time_poet_image")
+        poetImageView.contentMode = .scaleAspectFit
         poetImageView.backgroundColor = .clear
         return poetImageView
     }()
@@ -233,13 +234,11 @@ class PoetAnswerVC: UIViewController {
         setAnswerViewUI()
         getCurrentQuestion()
         setQuestionUI()
-        // 设置网络状态改变的处理闭包
-        NetworkManager.shared.networkStatusChangeHandler = { isReachable in
-            if !isReachable {
-                // 回主线程操作
-                OperationQueue.main.addOperation {
-                    self.poemAnswerSoundButton.setTitle("连网识别", for: .normal)
-                }
+        // 判断网络状况
+        if !isReachable {
+            // 回主线程操作
+            OperationQueue.main.addOperation {
+                self.poemAnswerSoundButton.setTitle("连网识别", for: .normal)
             }
         }
     }
