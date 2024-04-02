@@ -119,32 +119,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "94CFD02E-36DA-45D6-B7AF-9CD3B72C6ACD"
+            uuid = "FB1E6DC5-39BB-483A-A3F1-5FF039A93CFE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PoeticTime/PoetChatVC.swift"
+            filePath = "PoeticTime/PoetChatVC-messageHandle.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "hideKeyBoardTap()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DC557727-678A-49AE-AE9B-276C17594AAF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PoeticTime/PoetChatVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "hideKeyBoardTap()"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "requestStreamPoetAnswer()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

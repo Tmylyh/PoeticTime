@@ -53,6 +53,23 @@ let kPtPoemCell = "PtPoemCell"
 /// UIBounds
 let Bounds = UIScreen.main.bounds
 
+/// chatVC的请求URL
+let chatURL = "http://4ed115f.r12.cpolar.top"
+
+/// 替换符
+/// 自定义替换换行符的序列，防止换行符导致json解析不出来
+let kReturnKey = "abcdefg"
+let kBackKey = "abcdeff"
+
+/// 朗读整首诗的请求URL
+let audioURL = "http://3c06e3d3.r5.cpolar.top"
+
+/// 请求的是整首诗还是一句
+enum AudioType: String {
+    case text = "text"
+    case verse = "verse"
+}
+
 /// 系统状态栏高度
 var statusBarHeight: Int {
     get {

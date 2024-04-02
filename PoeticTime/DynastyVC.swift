@@ -69,19 +69,12 @@ class DynastyVC: UIViewController {
     // 动画手写字体的背景
     lazy var animationBackgroundView: UIImageView = {
         let animationBackgroundView = UIImageView(frame: viewInitRect)
+        animationBackgroundView.image = UIImage(named: "poetic_time_dynasty_animation_background_image")
         animationBackgroundView.backgroundColor = "#D8F0EC".pt_argbColor
         animationBackgroundView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissAnimationHandle))
         animationBackgroundView.addGestureRecognizer(tap)
         return animationBackgroundView
-    }()
-    
-    // 附着在手写体动画背景上的图
-    lazy var animationAttatchView: UIImageView = {
-        let animationAttatchView = UIImageView(frame: viewInitRect)
-        animationAttatchView.image = UIImage(named: "poetic_time_dynasty_attach_image")
-        animationAttatchView.contentMode = .scaleAspectFit
-        return animationAttatchView
     }()
     
     // 诗人球体

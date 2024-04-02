@@ -46,7 +46,6 @@ extension DynastyVC {
         self.view.addSubview(infoScrollView)
         self.view.addSubview(backButton)
         self.view.addSubview(tagLabel)
-        animationBackgroundView.addSubview(animationAttatchView)
         self.view.addSubview(animationBackgroundView)
         
         diyPoemButton.snp.makeConstraints { make in
@@ -98,12 +97,6 @@ extension DynastyVC {
         
         animationBackgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
-        
-        animationAttatchView.snp.makeConstraints { make in
-            make.top.left.equalToSuperview()
-            make.height.equalTo(180)
-            make.width.equalTo(180)
         }
     }
     

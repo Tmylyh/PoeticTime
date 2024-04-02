@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PoeticTimeDao.readData()
         NetworkManager.shared.networkStatusChangeHandler = { isReach in
             isReachable = isReach
+            if isReachable {
+                clearRequest()
+            }
         }
         // 删表
 //        do {

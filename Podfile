@@ -13,4 +13,5 @@ target 'PoeticTime' do
   pod 'lottie-ios'
   pod 'MessageKit'
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'Alamofire'
 end

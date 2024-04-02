@@ -175,6 +175,10 @@ class PoetDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setPoetDetailViewUI()
+        // 清空数据
+        if isReachable {
+            clearRequest()
+        }
     }
     
     // 配制UI

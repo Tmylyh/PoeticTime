@@ -8,6 +8,7 @@
 import UIKit
 import MessageKit
 import SwiftyJSON
+import Alamofire
 
 extension PoetChatVC: MessagesDataSource, MessagesLayoutDelegate {
     // 结构体用于解析 JSON 响应
@@ -16,11 +17,107 @@ extension PoetChatVC: MessagesDataSource, MessagesLayoutDelegate {
         let message_id: String
     }
     
+    // 结构体用于发请求
+    struct PostParameter: Codable {
+        let query: String
+        let conversation_id: String
+        let history_len: Int
+        let history: [String]
+        let stream: Bool
+        let model_name: String
+        let temperature: Double
+        let max_tokens: Int
+        let prompt_name: String
+    }
+    
+    // 网络流请求
+    func requestStreamPoetAnswer() {
+        // 1. 准备请求的 URL
+        guard let url = URL(string: "\(chatURL)/chat/poet") else {
+            return
+        }
+        
+        let postParameter = PostParameter(query: currentMessage,
+                                          conversation_id: "",
+                                          history_len: -1,
+                                          history: [],
+                                          stream: true,
+                                          model_name: "qwen-api",
+                                          temperature: 0.7,
+                                          max_tokens: 0,
+                                          prompt_name: poetId)
+        
+        AF.streamRequest(url,
+                         method: .post,
+                         parameters: postParameter,
+                         encoder: JSONParameterEncoder.default).responseStream { [weak self] stream in
+            guard let self = self else { return }
+            var resultText = ""
+            var resultMessage_id = ""
+            switch stream.event {
+                case let .stream(result):
+                    switch result {
+                    case let .success(data):
+                        debugPrint(data)
+                        // 数据处理
+                        var courseJSONDatas = self.dataHandle(result: data)
+                        if !courseJSONDatas.isEmpty {
+                            if courseJSONDatas.first!.count == 0 {
+                                courseJSONDatas.removeFirst()
+                            }
+                        }
+                        // 处理一个返回多个json的情况
+                        for courseJSONData in courseJSONDatas {
+                            // 排除ping的情况
+                            if !String(data: courseJSONData, encoding: .utf8)!.contains("ping") {
+                                // 使用 SwiftyJSON 解析 Data 数据
+                                let json = try? JSON(data: courseJSONData)
+                                
+                                // 检查解析是否成功
+                                if let json = json {
+                                    // 访问解析后的 JSON 数据
+                                    let text = json["text"].stringValue
+                                    let message_id = json["message_id"].stringValue
+                                    resultText = text.replacingOccurrences(of: kReturnKey, with: "\n")
+                                    resultMessage_id = message_id.replacingOccurrences(of: kReturnKey, with: "\n")
+                                } else {
+                                    debugPrint("解析 JSON 数据失败")
+                                    return
+                                }
+                                // 是否是同一个流
+                                let isSameStream = resultMessage_id == self.currentPoetMessageid
+                                
+                                guard let poetUser = self.poetUser else { return }
+                                // 如果是同一个流
+                                if isSameStream {
+                                    // 扩展消息
+                                    self.currentAnswer.append(resultText)
+                                    let message = Message(sender: poetUser, messageId: self.currentPoetMessageid, sentDate: Date(), kind: .text(self.currentAnswer))
+                                    // 更新同一消息
+                                    self.updateMessage(message)
+                                } else {
+                                    // 更新消息id
+                                    self.currentPoetMessageid = resultMessage_id
+                                    
+                                    // 新增消息
+                                    self.currentAnswer = resultText
+                                    let message = Message(sender: poetUser, messageId: self.currentPoetMessageid, sentDate: Date(), kind: .text(self.currentAnswer))
+                                    self.insertMessage(message)
+                                }
+                            }
+                        }
+                    }
+                case let .complete(completion):
+                    // 完成后可执行操作
+                    debugPrint("当前流获取完毕\(completion)")
+                }
+        }
+    }
+
     // 网络请求
     func requestPoetAnswer() {
         // 1. 准备请求的 URL
-        guard let url = URL(string: "http://7f5ca150.r8.cpolar.top/chat/poet") else {
-            print("Invalid URL")
+        guard let url = URL(string: "\(chatURL)/chat/poet") else {
             return
         }
 
@@ -29,13 +126,13 @@ extension PoetChatVC: MessagesDataSource, MessagesLayoutDelegate {
                           "conversation_id": "",
                           "history_len": -1,
                           "history": [],
-                          "stream": true,
+                          "stream": false,
                           "model_name": "qwen-api",
                           "temperature": 0.7,
                           "max_tokens": 0,
                           "prompt_name": "\(poetId)"]
         guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
-            print("Failed to serialize JSON data")
+            debugPrint("Failed to serialize JSON data")
             return
         }
 
@@ -47,94 +144,94 @@ extension PoetChatVC: MessagesDataSource, MessagesLayoutDelegate {
 
         // 4. 发送请求
         let task = URLSession.shared.dataTask(with: request) { [weak self] (result, response, error) in
-            guard let self = self else { return }
+            guard let self = self, let poetUser = self.poetUser else { return }
             // 处理响应
             guard let result = result, error == nil else {
-                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                debugPrint("Error: \(error?.localizedDescription ?? "未知错误")")
                 return
             }
-            // 将结果转string进行处理
-            guard let result2String = String(data: result, encoding: .utf8) else { return }
-        
-            // 将结果去掉前缀
-            let splitString = String(result2String.dropFirst(6))
-            debugPrint(splitString)
             
-            // 自定义替换换行符的序列，防止换行符导致json解析不出来
-            let kReturnKey = "abcdefg"
-
-            // 得到替换后的字符串
-            let newComment = splitString.replacingOccurrences(of: "\n", with: kReturnKey)
-
-            // 待解析的data
-            let courseJSONData = newComment.data(using: .utf8)!
-            
-            var resultText = ""
-            var resultMessage_id = ""
-            // 解析 JSON 数据
-                // 使用 SwiftyJSON 解析 Data 数据
-                let json = try? JSON(data: courseJSONData)
-
-                // 检查解析是否成功
-                if let json = json {
-                    // 访问解析后的 JSON 数据
-                    let text = json["text"].stringValue
-                    let message_id = json["message_id"].stringValue
-                    resultText = text.replacingOccurrences(of: kReturnKey, with: "\n")
-                    resultMessage_id = message_id.replacingOccurrences(of: kReturnKey, with: "\n")
-                } else {
-                    debugPrint("解析 JSON 数据失败")
-                }
-            
-                // 是否是同一个流
-                let isSameStream = resultMessage_id == self.currentPoetMessageid
-                
-                guard let poetUser = self.poetUser else { return }
-                // 如果是同一个流
-                if isSameStream {
-                    // 扩展消息
-                    self.currentAnswer.append(resultText)
-                    let message = Message(sender: poetUser, messageId: self.currentPoetMessageid, sentDate: Date(), kind: .text(self.currentAnswer))
-                    // 更新同一消息
-                    self.updateMessage(message)
-                } else {
-                    // 更新消息id
-                    self.currentPoetMessageid = resultMessage_id
+            // data数据处理
+            let courseJSONDatas = self.dataHandle(result: result)
+            // 处理一个返回多个json的情况
+            for courseJSONData in courseJSONDatas {
+                // 排除ping的情况
+                if !String(data: courseJSONData, encoding: .utf8)!.contains("ping") {
+                    var resultText = ""
+                    var resultMessage_id = ""
+                    // 解析 JSON 数据
+                    // 使用 SwiftyJSON 解析 Data 数据
+                    let json = try? JSON(data: courseJSONData)
                     
-                    // 新增消息
-                    self.currentAnswer = resultText
-                    let message = Message(sender: poetUser, messageId: self.currentPoetMessageid, sentDate: Date(), kind: .text(self.currentAnswer))
-                    self.insertMessage(message)
+                    // 检查解析是否成功
+                    if let json = json {
+                        // 访问解析后的 JSON 数据
+                        let text = json["text"].stringValue
+                        let message_id = json["message_id"].stringValue
+                        resultText = text.replacingOccurrences(of: kReturnKey, with: "\n")
+                        resultMessage_id = message_id.replacingOccurrences(of: kReturnKey, with: "\n")
+                    } else {
+                        debugPrint("解析 JSON 数据失败")
+                    }
+                    
+                    // 是否是同一个流
+                    let isSameStream = resultMessage_id == self.currentPoetMessageid
+                    
+                    // 如果是同一个流
+                    if isSameStream {
+                        // 扩展消息
+                        self.currentAnswer.append(resultText)
+                        let message = Message(sender: poetUser, messageId: self.currentPoetMessageid, sentDate: Date(), kind: .text(self.currentAnswer))
+                        // 更新同一消息
+                        self.updateMessage(message)
+                    } else {
+                        // 更新消息id
+                        self.currentPoetMessageid = resultMessage_id
+                        
+                        // 新增消息
+                        self.currentAnswer = resultText
+                        let message = Message(sender: poetUser, messageId: self.currentPoetMessageid, sentDate: Date(), kind: .text(self.currentAnswer))
+                        self.insertMessage(message)
+                    }
                 }
+            }
         }
-
         // 启动请求任务
         task.resume()
     }
     
-    // 清理历史对话
-    func clearRequest() {
-        // 1. 准备请求的 URL
-        guard let url = URL(string: "http://7f5ca150.r8.cpolar.top/chat/clear") else {
-            print("Invalid URL")
-            return
-        }
-
-        // 3. 准备请求
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        // 4. 发送请求
-        let task = URLSession.shared.dataTask(with: request) { (_, response, error) in
-            guard error == nil else {
-                print("Error: \(error?.localizedDescription ?? "Unknown error")")
-                return
+    // 数据处理
+    func dataHandle(result: Data) -> [Data] {
+        var result2Strings: [String] = []
+        var courseJSONDatas: [Data] = []
+        // 将结果转string进行处理
+        guard let tmp = String(data: result, encoding: .utf8) else { return [] }
+        let replacedStr = tmp.replacingOccurrences(of: "data: ", with: "=")
+        result2Strings = replacedStr.components(separatedBy: "=")
+        for i in result2Strings {
+            var result2String = i
+            // 取最后一个右大括号之前的内容
+            if let range = result2String.range(of: "}", options: .backwards) {
+                result2String = String(result2String[...range.lowerBound])
             }
+            
+            // 取第一个左大括号之后的内容
+            if let range = result2String.range(of: "{") {
+                result2String = String(result2String[range.lowerBound...])
+            }
+            
+            // 得到替换回车后的字符串
+            var newComment = result2String.replacingOccurrences(of: "\n", with: kReturnKey)
+            
+            // 得到替换回退后的字符串
+            newComment = result2String.replacingOccurrences(of: "\r", with: kBackKey)
+            debugPrint(newComment)
+            
+            // 待解析的data
+            let courseJSONData = newComment.data(using: .utf8)!
+            courseJSONDatas.append(courseJSONData)
         }
-
-        // 启动请求任务
-        task.resume()
+        return courseJSONDatas
     }
     
     // 新增信息
@@ -143,7 +240,7 @@ extension PoetChatVC: MessagesDataSource, MessagesLayoutDelegate {
         messages.append(message)
         
         if message.sender.senderId == currentUser.senderId && isReachable {
-            requestPoetAnswer()
+            requestStreamPoetAnswer()
         }
         // UI在主线程修改
         DispatchQueue.main.async {
@@ -170,9 +267,13 @@ extension PoetChatVC: MessagesDataSource, MessagesLayoutDelegate {
             // 更新消息内容
             messages[index] = updatedMessage
             
-            // 刷新包含该消息的 section
-            messagesCollectionView.reloadSections([index])
+            // 溢出判断
+            if index < messagesCollectionView.numberOfSections {
+                // 刷新包含该消息的 section
+                messagesCollectionView.reloadSections([index])
+            }
         }
+        messagesCollectionView.scrollToLastItem(animated: true)
     }
     
     // 最后一条信息是否可见

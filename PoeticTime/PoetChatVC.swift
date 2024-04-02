@@ -48,8 +48,8 @@ class PoetChatVC: MessagesViewController {
     // 诗人名
     var poetName = ""
     
-    // 当前发送信息
-    var currentMessage = ""
+    // 当前发送信息，默认值定为问你是谁，用于首次请求的打招呼信息
+    var currentMessage = "你是谁?"
     
     // 当前得到的回答
     var currentAnswer = ""
@@ -122,9 +122,10 @@ class PoetChatVC: MessagesViewController {
         
         // 为了监听键盘升起
         messageInputBar.inputTextView.delegate = self
+        
         // 获取诗人第一句打招呼
         if isReachable {
-            requestPoetAnswer()
+            self.requestStreamPoetAnswer()
         }
     }
     

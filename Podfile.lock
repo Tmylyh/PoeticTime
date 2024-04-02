@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.8.0)
   - DBSphereTagCloudSwift (2.1.0)
   - Hero (1.6.2)
   - InputBarAccessoryView (5.5.0):
@@ -14,6 +15,7 @@ PODS:
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
+  - Alamofire
   - DBSphereTagCloudSwift
   - Hero
   - lottie-ios
@@ -24,6 +26,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - DBSphereTagCloudSwift
     - Hero
     - InputBarAccessoryView
@@ -34,6 +37,7 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
   DBSphereTagCloudSwift: 4d81884e115464118a372477625b1feeab0ac5f4
   Hero: c69009dbc9e2f0472e081adc644dba05fcedae72
   InputBarAccessoryView: 1d7b0a672b36e370f01f264b3907ef39d03328e3
@@ -43,6 +47,6 @@ SPEC CHECKSUMS:
   SQLite.swift: 2992550ebf3c5b268bf4352603e3df87d2a4ed72
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 61380b7ea9c66806a60875aec38e188cebaab856
+PODFILE CHECKSUM: 682ea222f7c5a8fb8d88714125068ce6f89b0100
 
 COCOAPODS: 1.11.3

@@ -31,6 +31,7 @@
 		040439F32BB9D2020085A9DE /* PoetAnswerVC-Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439F22BB9D2020085A9DE /* PoetAnswerVC-Record.swift */; };
 		040439F52BB9E3050085A9DE /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439F42BB9E3050085A9DE /* NetWorkManager.swift */; };
 		043D4C882BBB302800DB5A11 /* PoetChatVC-messageHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D4C872BBB302800DB5A11 /* PoetChatVC-messageHandle.swift */; };
+		043D4C8F2BBC107100DB5A11 /* PoemDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D4C8E2BBC107100DB5A11 /* PoemDetailVC.swift */; };
 		049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AD2BAA8B9C00E667FF /* AppDelegate.swift */; };
 		049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */; };
 		049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820B12BAA8B9C00E667FF /* HomeTabBarVC.swift */; };
@@ -76,6 +77,7 @@
 		040439F22BB9D2020085A9DE /* PoetAnswerVC-Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoetAnswerVC-Record.swift"; sourceTree = "<group>"; };
 		040439F42BB9E3050085A9DE /* NetWorkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		043D4C872BBB302800DB5A11 /* PoetChatVC-messageHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoetChatVC-messageHandle.swift"; sourceTree = "<group>"; };
+		043D4C8E2BBC107100DB5A11 /* PoemDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailVC.swift; sourceTree = "<group>"; };
 		049820AA2BAA8B9C00E667FF /* PoeticTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeticTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049820AD2BAA8B9C00E667FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,9 @@
 				040439DE2BB8134D0085A9DE /* DynastyVC-CollectionView.swift */,
 				040439DA2BB806EA0085A9DE /* DynastyVC-ScrollView.swift */,
 				040439D82BB805E80085A9DE /* DynastyVC-ConfigUI.swift */,
+				04042DCF2BB519370085A9DE /* BezierText.swift */,
+				043D4C902BBC108300DB5A11 /* PoemVC */,
+				043D4C8D2BBC0FEA00DB5A11 /* PoetVC */,
 			);
 			name = DynastyVC;
 			sourceTree = "<group>";
@@ -156,7 +161,6 @@
 			children = (
 				040439EB2BB932D80085A9DE /* PoetAnswerVC.swift */,
 				040439EF2BB9C9040085A9DE /* PoetAnswerVC-logic.swift */,
-				040439F22BB9D2020085A9DE /* PoetAnswerVC-Record.swift */,
 			);
 			name = PoetAnswerVC;
 			sourceTree = "<group>";
@@ -168,6 +172,25 @@
 				043D4C872BBB302800DB5A11 /* PoetChatVC-messageHandle.swift */,
 			);
 			name = PoetChatVC;
+			sourceTree = "<group>";
+		};
+		043D4C8D2BBC0FEA00DB5A11 /* PoetVC */ = {
+			isa = PBXGroup;
+			children = (
+				040439E72BB834300085A9DE /* PoetDetailVC.swift */,
+				040439F12BB9C90D0085A9DE /* PoetAnswerVC */,
+				040439F22BB9D2020085A9DE /* PoetAnswerVC-Record.swift */,
+				043D4C892BBB312100DB5A11 /* PoetChatVC */,
+			);
+			name = PoetVC;
+			sourceTree = "<group>";
+		};
+		043D4C902BBC108300DB5A11 /* PoemVC */ = {
+			isa = PBXGroup;
+			children = (
+				043D4C8E2BBC107100DB5A11 /* PoemDetailVC.swift */,
+			);
+			name = PoemVC;
 			sourceTree = "<group>";
 		};
 		049820A12BAA8B9C00E667FF = {
@@ -216,10 +239,6 @@
 			children = (
 				049820C42BAAB79100E667FF /* StudyVC.swift */,
 				040439E62BB8340F0085A9DE /* DynastyVC */,
-				040439E72BB834300085A9DE /* PoetDetailVC.swift */,
-				040439F12BB9C90D0085A9DE /* PoetAnswerVC */,
-				043D4C892BBB312100DB5A11 /* PoetChatVC */,
-				04042DCF2BB519370085A9DE /* BezierText.swift */,
 				04982CC92BB07AFA00E667FF /* Data */,
 				04982CC12BAF040100E667FF /* Cell */,
 				04982CC22BAF040B00E667FF /* Layout */,
@@ -452,6 +471,7 @@
 				04982CBE2BAF022A00E667FF /* PtCardDetailLayout.swift in Sources */,
 				040439EC2BB932D80085A9DE /* PoetAnswerVC.swift in Sources */,
 				04982CC02BAF03F900E667FF /* PtCardCollectionViewCell.swift in Sources */,
+				043D4C8F2BBC107100DB5A11 /* PoemDetailVC.swift in Sources */,
 				04982CBB2BAEF11A00E667FF /* PtHelper.swift in Sources */,
 				04042DCE2BB4F93F0085A9DE /* DynastyVC.swift in Sources */,
 				040439DB2BB806EA0085A9DE /* DynastyVC-ScrollView.swift in Sources */,

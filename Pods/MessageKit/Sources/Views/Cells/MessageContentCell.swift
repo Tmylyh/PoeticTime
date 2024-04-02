@@ -222,20 +222,8 @@ open class MessageContentCell: MessageCollectionViewCell {
             fatalError(MessageKitError.avatarPositionUnresolved)
         }
 
-        switch attributes.avatarPosition.vertical {
-        case .messageLabelTop:
-            origin.y = messageTopLabel.frame.minY
-        case .messageTop: // Needs messageContainerView frame to be set
-            origin.y = messageContainerView.frame.minY
-        case .messageBottom: // Needs messageContainerView frame to be set
-            origin.y = messageContainerView.frame.maxY - attributes.avatarSize.height
-        case .messageCenter: // Needs messageContainerView frame to be set
-            origin.y = messageContainerView.frame.midY - (attributes.avatarSize.height/2)
-        case .cellBottom:
-            origin.y = attributes.frame.height - attributes.avatarSize.height
-        default:
-            break
-        }
+        // 头像显示在消息顶部
+        origin.y = messageContainerView.frame.minY
 
         avatarView.frame = CGRect(origin: origin, size: attributes.avatarSize)
     }

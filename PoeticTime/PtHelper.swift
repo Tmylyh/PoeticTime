@@ -30,6 +30,30 @@ func verticalText(text: String) -> String {
     return vText
 }
 
+/// 清理历史对话
+func clearRequest() {
+    // 1. 准备请求的 URL
+    guard let url = URL(string: "\(chatURL)/chat/clear") else {
+        return
+    }
+
+    // 3. 准备请求
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+    // 4. 发送请求
+    let task = URLSession.shared.dataTask(with: request) { (_, response, error) in
+        guard error == nil else {
+            debugPrint("Error: \(error?.localizedDescription ?? "Unknown error")")
+            return
+        }
+    }
+
+    // 启动请求任务
+    task.resume()
+}
+
 /// 循环遍历字体
 func printZiTi() {
     for familyName in UIFont.familyNames {
