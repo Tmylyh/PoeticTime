@@ -83,7 +83,7 @@ class PoetDetailVC: UIViewController {
     lazy var poemListLabel: UILabel = {
         let poemListLabel = UILabel()
         poemListLabel.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 32)
-        poemListLabel.text = "作品列表"
+        poemListLabel.text = "诗卷珍藏"
         poemListLabel.textColor = .white
         return poemListLabel
     }()
@@ -106,7 +106,7 @@ class PoetDetailVC: UIViewController {
     lazy var answerLabel: UILabel = {
         let answerLabel = UILabel()
         answerLabel.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 32)
-        answerLabel.text = "对\n诗"
+        answerLabel.text = "斗\n诗"
         answerLabel.numberOfLines = 0
         return answerLabel
     }()
@@ -129,7 +129,7 @@ class PoetDetailVC: UIViewController {
     lazy var chatLabel: UILabel = {
         let chatLabel = UILabel()
         chatLabel.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 32)
-        chatLabel.text = "聊\n天"
+        chatLabel.text = "茶\n叙"
         chatLabel.numberOfLines = 0
         return chatLabel
     }()
@@ -137,6 +137,19 @@ class PoetDetailVC: UIViewController {
     // 跳转到作品列表
     @objc func presentPoemListVC(sender: UIButton) {
         ButtonAnimate(sender)
+        sender.hero.id = "poetList"
+        let poet = poetData.filter { $0.poetName == poetName }
+        guard let poetId = poet.first?.poetId else { return }
+        let poetPoemListVC = PoetPoemListVC(poetId: poetId)
+        poetPoemListVC.poetName = poetName
+        // 查询诗人诗词
+        let poemsWithPoet = poemData.filter { $0.poetId == poetId }
+        poetPoemListVC.poemsWithPoetData = poemsWithPoet
+        poetPoemListVC.view.hero.id = "poetList"
+        poetPoemListVC.hero.isEnabled = true
+        poetPoemListVC.heroModalAnimationType = .zoom
+        poetPoemListVC.modalPresentationStyle = .fullScreen
+        present(poetPoemListVC, animated: true)
     }
     
     // 跳转到对诗
@@ -145,12 +158,14 @@ class PoetDetailVC: UIViewController {
         sender.hero.id = "poetAnswer"
         let poet = poetData.filter { $0.poetName == poetName }
         guard let poetId = poet.first?.poetId else { return }
-        let vc = PoetAnswerVC(poetId: poetId)
-        vc.view.hero.id = "poetAnswer"
-        vc.hero.isEnabled = true
-        vc.heroModalAnimationType = .zoom
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        let poetAnswerVC = PoetAnswerVC(poetId: poetId)
+        poetAnswerVC.poetName = self.poetName
+        // hero 属性可能会影响视图层级结构，而设置poetName会给label，label根据内容布局，所以poetName的设置必须在上面
+        poetAnswerVC.view.hero.id = "poetAnswer"
+        poetAnswerVC.hero.isEnabled = true
+        poetAnswerVC.heroModalAnimationType = .zoom
+        poetAnswerVC.modalPresentationStyle = .fullScreen
+        present(poetAnswerVC, animated: true)
     }
     
     // 跳转到聊天
@@ -159,12 +174,13 @@ class PoetDetailVC: UIViewController {
         sender.hero.id = "poetChat"
         let poet = poetData.filter { $0.poetName == poetName }
         guard let poetId = poet.first?.poetId else { return }
-        let vc = PoetChatVC(poetId: poetId)
-        vc.view.hero.id = "poetChat"
-        vc.hero.isEnabled = true
-        vc.heroModalAnimationType = .zoom
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        let poetChatVC = PoetChatVC(poetId: poetId)
+        poetChatVC.poetName = poetName
+        poetChatVC.view.hero.id = "poetChat"
+        poetChatVC.hero.isEnabled = true
+        poetChatVC.heroModalAnimationType = .zoom
+        poetChatVC.modalPresentationStyle = .fullScreen
+        present(poetChatVC, animated: true)
     }
     
     // dimiss当前View

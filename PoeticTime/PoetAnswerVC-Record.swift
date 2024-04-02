@@ -12,28 +12,64 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
     
     // 按下识别按钮
     @objc func touchDownHandle() {
+        // 轻量级震动
+        lightFeedBack()
         do {
             try startRecording()
-            poemAnswerSoundButton.setTitle("正在收听", for: [])
+            recordTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(playRecordAnimation), userInfo: nil, repeats: true)
+            poetRecordAnimationView.isHidden = false
+            poemAnswerSoundButton.setTitle(nil, for: [])
+            poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_recording_back_image"), for: [])
+            viewBecomeBigger(poemAnswerSoundButton)
         } catch {
-            poemAnswerSoundButton.setTitle("不可用", for: [])
+//            poemAnswerSoundButton.setTitle("不可用", for: [])
+        }
+    }
+    
+    // 手指是否滑动到范围外
+    func moveHandle(inside: Bool) {
+        if !inside {
+            poemAnswerSoundButton.setImage(nil, for: [])
+            poemAnswerSoundButton.setTitle("松手取消", for: [])
+            poetRecordAnimationView.isHidden = true
+            maskView.isHidden = false
+        } else {
+            poemAnswerSoundButton.setTitle(nil, for: [])
+            poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_recording_back_image"), for: [])
+            poetRecordAnimationView.isHidden = false
+            maskView.isHidden = true
         }
     }
     
     // 范围内抬起
     @objc func touchUpInsideHandle() {
-        audioEngine.stop()
-        recognitionRequest?.endAudio()
-        poemAnswerSoundButton.isEnabled = false
-        poemAnswerSoundButton.setTitle("正在识别", for: .disabled)
+        finishRecord()
+        isCancelRecord = false
     }
     
     // 范围外抬起
     @objc func touchUpOutsideHandle() {
+        finishRecord()
+        // 取消录音，清空已识别内容
+        isCancelRecord = true
+    }
+    
+    // 按钮抬起执行操作
+    func finishRecord() {
         audioEngine.stop()
         recognitionRequest?.endAudio()
         poemAnswerSoundButton.isEnabled = false
-        poemAnswerSoundButton.setTitle("取消中", for: .disabled)
+        poetRecordAnimationView.isHidden = true
+        maskView.isHidden = true
+        recordTimer?.invalidate()
+        viewResetSize(poemAnswerSoundButton)
+        poemAnswerSoundButton.setTitle(nil, for: [])
+        poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_record_image"), for: [])
+    }
+    
+    // 播放录音动画
+    @objc func playRecordAnimation(){
+        poetRecordAnimationView.play()
     }
     
     // 开始语音识别
@@ -69,13 +105,15 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
         
         // 创建语音识别任务，分配给 recognitionTask
         guard let speechRecognizer = speechRecognizer else { return }
-        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
+        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
+            guard let self = self else { return }
             // 标记识别结果是否为最终结果(用来处理流式输出的case）
             var isFinal = false
             
             if let result = result {
                 // 检查识别结果是否存在。如果存在，就更新文本视图 textView，显示最佳识别结果的格式化字符串，并将 isFinal 标记为 result.isFinal，表示是否为最终结果。
-                self.soundText = result.bestTranscription.formattedString
+                let tmpText = self.isCancelRecord ? "" : result.bestTranscription.formattedString
+                self.soundText = self.soundText.count > 0 ? self.soundText : tmpText
                 isFinal = result.isFinal
                 // 打印识别结果
                 // debugPrint("Text \(result.bestTranscription.formattedString)")
@@ -90,7 +128,7 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
                 self.recognitionTask = nil
 
                 self.poemAnswerSoundButton.isEnabled = true
-                self.poemAnswerSoundButton.setTitle("长按识别", for: [])
+//                self.poemAnswerSoundButton.setTitle("长按识别", for: [])
             }
         }
 
@@ -111,10 +149,24 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
     public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
             poemAnswerSoundButton.isEnabled = true
-            poemAnswerSoundButton.setTitle("长按识别", for: [])
+            poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_record_image"), for: [])
         } else {
             poemAnswerSoundButton.isEnabled = false
-            poemAnswerSoundButton.setTitle("不可用", for: .disabled)
+//            poemAnswerSoundButton.setTitle("不可用", for: .disabled)
         }
+    }
+    
+    // 按钮放大
+    func viewBecomeBigger(_ sender: UIView){
+        UIView.animate(withDuration: 0.25, animations: {
+            sender.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        })
+    }
+    
+    // 按钮复原
+    func viewResetSize(_ sender: UIView) {
+        UIView.animate(withDuration: 0.25, animations: {
+            sender.transform = CGAffineTransform.identity
+        })
     }
 }

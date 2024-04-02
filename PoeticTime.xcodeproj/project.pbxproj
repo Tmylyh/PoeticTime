@@ -32,6 +32,9 @@
 		040439F52BB9E3050085A9DE /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040439F42BB9E3050085A9DE /* NetWorkManager.swift */; };
 		043D4C882BBB302800DB5A11 /* PoetChatVC-messageHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D4C872BBB302800DB5A11 /* PoetChatVC-messageHandle.swift */; };
 		043D4C8F2BBC107100DB5A11 /* PoemDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D4C8E2BBC107100DB5A11 /* PoemDetailVC.swift */; };
+		043D4C922BBC37FF00DB5A11 /* PoetPoemListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D4C912BBC37FF00DB5A11 /* PoetPoemListVC.swift */; };
+		043D4C952BBC53F300DB5A11 /* PoetRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D4C942BBC53F300DB5A11 /* PoetRecordButton.swift */; };
+		043D587F2BBC9A7C00DB5A11 /* PoetAnswerVC-configUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D587E2BBC9A7C00DB5A11 /* PoetAnswerVC-configUI.swift */; };
 		049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AD2BAA8B9C00E667FF /* AppDelegate.swift */; };
 		049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */; };
 		049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820B12BAA8B9C00E667FF /* HomeTabBarVC.swift */; };
@@ -78,6 +81,9 @@
 		040439F42BB9E3050085A9DE /* NetWorkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		043D4C872BBB302800DB5A11 /* PoetChatVC-messageHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoetChatVC-messageHandle.swift"; sourceTree = "<group>"; };
 		043D4C8E2BBC107100DB5A11 /* PoemDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailVC.swift; sourceTree = "<group>"; };
+		043D4C912BBC37FF00DB5A11 /* PoetPoemListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetPoemListVC.swift; sourceTree = "<group>"; };
+		043D4C942BBC53F300DB5A11 /* PoetRecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetRecordButton.swift; sourceTree = "<group>"; };
+		043D587E2BBC9A7C00DB5A11 /* PoetAnswerVC-configUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoetAnswerVC-configUI.swift"; sourceTree = "<group>"; };
 		049820AA2BAA8B9C00E667FF /* PoeticTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeticTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049820AD2BAA8B9C00E667FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +167,9 @@
 			children = (
 				040439EB2BB932D80085A9DE /* PoetAnswerVC.swift */,
 				040439EF2BB9C9040085A9DE /* PoetAnswerVC-logic.swift */,
+				040439F22BB9D2020085A9DE /* PoetAnswerVC-Record.swift */,
+				043D587E2BBC9A7C00DB5A11 /* PoetAnswerVC-configUI.swift */,
+				043D4C962BBC553000DB5A11 /* View */,
 			);
 			name = PoetAnswerVC;
 			sourceTree = "<group>";
@@ -178,8 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				040439E72BB834300085A9DE /* PoetDetailVC.swift */,
+				043D4C932BBC380500DB5A11 /* PoetPoemListVC */,
 				040439F12BB9C90D0085A9DE /* PoetAnswerVC */,
-				040439F22BB9D2020085A9DE /* PoetAnswerVC-Record.swift */,
 				043D4C892BBB312100DB5A11 /* PoetChatVC */,
 			);
 			name = PoetVC;
@@ -191,6 +200,22 @@
 				043D4C8E2BBC107100DB5A11 /* PoemDetailVC.swift */,
 			);
 			name = PoemVC;
+			sourceTree = "<group>";
+		};
+		043D4C932BBC380500DB5A11 /* PoetPoemListVC */ = {
+			isa = PBXGroup;
+			children = (
+				043D4C912BBC37FF00DB5A11 /* PoetPoemListVC.swift */,
+			);
+			name = PoetPoemListVC;
+			sourceTree = "<group>";
+		};
+		043D4C962BBC553000DB5A11 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				043D4C942BBC53F300DB5A11 /* PoetRecordButton.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		049820A12BAA8B9C00E667FF = {
@@ -463,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				040439CB2BB6AAAD0085A9DE /* PangMenZhengDaoCuShuTi-2.ttf in Sources */,
+				043D4C922BBC37FF00DB5A11 /* PoetPoemListVC.swift in Sources */,
 				04B59CE12BBACB6A00E160F1 /* PtChatCustomCell.swift in Sources */,
 				040439D92BB805E80085A9DE /* DynastyVC-ConfigUI.swift in Sources */,
 				04042DD22BB51BB90085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf in Sources */,
@@ -478,6 +504,7 @@
 				049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */,
 				040439BD2BB640CE0085A9DE /* Dao.swift in Sources */,
 				049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */,
+				043D4C952BBC53F300DB5A11 /* PoetRecordButton.swift in Sources */,
 				049820B82BAA8B9C00E667FF /* PoeticTime.xcdatamodeld in Sources */,
 				04042DD02BB519370085A9DE /* BezierText.swift in Sources */,
 				04982CB92BAEE2C600E667FF /* PtTabBar.swift in Sources */,
@@ -496,6 +523,7 @@
 				04982CC42BB009CD00E667FF /* PtDynastyCollectionViewCell.swift in Sources */,
 				040439E82BB834300085A9DE /* PoetDetailVC.swift in Sources */,
 				043D4C882BBB302800DB5A11 /* PoetChatVC-messageHandle.swift in Sources */,
+				043D587F2BBC9A7C00DB5A11 /* PoetAnswerVC-configUI.swift in Sources */,
 				049820CE2BAAC1D000E667FF /* MyImageClassifier.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

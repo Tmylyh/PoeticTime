@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 import Lottie
 import Speech
 
@@ -14,6 +13,9 @@ class PoetAnswerVC: UIViewController {
     
     // 诗人id
     var poetId = ""
+    
+    // 诗人名
+    var poetName = ""
     
     // 总共的诗词对话数据
     var poems: [[String : [[String]]]] = []
@@ -37,7 +39,23 @@ class PoetAnswerVC: UIViewController {
     var answerRightCount = 0
     
     // 需要答对次数
-    var answerNeedRightCount = 10
+    var answerNeedRightCount = 1
+    
+    // 当前题目回答结果
+    var currentCheck: Bool {
+        get {
+            return checkLabel.text == "妙对如流" ? true : false
+        }
+        set {
+            if newValue {
+                checkLabel.text = "妙对如流"
+                checkLabel.textColor = .green
+            } else {
+                checkLabel.text = "再炼诗才"
+                checkLabel.textColor = .red
+            }
+        }
+    }
     
     // 用于进行语音识别的对象，通过指定地区来创建
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "zh-CN"))
@@ -51,10 +69,16 @@ class PoetAnswerVC: UIViewController {
     // 用于处理音频输入和输出的引擎对象
     let audioEngine = AVAudioEngine()
     
+    // 语音按钮持续识别计时器
+    var recordTimer: Timer?
+    
+    // 取消录音文本
+    var isCancelRecord: Bool = false
+    
     // 语音识别到的文本
     var soundText: String {
         get {
-            return ""
+            return currentHalfSentenceIndex == 0 ? self.poemAnswerTextField2.text ?? "" : self.poemAnswerTextField1.text ?? ""
         }
         set {
             if self.currentHalfSentenceIndex == 0 {
@@ -80,6 +104,16 @@ class PoetAnswerVC: UIViewController {
         return backgroundImageView
     }()
     
+    // 诗人Label
+    lazy var poetLabel: UILabel = {
+        let poetLabel = UILabel()
+        poetLabel.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 24)
+        poetLabel.text = poetName
+        poetLabel.textAlignment = .center
+        poetLabel.textColor = .black
+        return poetLabel
+    }()
+    
     // 诗人头像
     lazy var poetImageView: UIImageView = {
         let poetImageView = UIImageView(frame: viewInitRect)
@@ -93,6 +127,14 @@ class PoetAnswerVC: UIViewController {
     lazy var poetSoundAnimationView: LottieAnimationView = {
         let poetSoundAnimationView = LottieAnimationView(name: "soundAnimation")
         return poetSoundAnimationView
+    }()
+    
+    // 录音动画
+    lazy var poetRecordAnimationView: LottieAnimationView = {
+        let poetRecordAnimationView = LottieAnimationView(name: "soundAnimation")
+        poetRecordAnimationView.isUserInteractionEnabled = false
+        poetRecordAnimationView.isHidden = true
+        return poetRecordAnimationView
     }()
     
     // 返回按钮
@@ -210,24 +252,140 @@ class PoetAnswerVC: UIViewController {
         return poemAnswerTextField2
     }()
     
+    // 蒙版
+    lazy var maskView: UIView = {
+        let maskView = UIView()
+        maskView.backgroundColor = .tertiaryLabel
+        maskView.alpha = 0.7
+        maskView.isHidden = true
+        return maskView
+    }()
+    
     // 语音回答按钮
-    lazy var poemAnswerSoundButton: UIButton = {
-        let poemAnswerSoundButton = UIButton()
-        poemAnswerSoundButton.setTitle("长按识别", for: .normal)
-        poemAnswerSoundButton.setTitleColor(.black, for: .normal)
-        poemAnswerSoundButton.backgroundColor = .yellow
-        poemAnswerSoundButton.layer.cornerRadius = 20
+    lazy var poemAnswerSoundButton: PoetRecordButton = {
+        let poemAnswerSoundButton = PoetRecordButton()
+        poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_record_image"), for: .normal)
         poemAnswerSoundButton.isEnabled = false
+        poemAnswerSoundButton.moveCompletion = moveHandle
+        poemAnswerSoundButton.setTitleColor(.black, for: .normal)
+        poemAnswerSoundButton.titleLabel?.font = .boldSystemFont(ofSize: 24)
+        // 去掉按钮原生的点击变暗效果
+        poemAnswerSoundButton.adjustsImageWhenHighlighted = false
         poemAnswerSoundButton.addTarget(self, action: #selector(touchDownHandle), for: .touchDown)
         poemAnswerSoundButton.addTarget(self, action: #selector(touchUpInsideHandle), for: .touchUpInside)
         poemAnswerSoundButton.addTarget(self, action: #selector(touchUpOutsideHandle), for: .touchUpOutside)
         return poemAnswerSoundButton
     }()
     
+    // 回答结果View
+    lazy var checkLabel: UILabel = {
+        let checkLabel = UILabel()
+        checkLabel.font = .boldSystemFont(ofSize: 20)
+        checkLabel.textColor = .red
+        checkLabel.textAlignment = .center
+        checkLabel.backgroundColor = .white
+        checkLabel.layer.masksToBounds = true
+        checkLabel.layer.cornerRadius = 20
+        checkLabel.isHidden = true
+        return checkLabel
+    }()
+    
+    // 回答完成View
+    lazy var finishView: UIView = {
+        let finishView = UIView(frame: viewInitRect)
+        finishView.backgroundColor = .white
+        finishView.isHidden = true
+        finishView.layer.masksToBounds = true
+        finishView.layer.cornerRadius = 20
+        return finishView
+    }()
+    
+    // 回答完成View上的贴图
+    lazy var finishImageView: UIImageView = {
+        let finishImageView = UIImageView(frame: viewInitRect)
+        finishImageView.image = UIImage(named: "poetic_time_poet_finish_view_image")
+        return finishImageView
+    }()
+    
+    // 回答完成View上的文本
+    lazy var finishViewLabel: UILabel = {
+        let finishViewLabel = UILabel()
+        finishViewLabel.numberOfLines = 0
+        finishViewLabel.lineBreakMode = .byWordWrapping // 按单词换行
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4 // 调整行间距
+        var content = "挑战成功\n本次答对\(answerNeedRightCount)题"
+        // 整体样式
+        var customAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14, weight: .medium),
+            .foregroundColor: "#969696".pt_argbColor ?? .black
+        ]
+        
+        var attributedString = NSMutableAttributedString(string: content, attributes: customAttributes)
+        let range = NSMakeRange(0, content.count)
+        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
+        if let range = content.range(of: String("\(answerNeedRightCount)")) {
+            let nsRange = NSRange(range, in: content)
+            // 部分样式
+            let customSubAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 14),
+                .foregroundColor: "#FF0000".pt_argbColor ?? .red // 自定义部分颜色
+            ]
+            attributedString.addAttributes(customSubAttributes, range: nsRange)
+        }
+        
+        if let range = content.range(of: String("挑战成功")) {
+            let nsRange = NSRange(range, in: content)
+            // 部分样式
+            let customSubAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.boldSystemFont(ofSize: 22),
+                .foregroundColor: UIColor.black
+            ]
+            attributedString.addAttributes(customSubAttributes, range: nsRange)
+        }
+        
+        finishViewLabel.attributedText = attributedString
+        finishViewLabel.sizeToFit()
+        return finishViewLabel
+    }()
+    
+    // 继续挑战按钮
+    lazy var continueButton: UIButton = {
+        let continueButton = UIButton()
+        continueButton.backgroundColor = "#5E918E".pt_argbColor ?? .systemPink
+        continueButton.setTitle("继续挑战", for: .normal)
+        continueButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        continueButton.setTitleColor(.white, for: .normal)
+        continueButton.layer.cornerRadius = 18
+        continueButton.addTarget(self, action: #selector(continueHandle), for: .touchUpInside)
+        return continueButton
+    }()
+    
+    // 结束挑战按钮
+    lazy var exitButton: UIButton = {
+        let exitButton = UIButton()
+        exitButton.backgroundColor = "#C3D9D7".pt_argbColor ?? .systemGray
+        exitButton.setTitle("结束挑战", for: .normal)
+        exitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        exitButton.setTitleColor(.white, for: .normal)
+        exitButton.layer.cornerRadius = 18
+        exitButton.addTarget(self, action: #selector(exitHandle), for: .touchUpInside)
+        return exitButton
+    }()
+    
+    lazy var stackButtonView: UIStackView = {
+        let stackButtonView = UIStackView()
+        stackButtonView.axis = .horizontal
+        stackButtonView.spacing = 7
+        stackButtonView.addArrangedSubview(exitButton)
+        stackButtonView.addArrangedSubview(continueButton)
+        return stackButtonView
+    }()
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getQuestionData()
@@ -250,7 +408,7 @@ class PoetAnswerVC: UIViewController {
         
         // 请求用户授权
         SFSpeechRecognizer.requestAuthorization { authStatus in
-
+            
             // 界面更新必须回到主线程操作
             OperationQueue.main.addOperation {
                 switch authStatus {
@@ -274,145 +432,5 @@ class PoetAnswerVC: UIViewController {
                 }
             }
         }
-    }
-    
-    // 配制UI
-    func setAnswerViewUI() {
-        self.view.backgroundColor = .white
-        // 添加手势识别器来隐藏键盘
-        let hideKeyBoardTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        // 将手势识别器添加到视图上
-        view.addGestureRecognizer(hideKeyBoardTap)
-        view.addSubview(backgroundImageView)
-        view.addSubview(backButton)
-        view.addSubview(poetImageView)
-        view.addSubview(poetSoundAnimationView)
-        view.addSubview(answerQuestionContent)
-        view.addSubview(poemAnswerSoundButton)
-        answerQuestionContent.addSubview(answerSentenceTag1)
-        answerQuestionContent.addSubview(answerSentenceLine1)
-        answerQuestionContent.addSubview(answerSentenceTag2)
-        answerQuestionContent.addSubview(answerSentenceLine2)
-        answerQuestionContent.addSubview(poemNameLabel)
-        answerQuestionContent.addSubview(nextQuestionButton)
-        answerQuestionContent.addSubview(tipsImageButton)
-        answerQuestionContent.addSubview(tipsButton)
-        answerQuestionContent.addSubview(poemAnswerTextField1)
-        answerQuestionContent.addSubview(poemAnswerTextField2)
-        
-        backgroundImageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        backButton.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(44)
-            make.width.height.equalTo(32)
-        }
-        
-        poetImageView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(66)
-            make.height.width.equalTo(78)
-        }
-        
-        poetSoundAnimationView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(poetImageView.snp.bottom).offset(2)
-            make.height.equalTo(33)
-            make.width.equalTo(66)
-        }
-        
-        answerQuestionContent.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(173)
-            make.width.equalTo(334)
-            make.height.equalTo(432)
-        }
-        
-        poemAnswerSoundButton.snp.makeConstraints { make in
-            make.top.equalTo(answerQuestionContent.snp.bottom).offset(16)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(120)
-            make.height.equalTo(44)
-        }
-        
-        answerSentenceTag1.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(129)
-            make.left.equalToSuperview().offset(22)
-            make.width.equalTo(6)
-            make.height.equalTo(33)
-        }
-        
-        answerSentenceLine1.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(160)
-            make.left.equalToSuperview().offset(64)
-            make.width.equalTo(230)
-            make.height.equalTo(2)
-        }
-        
-        answerSentenceTag2.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(189)
-            make.left.equalToSuperview().offset(22)
-            make.width.equalTo(6)
-            make.height.equalTo(33)
-        }
-        
-        answerSentenceLine2.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(220)
-            make.left.equalToSuperview().offset(64)
-            make.width.equalTo(230)
-            make.height.equalTo(2)
-        }
-        
-        poemNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(answerSentenceLine2.snp.bottom).offset(16)
-            make.right.equalToSuperview().offset(-16)
-            make.height.equalTo(16)
-        }
-        
-        nextQuestionButton.snp.makeConstraints { make in
-            make.bottom.right.equalToSuperview().offset(-8)
-            make.width.equalTo(136)
-            make.height.equalTo(31)
-        }
-        
-        tipsImageButton.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(16)
-            make.bottom.equalToSuperview().offset(-8)
-            make.width.equalTo(25)
-            make.height.equalTo(25)
-        }
-        
-        tipsButton.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(32)
-            make.bottom.equalToSuperview().offset(-8)
-            make.width.equalTo(82)
-            make.height.equalTo(20)
-        }
-        
-        poemAnswerTextField1.snp.makeConstraints { make in
-            make.left.equalTo(answerSentenceLine1.snp.left)
-            make.top.equalTo(answerSentenceTag1.snp.top).offset(-2)
-        }
-
-        poemAnswerTextField2.snp.makeConstraints { make in
-            make.left.equalTo(answerSentenceLine2.snp.left)
-            make.top.equalTo(answerSentenceTag2.snp.top).offset(-2)
-        }
-    }
-}
-
-extension PoetAnswerVC: UITextFieldDelegate {
-    // 编辑时保持字体黑色
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        textField.textColor = .black
-    }
-    
-    // 当用户按下 Return 键时调用
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // 取消 textField 的第一响应者状态，即结束编辑
-        textField.resignFirstResponder()
-        return true
     }
 }

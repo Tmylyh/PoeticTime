@@ -98,8 +98,6 @@ class PoetChatVC: MessagesViewController {
     init(poetId: String) {
         super.init(nibName: nil, bundle: nil)
         self.poetId = poetId
-        let poetName = poetData.filter { poetId == $0.poetId }.first?.poetName ?? "未知诗人"
-        self.poetName = poetName
         poetUser = Sender(senderId: poetId, displayName: poetName)
     }
     

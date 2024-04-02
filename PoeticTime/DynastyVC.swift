@@ -214,7 +214,7 @@ class DynastyVC: UIViewController {
         return dynastyStoryContentView
     }()
     
-    // 装字的View
+    // 装字的View， 这里复用性不高，因为只能有不超过四页的内容，多了就不行，这里只放了4个label
     lazy var dynastyStoryLabel1: UILabel = {
         let dynastyStoryLabel1 = UILabel(frame: viewInitRect)
         dynastyStoryLabel1.layer.cornerRadius = 20
@@ -259,6 +259,7 @@ class DynastyVC: UIViewController {
         return dynastyStoryLabel4
     }()
     
+    // 诗词的列表
     lazy var poemListCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let poemListCollectionView = UICollectionView(frame: CGRect(x: 0, y: 88, width: view.bounds.width, height: Bounds.height - 88), collectionViewLayout: layout)

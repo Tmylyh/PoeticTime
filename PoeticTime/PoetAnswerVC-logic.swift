@@ -158,16 +158,52 @@ extension PoetAnswerVC {
             getCurrentQuestion()
             setQuestionUI()
             if answerRightCount == answerNeedRightCount {
-                //重置
-                resetAnswerVC()
+                showFinishView()
                 return
             }
+            showCheckView(isCorrect: true)
             answerRightCount += 1
         } else {
             // 重量级震动
             weightFeedBack()
-            print("回答错误")
+            showCheckView(isCorrect: false)
         }
+    }
+    
+    // 展示验证结果的View
+    func showCheckView(isCorrect: Bool) {
+        currentCheck = isCorrect
+        checkLabel.isHidden = false
+        maskView.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self else { return }
+            self.checkLabel.isHidden = true
+            self.maskView.isHidden = true
+        }
+    }
+    
+    // 提交结果的View
+    func showFinishView() {
+        maskView.isHidden = false
+        finishView.isHidden = false
+    }
+    
+    // 点击继续挑战按钮
+    @objc func continueHandle() {
+        maskView.isHidden = true
+        finishView.isHidden = true
+        //重置
+        resetAnswerVC()
+        // 难度增加五题
+        answerNeedRightCount += 5
+        setFinishViewLabel()
+    }
+    
+    // 点击结束挑战按钮
+    @objc func exitHandle() {
+        maskView.isHidden = false
+        finishView.isHidden = false
+        dismissCurrentVC()
     }
     
     // 重置
