@@ -42,6 +42,7 @@ class PoetPoemListVC: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let poemListCollectionView = UICollectionView(frame: CGRect(x: 0, y: 88, width: view.bounds.width, height: Bounds.height - 88), collectionViewLayout: layout)
         poemListCollectionView.backgroundColor = "#7EB5B1".pt_argbColor
+        poemListCollectionView.isHidden = true
         poemListCollectionView.delegate = self
         poemListCollectionView.dataSource = self
         poemListCollectionView.contentInset = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
@@ -63,7 +64,17 @@ class PoetPoemListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setPoemListViewUI()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            guard let self = self else {
+                debugPrint("poemListCollectionView被隐藏了")
+                return
+            }
+            moveAnimationWithCollectionView(collectionView: self.poemListCollectionView)
+            self.poemListCollectionView.isHidden = false
+        }
     }
+    
+    
     
     // 配制UI
     func setPoemListViewUI() {
@@ -122,5 +133,11 @@ extension PoetPoemListVC: UICollectionViewDataSource, UICollectionViewDelegate, 
         let cellWidth = (collectionView.bounds.width - 48) / 3 // 设置每行3个item，左右间距各是8
         let cellHeight = cellWidth // 控制 cell 的高宽比
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        guard let animationView = collectionView.cellForItem(at: indexPath) else { return }
+        ButtonAnimate(animationView)
     }
 }

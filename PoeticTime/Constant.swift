@@ -31,10 +31,21 @@ struct Poet {
     let poetInfo: String
 }
 
+// 用户诗词
+struct UserPoem {
+    let userPoemId: String
+    let userPoemName: String
+    let userPoemDate: Double
+    let userPoemDynasty: String
+    let userPoemBody: String
+    let userPoemImageData: Data
+}
+
 // 总数据
 var dynastyData: [Dynasty] = []
 var poemData: [Poem] = []
 var poetData: [Poet] = []
+var userPoemData: [UserPoem] = []
 
 // 跳转动画文本
 let animationText: [String] = ["贞观之治四海宁             文化初兴气象新", "开元盛世歌繁华             万国衣冠拜冕旒", "安史之乱山河破             风雨飘摇度时艰", "末世衰微叹奈何             夕阳无限映江波", "庆历新政启新篇             文化昌盛耀九天", "偏安一隅保家国             临安城下思故国", "蒙古雄风扫欧亚             文化交融显华章", "永乐大典耀古今             海上丝绸扬国威", "康乾盛世百业兴             闭关锁国渐沉沦"]
@@ -49,6 +60,7 @@ let ptTabBarHeight: CGFloat = 120
 let kPtCardCollectionViewCell = "PtCardCollectionViewCell"
 let kPtDynastyCollectionViewCell = "PtDynastyCollectionViewCell"
 let kPtPoemCell = "PtPoemCell"
+let kDynastyUserPoemCell = "DynastyUserPoemCell"
 
 /// UIBounds
 let Bounds = UIScreen.main.bounds
@@ -63,6 +75,11 @@ let kBackKey = "abcdeff"
 
 /// 朗读整首诗的请求URL
 let audioURL = "http://3c06e3d3.r5.cpolar.top"
+
+/// 初始化用户诗词数据
+let initUserPoemName = "故人西辞黄鹤楼"
+let initUserPoemBody = "写点什么留在这里"
+let initUserPoemImageName = "poetic_time_write_poem_image"
 
 /// 请求的是整首诗还是一句
 enum AudioType: String {

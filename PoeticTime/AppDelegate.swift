@@ -15,9 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        PoeticTimeDao.deleteAll()
         PoeticTimeDao.initDB()
+        // TODO: -@lyh 待做成第一次打开执行
+        // 初始化用户数据
+        initUserData()
+        
         PoeticTimeDao.readData()
+        // 开机网络诊断
         NetworkManager.shared.networkStatusChangeHandler = { isReach in
             isReachable = isReach
             if isReachable {
@@ -26,14 +32,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         // 删表
 //        do {
-//            try PoeticTimeDao.database.run(PoeticTimeDao.poetTable.drop(ifExists: true))
+//            try PoeticTimeDao.database.run(PoeticTimeDao.userPoemTable.drop(ifExists: true))
 //            print("Table dropped successfully")
 //        } catch {
 //            print("Error dropping table: \(error)")
 //        }
         
-//        let info = DBInfo()
-//        info.tableType = .poet
+        let info = DBInfo()
+        info.tableType = .userPoem
+//        info.userPoemId = "xiangtangmingyue"
+//        info.userPoemName = "想唐明月"
+//        info.userPoemBody = "今天惹唐明月生气了，是我不好"
+//        info.userPoemDynasty = "盛唐"
+//        info.userPoemDate = Date().timeIntervalSince1970
+//        PoeticTimeDao.insertElement(info: info)
+        
+        
 //        let info1 = DBInfo()
 //        info1.tableType = .poet
 //        PoeticTimeDao.printTable(info: info)

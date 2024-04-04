@@ -288,6 +288,9 @@ extension StudyVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColle
             // 查询当朝诗词
             let poemsWithDynasty = poemData.filter { $0.dynastyId == dynastyVC.dynastyStoryData.dynastyId }
             dynastyVC.poemWithDynastyData = poemsWithDynasty
+            // 查询个人作诗数据
+            let userPoemCurrentData = userPoemData.filter { $0.userPoemDynasty == dynastyVC.dynastyStoryData.dynastyName }
+            dynastyVC.userPoemCurrentData = userPoemCurrentData
             present(dynastyVC, animated: true)
         }
     }

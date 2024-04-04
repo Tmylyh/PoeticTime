@@ -47,6 +47,9 @@ class DynastyVC: UIViewController {
     // 当朝诗词诗句
     var poemWithDynastyData: [Poem] = []
     
+    // 当朝个人作诗数据
+    var userPoemCurrentData: [UserPoem] = []
+    
     // 跳转动画文本
     var animationText: String = ""
     
@@ -259,7 +262,53 @@ class DynastyVC: UIViewController {
         return dynastyStoryLabel4
     }()
     
-    // 诗词的列表
+    // 笔下生花
+    lazy var poemUserTableView: UITableView = {
+        let poemUserTableView = UITableView(frame: CGRect(x: 0, y: 88, width: view.bounds.width, height: Bounds.height - 80))
+        poemUserTableView.backgroundColor = "#7EB5B1".pt_argbColor
+        // 去掉cell 之间的横线
+        poemUserTableView.separatorStyle = .none
+        poemUserTableView.showsVerticalScrollIndicator = false
+        poemUserTableView.showsHorizontalScrollIndicator = false
+        poemUserTableView.delegate = self
+        poemUserTableView.dataSource = self
+        poemUserTableView.register(DynastyUserPoemCell.self, forCellReuseIdentifier: kDynastyUserPoemCell)
+        return poemUserTableView
+    }()
+    
+    // 作诗按钮
+    lazy var poemWriteButton: UIButton = {
+        let poemWriteButton = UIButton()
+        poemWriteButton.addTarget(self, action: #selector(wirteButtonHandle), for: .touchUpInside)
+        poemWriteButton.titleLabel?.font = .systemFont(ofSize: 16)
+        poemWriteButton.backgroundColor = .white
+        poemWriteButton.isHidden = true
+        poemWriteButton.layer.cornerRadius = 20
+        return poemWriteButton
+    }()
+    
+    // 作诗按钮背景图
+    lazy var poemWriteBackGroundImage: UIImageView = {
+        let poemWriteBackGroundImage = UIImageView(frame: viewInitRect)
+        poemWriteBackGroundImage.image = UIImage(named: "poetic_time_dynasty_write_button_background_image")
+        poemWriteBackGroundImage.contentMode = .scaleAspectFit
+        poemWriteBackGroundImage.isHidden = true
+        return poemWriteBackGroundImage
+    }()
+    
+    // 作诗按钮文本
+    lazy var poemWriteLabel: UILabel = {
+        let poemWriteLabel = UILabel(frame: viewInitRect)
+        poemWriteLabel.text = "留诗此朝"
+        poemWriteLabel.textColor = .black
+        poemWriteLabel.textAlignment = .center
+        poemWriteLabel.isHidden = true
+        poemWriteLabel.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 20)
+        poemWriteLabel.backgroundColor = .clear
+        return poemWriteLabel
+    }()
+    
+    // 华章荟萃
     lazy var poemListCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let poemListCollectionView = UICollectionView(frame: CGRect(x: 0, y: 88, width: view.bounds.width, height: Bounds.height - 88), collectionViewLayout: layout)
@@ -319,5 +368,35 @@ class DynastyVC: UIViewController {
     func setAnimationUI() {
         animationView.transform = CGAffineTransform(rotationAngle: .pi / 2)
         self.view.addSubview(animationView)
+    }
+    
+    // 作诗按钮
+    @objc func wirteButtonHandle(sender: UIButton) {
+        ButtonAnimate(sender)
+        ButtonAnimate(poemWriteBackGroundImage)
+        ButtonAnimate(poemWriteLabel)
+        
+        let writePoemVC = PtWritePoemVC()
+        sender.hero.id = "writePoem"
+        writePoemVC.isFromInsert = true
+        let image = UIImage(named: "poetic_time_write_poem_image") ?? UIImage()
+        if let data = image.jpegData(compressionQuality: 1.0) {
+            writePoemVC.userPoemImageData = data
+        }
+        writePoemVC.userPoemDynasty = dynastyStoryData.dynastyName
+        writePoemVC.reloadTableView = tableViewDataReload
+        writePoemVC.view.hero.id = "writePoem"
+        writePoemVC.hero.isEnabled = true
+        writePoemVC.heroModalAnimationType = .zoom
+        writePoemVC.modalPresentationStyle = .overFullScreen
+        present(writePoemVC, animated: true)
+    }
+    
+    // 重新加载数据
+    func tableViewDataReload() {
+        userPoemCurrentData = userPoemData.filter {
+            $0.userPoemDynasty == dynastyStoryData.dynastyName
+        }
+        poemUserTableView.reloadData()
     }
 }

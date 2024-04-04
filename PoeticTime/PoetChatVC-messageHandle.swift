@@ -47,7 +47,7 @@ extension PoetChatVC: MessagesDataSource, MessagesLayoutDelegate {
                                           max_tokens: 0,
                                           prompt_name: poetId)
         
-        AF.streamRequest(url,
+        request = AF.streamRequest(url,
                          method: .post,
                          parameters: postParameter,
                          encoder: JSONParameterEncoder.default).responseStream { [weak self] stream in

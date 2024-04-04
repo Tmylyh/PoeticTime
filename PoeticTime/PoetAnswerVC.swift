@@ -39,7 +39,7 @@ class PoetAnswerVC: UIViewController {
     var answerRightCount = 0
     
     // 需要答对次数
-    var answerNeedRightCount = 1
+    var answerNeedRightCount = 10
     
     // 当前题目回答结果
     var currentCheck: Bool {
@@ -314,7 +314,7 @@ class PoetAnswerVC: UIViewController {
         finishViewLabel.lineBreakMode = .byWordWrapping // 按单词换行
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4 // 调整行间距
-        var content = "挑战成功\n本次答对\(answerNeedRightCount)题"
+        var content = "诗才卓越\n本次答对\(answerNeedRightCount)题"
         // 整体样式
         var customAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 14, weight: .medium),
@@ -334,7 +334,7 @@ class PoetAnswerVC: UIViewController {
             attributedString.addAttributes(customSubAttributes, range: nsRange)
         }
         
-        if let range = content.range(of: String("挑战成功")) {
+        if let range = content.range(of: String("诗才卓越")) {
             let nsRange = NSRange(range, in: content)
             // 部分样式
             let customSubAttributes: [NSAttributedString.Key: Any] = [
@@ -396,7 +396,7 @@ class PoetAnswerVC: UIViewController {
         if !isReachable {
             // 回主线程操作
             OperationQueue.main.addOperation {
-                self.poemAnswerSoundButton.setTitle("连网识别", for: .normal)
+                self.poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_rocord_net_error_image"), for: .normal)
             }
         }
     }
@@ -415,17 +415,9 @@ class PoetAnswerVC: UIViewController {
                 case .authorized:
                     self.poemAnswerSoundButton.isEnabled = true
                     
-                case .denied:
+                case .denied, .restricted, .notDetermined:
                     self.poemAnswerSoundButton.isEnabled = false
-                    self.poemAnswerSoundButton.setTitle("权限已拒绝", for: .disabled)
-                    
-                case .restricted:
-                    self.poemAnswerSoundButton.isEnabled = false
-                    self.poemAnswerSoundButton.setTitle("设备不支持", for: .disabled)
-                    
-                case .notDetermined:
-                    self.poemAnswerSoundButton.isEnabled = false
-                    self.poemAnswerSoundButton.setTitle("尚未授权", for: .disabled)
+                    self.poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_rocord_net_error_image"), for: .disabled)
                     
                 default:
                     self.poemAnswerSoundButton.isEnabled = false

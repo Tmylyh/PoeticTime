@@ -35,4 +35,10 @@ extension DynastyVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
         let cellHeight = cellWidth // 控制 cell 的高宽比
         return CGSize(width: cellWidth, height: cellHeight)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        guard let animationView = collectionView.cellForItem(at: indexPath) else { return }
+        ButtonAnimate(animationView)
+    }
 }

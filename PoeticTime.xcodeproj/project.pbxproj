@@ -35,6 +35,11 @@
 		043D4C922BBC37FF00DB5A11 /* PoetPoemListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D4C912BBC37FF00DB5A11 /* PoetPoemListVC.swift */; };
 		043D4C952BBC53F300DB5A11 /* PoetRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D4C942BBC53F300DB5A11 /* PoetRecordButton.swift */; };
 		043D587F2BBC9A7C00DB5A11 /* PoetAnswerVC-configUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D587E2BBC9A7C00DB5A11 /* PoetAnswerVC-configUI.swift */; };
+		043D58812BBD2F4200DB5A11 /* DynastyVC-TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D58802BBD2F4200DB5A11 /* DynastyVC-TableView.swift */; };
+		043D58832BBD2FAF00DB5A11 /* DynastyUserPoemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D58822BBD2FAF00DB5A11 /* DynastyUserPoemCell.swift */; };
+		043D58882BBDB71A00DB5A11 /* PtWritePoemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D58872BBDB71A00DB5A11 /* PtWritePoemVC.swift */; };
+		043D588B2BBEFB1A00DB5A11 /* PtDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D588A2BBEFB1A00DB5A11 /* PtDataHelper.swift */; };
+		043D588D2BBF165500DB5A11 /* PtAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D588C2BBF165500DB5A11 /* PtAlertView.swift */; };
 		049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AD2BAA8B9C00E667FF /* AppDelegate.swift */; };
 		049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */; };
 		049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820B12BAA8B9C00E667FF /* HomeTabBarVC.swift */; };
@@ -84,6 +89,13 @@
 		043D4C912BBC37FF00DB5A11 /* PoetPoemListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetPoemListVC.swift; sourceTree = "<group>"; };
 		043D4C942BBC53F300DB5A11 /* PoetRecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetRecordButton.swift; sourceTree = "<group>"; };
 		043D587E2BBC9A7C00DB5A11 /* PoetAnswerVC-configUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoetAnswerVC-configUI.swift"; sourceTree = "<group>"; };
+		043D58802BBD2F4200DB5A11 /* DynastyVC-TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DynastyVC-TableView.swift"; sourceTree = "<group>"; };
+		043D58822BBD2FAF00DB5A11 /* DynastyUserPoemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynastyUserPoemCell.swift; sourceTree = "<group>"; };
+		043D58872BBDB71A00DB5A11 /* PtWritePoemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtWritePoemVC.swift; sourceTree = "<group>"; };
+		043D588A2BBEFB1A00DB5A11 /* PtDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtDataHelper.swift; sourceTree = "<group>"; };
+		043D588C2BBF165500DB5A11 /* PtAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtAlertView.swift; sourceTree = "<group>"; };
+		043D588E2BBF24DC00DB5A11 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		043D588F2BBF24DE00DB5A11 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		049820AA2BAA8B9C00E667FF /* PoeticTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeticTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049820AD2BAA8B9C00E667FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,16 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				040439BC2BB640CE0085A9DE /* Dao.swift */,
-				040439C32BB6652C0085A9DE /* InitData */,
 			);
 			name = DB;
-			sourceTree = "<group>";
-		};
-		040439C32BB6652C0085A9DE /* InitData */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = InitData;
 			sourceTree = "<group>";
 		};
 		040439D12BB7E6D50085A9DE /* Data */ = {
@@ -151,12 +155,11 @@
 		040439E62BB8340F0085A9DE /* DynastyVC */ = {
 			isa = PBXGroup;
 			children = (
-				04042DCD2BB4F93F0085A9DE /* DynastyVC.swift */,
-				040439DE2BB8134D0085A9DE /* DynastyVC-CollectionView.swift */,
-				040439DA2BB806EA0085A9DE /* DynastyVC-ScrollView.swift */,
-				040439D82BB805E80085A9DE /* DynastyVC-ConfigUI.swift */,
-				04042DCF2BB519370085A9DE /* BezierText.swift */,
+				043D58852BBD2FC200DB5A11 /* VC */,
+				043D58862BBD2FCF00DB5A11 /* View */,
+				043D58842BBD2FB400DB5A11 /* Cell */,
 				043D4C902BBC108300DB5A11 /* PoemVC */,
+				043D58892BBDB73800DB5A11 /* WritePoemVC */,
 				043D4C8D2BBC0FEA00DB5A11 /* PoetVC */,
 			);
 			name = DynastyVC;
@@ -216,6 +219,42 @@
 				043D4C942BBC53F300DB5A11 /* PoetRecordButton.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		043D58842BBD2FB400DB5A11 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				043D58822BBD2FAF00DB5A11 /* DynastyUserPoemCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		043D58852BBD2FC200DB5A11 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				04042DCD2BB4F93F0085A9DE /* DynastyVC.swift */,
+				040439D82BB805E80085A9DE /* DynastyVC-ConfigUI.swift */,
+				043D58802BBD2F4200DB5A11 /* DynastyVC-TableView.swift */,
+				040439DE2BB8134D0085A9DE /* DynastyVC-CollectionView.swift */,
+				040439DA2BB806EA0085A9DE /* DynastyVC-ScrollView.swift */,
+			);
+			name = VC;
+			sourceTree = "<group>";
+		};
+		043D58862BBD2FCF00DB5A11 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04042DCF2BB519370085A9DE /* BezierText.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		043D58892BBDB73800DB5A11 /* WritePoemVC */ = {
+			isa = PBXGroup;
+			children = (
+				043D58872BBDB71A00DB5A11 /* PtWritePoemVC.swift */,
+			);
+			name = WritePoemVC;
 			sourceTree = "<group>";
 		};
 		049820A12BAA8B9C00E667FF = {
@@ -315,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				04982CBA2BAEF11A00E667FF /* PtHelper.swift */,
+				043D588C2BBF165500DB5A11 /* PtAlertView.swift */,
 				040439F42BB9E3050085A9DE /* NetWorkManager.swift */,
 			);
 			name = Helper;
@@ -344,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				04982CC72BB07AF500E667FF /* dynastyData.swift */,
+				043D588A2BBEFB1A00DB5A11 /* PtDataHelper.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -409,6 +450,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 049820A12BAA8B9C00E667FF;
 			productRefGroup = 049820AB2BAA8B9C00E667FF /* Products */;
@@ -501,17 +543,22 @@
 				04982CBB2BAEF11A00E667FF /* PtHelper.swift in Sources */,
 				04042DCE2BB4F93F0085A9DE /* DynastyVC.swift in Sources */,
 				040439DB2BB806EA0085A9DE /* DynastyVC-ScrollView.swift in Sources */,
+				043D588D2BBF165500DB5A11 /* PtAlertView.swift in Sources */,
+				043D58812BBD2F4200DB5A11 /* DynastyVC-TableView.swift in Sources */,
 				049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */,
+				043D58832BBD2FAF00DB5A11 /* DynastyUserPoemCell.swift in Sources */,
 				040439BD2BB640CE0085A9DE /* Dao.swift in Sources */,
 				049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */,
 				043D4C952BBC53F300DB5A11 /* PoetRecordButton.swift in Sources */,
 				049820B82BAA8B9C00E667FF /* PoeticTime.xcdatamodeld in Sources */,
+				043D588B2BBEFB1A00DB5A11 /* PtDataHelper.swift in Sources */,
 				04042DD02BB519370085A9DE /* BezierText.swift in Sources */,
 				04982CB92BAEE2C600E667FF /* PtTabBar.swift in Sources */,
 				040439F52BB9E3050085A9DE /* NetWorkManager.swift in Sources */,
 				049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */,
 				049820C52BAAB79100E667FF /* StudyVC.swift in Sources */,
 				040439DF2BB8134D0085A9DE /* DynastyVC-CollectionView.swift in Sources */,
+				043D58882BBDB71A00DB5A11 /* PtWritePoemVC.swift in Sources */,
 				040439F02BB9C9040085A9DE /* PoetAnswerVC-logic.swift in Sources */,
 				04982CC62BB01F5E00E667FF /* PtDynastyLayout.swift in Sources */,
 				040439DD2BB812C50085A9DE /* PtPoemCell.swift in Sources */,
@@ -535,6 +582,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				049820B42BAA8B9C00E667FF /* Base */,
+				043D588E2BBF24DC00DB5A11 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -543,6 +591,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				049820BC2BAA8B9E00E667FF /* Base */,
+				043D588F2BBF24DE00DB5A11 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -554,6 +603,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -614,6 +664,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

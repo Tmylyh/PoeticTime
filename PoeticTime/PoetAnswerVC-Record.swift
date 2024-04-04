@@ -22,7 +22,7 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
             poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_recording_back_image"), for: [])
             viewBecomeBigger(poemAnswerSoundButton)
         } catch {
-//            poemAnswerSoundButton.setTitle("不可用", for: [])
+            self.poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_rocord_net_error_image"), for: .normal)
         }
     }
     
@@ -113,7 +113,7 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
             if let result = result {
                 // 检查识别结果是否存在。如果存在，就更新文本视图 textView，显示最佳识别结果的格式化字符串，并将 isFinal 标记为 result.isFinal，表示是否为最终结果。
                 let tmpText = self.isCancelRecord ? "" : result.bestTranscription.formattedString
-                self.soundText = self.soundText.count > 0 ? self.soundText : tmpText
+                self.soundText = tmpText.count <= 0 ? self.soundText : tmpText
                 isFinal = result.isFinal
                 // 打印识别结果
                 // debugPrint("Text \(result.bestTranscription.formattedString)")
@@ -128,7 +128,6 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
                 self.recognitionTask = nil
 
                 self.poemAnswerSoundButton.isEnabled = true
-//                self.poemAnswerSoundButton.setTitle("长按识别", for: [])
             }
         }
 
@@ -152,7 +151,7 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
             poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_record_image"), for: [])
         } else {
             poemAnswerSoundButton.isEnabled = false
-//            poemAnswerSoundButton.setTitle("不可用", for: .disabled)
+            self.poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_rocord_net_error_image"), for: .disabled)
         }
     }
     

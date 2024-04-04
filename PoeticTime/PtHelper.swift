@@ -76,6 +76,55 @@ func ButtonAnimate(_ sender: UIView){
     }
 }
 
+/// collectionView滑动动画
+func moveAnimationWithCollectionView(collectionView: UICollectionView) {
+    let cells = collectionView.visibleCells
+    for cell in cells {
+        // 初始时将 cell 平移到底部，即完全不可见的位置
+        cell.transform = CGAffineTransform(translationX: 0, y: 400)
+        
+        let indexPath = collectionView.indexPath(for: cell)!
+        // 执行动画效果，将 cell 移动到原本的位置
+        UIView.animate(withDuration: 0.5, delay: 0.1 * Double(indexPath.item), usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+            cell.transform = .identity
+        }, completion: nil)
+    }
+}
+
+/// 日期转换
+func getDateString(userPoemDate: Double) -> String {
+    // 获取当前时间的时间戳（单位：秒）
+    let currentTimestamp = userPoemDate
+
+    // 创建一个 DateFormatter 实例来定义日期格式
+    let dateFormatter = DateFormatter()
+
+    // 设置日期格式为 "yyyy-MM-dd"
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+
+    // 将时间戳转换为日期对象
+    let date = Date(timeIntervalSince1970: currentTimestamp)
+
+    // 使用 DateFormatter 格式化日期为字符串
+    let formattedDate = dateFormatter.string(from: date)
+    return formattedDate
+}
+
+/// tabelView加载动画
+func moveAnimationWithTableView(tableView: UITableView) {
+    let cells = tableView.visibleCells
+    for i in 0..<cells.count {
+        let totalTime: TimeInterval = 1
+        let cell = tableView.visibleCells[i]
+        cell.transform = CGAffineTransform(translationX: 0, y: 400)
+        UIView.animate(withDuration: 1, delay: TimeInterval(i) * (totalTime / Double(cells.count)), usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            cell.transform = .identity
+        }, completion: { finished in
+            // 做点什么
+        })
+    }
+}
+
 /// 手机重量级震动
 func weightFeedBack() {
     // 重量级触碰

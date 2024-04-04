@@ -9,6 +9,7 @@ import UIKit
 import MessageKit
 import SnapKit
 import InputBarAccessoryView
+import Alamofire
 
 // 响应者
 struct Sender: SenderType {
@@ -56,6 +57,9 @@ class PoetChatVC: MessagesViewController {
     
     // 当前诗人messageid
     var currentPoetMessageid = ""
+    
+    // 网络请求
+    var request: DataStreamRequest?
     
     // 返回按钮
     lazy var backButton: UIButton = {
@@ -125,6 +129,12 @@ class PoetChatVC: MessagesViewController {
         if isReachable {
             self.requestStreamPoetAnswer()
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // 关闭页面，取消请求
+        request?.cancel()
     }
     
     // 配制UI

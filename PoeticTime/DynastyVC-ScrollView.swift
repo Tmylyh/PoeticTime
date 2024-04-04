@@ -40,6 +40,27 @@ extension DynastyVC: UIScrollViewDelegate {
         guard let viewWithTag = self.view.viewWithTag(currentPage + 1) as? UIButton else { return }
         clearSelected()
         viewWithTag.setTitleColor(.black, for: .normal)
+        poemWriteLabel.isHidden = true
+        poemWriteBackGroundImage.isHidden = true
+        poemWriteButton.isHidden = true
+        if currentPage == 1 {
+            // tableView动画
+            moveAnimationWithTableView(tableView: poemUserTableView)
+            poemWriteLabel.isHidden = false
+            poemWriteBackGroundImage.isHidden = false
+            poemWriteButton.isHidden = false
+        } else if currentPage == 2 {
+            // collectionView动画
+            moveAnimationWithCollectionView(collectionView: poemListCollectionView)
+        }
+        // 滑动回顶部
+        // 溢出判断
+        if poemUserTableView.visibleCells.count > 0 {
+            poemUserTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
+        if poemListCollectionView.visibleCells.count > 0 {
+            poemListCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
     
     // 清除点击效果

@@ -13,13 +13,13 @@ extension PoetAnswerVC {
     func setFinishViewLabel() {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4 // 调整行间距
-        let content = "挑战成功\n本次答对\(answerNeedRightCount)题"
+        let content = "诗才卓越\n本次答对\(answerNeedRightCount)题"
         // 整体样式
-        var customAttributes: [NSAttributedString.Key: Any] = [
+        let customAttributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 14, weight: .medium),
                 .foregroundColor: "#969696".pt_argbColor ?? .black
             ]
-        var attributedString = NSMutableAttributedString(string: content, attributes: customAttributes)
+        let attributedString = NSMutableAttributedString(string: content, attributes: customAttributes)
         finishViewLabel.attributedText = attributedString
         let range = NSMakeRange(0, content.count)
         attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
@@ -33,7 +33,7 @@ extension PoetAnswerVC {
             attributedString.addAttributes(customSubAttributes, range: nsRange)
         }
         
-        if let range = content.range(of: String("挑战成功")) {
+        if let range = content.range(of: String("诗才卓越")) {
             let nsRange = NSRange(range, in: content)
             // 部分样式
             let customSubAttributes: [NSAttributedString.Key: Any] = [

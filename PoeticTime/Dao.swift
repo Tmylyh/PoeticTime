@@ -13,6 +13,7 @@ enum TableType: String, CaseIterable {
     case dynasty = "dynasty"
     case poem = "poem"
     case poet = "poet"
+    case userPoem = "userPoem"
 }
 
 // 数据库参数
@@ -26,6 +27,15 @@ public class DBInfo {
     var dynastyId = ""
     var dynastyName = ""
     var dynastyInfo = ""
+    // TODO: -@lyh 存沙盒
+//    var userName = ""
+//    var userInfo = ""
+    var userPoemId = ""
+    var userPoemName = ""
+    var userPoemDate: Double = 0
+    var userPoemDynasty = ""
+    var userPoemBody = ""
+    var userPoemImageData: Data = Data()
     var tableType: TableType = .dynasty
     
     /// 朝代数据的初始化方法
@@ -55,6 +65,17 @@ public class DBInfo {
         self.tableType = .poet
     }
     
+    /// 用户诗数据的初始化方法
+    init(userPoemId: String, userPoemName: String, userPoemDate: Double, userPoemDynasty: String, userPoemBody: String, userPoemImageData: Data) {
+        self.userPoemId = userPoemId
+        self.userPoemName = userPoemName
+        self.userPoemDate = userPoemDate
+        self.userPoemDynasty = userPoemDynasty
+        self.userPoemBody = userPoemBody
+        self.userPoemImageData = userPoemImageData
+        self.tableType = .userPoem
+    }
+    
     init() {}
 }
 
@@ -82,6 +103,15 @@ public class PoeticTimeDao: NSObject {
     static let dynastyName = Expression<String>("dynastyName")
     static let dynastyInfo = Expression<String>("dynastyInfo")
     
+    // 用户诗词表
+    static let userPoemTable = Table("userPoemTable")
+    static let userPoemId = Expression<String>("userPoemId")
+    static let userPoemName = Expression<String>("userPoemName")
+    static let userPoemDate = Expression<Double>("userPoemDate")
+    static let userPoemDynasty = Expression<String>("userPoemDynasty")
+    static let userPoemBody = Expression<String>("userPoemBody")
+    static let userPoemImageData = Expression<Data>("userPoemImageData")
+    
     /// 连接数据库
     class public func connectDB() {
         do {
@@ -101,6 +131,7 @@ public class PoeticTimeDao: NSObject {
         createDynastyTable()
         createPoetTable()
         createPoemTable()
+        createUserPoemTable()
     }
     
     // 建诗词表
@@ -167,6 +198,31 @@ public class PoeticTimeDao: NSObject {
                 debugPrint("Created dynastyTable")
             } else {
                 debugPrint("Table 'dynastyTable' exists.")
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+    
+    
+    // 建用户诗词表
+    class private func createUserPoemTable() {
+        let query = "SELECT name FROM sqlite_master WHERE type='table' AND name='userPoemTable'"
+        do {
+            // 执行查询
+            if try self.database.scalar(query) == nil {
+                let createTable = userPoemTable.create { (userPoemTable) in
+                    userPoemTable.column(userPoemId, primaryKey: true)
+                    userPoemTable.column(userPoemName)
+                    userPoemTable.column(userPoemDate)
+                    userPoemTable.column(userPoemDynasty)
+                    userPoemTable.column(userPoemBody)
+                    userPoemTable.column(userPoemImageData)
+                }
+                try self.database.run(createTable)
+                debugPrint("Created userPoemTable")
+            } else {
+                debugPrint("Table 'userPoemTable' exists.")
             }
         } catch {
             debugPrint(error)
@@ -294,65 +350,147 @@ public class PoeticTimeDao: NSObject {
     }
     
     /// 初始化数据
-    class public func initDB() {
+    class public func initDB(completion: (() -> Void)? = nil) {
         // 建立连接
         PoeticTimeDao.connectDB()
         // 建表
         PoeticTimeDao.createTableIfNotExist()
-        deleteAll()
         initDynastyDB()
         initPoetDB()
         initPoemDB()
     }
     
     /// 打印表数据
-    class public func printTable(info: DBInfo) {
+    class public func printTable(info: DBInfo, completion: (() -> Void)? = nil) {
         do {
             if let db = PoeticTimeDao.database {
                 switch info.tableType {
                 case .dynasty:
                     for dynasty in try db.prepare(dynastyTable) {
-                        print("dynastyId: \(dynasty[dynastyId]), dynastyName: \(dynasty[dynastyName]), dynastyInfo: \(dynasty[dynastyInfo])")
+                        debugPrint("dynastyId: \(dynasty[dynastyId]), dynastyName: \(dynasty[dynastyName]), dynastyInfo: \(dynasty[dynastyInfo])")
                     }
                 case .poem:
                     for poem in try db.prepare(poemTable) {
-                        print("poemId: \(poem[poemId]), poemName: \(poem[poemName]), poetId: \(poem[poetId]), dynastyId: \(poem[dynastyId]), poemBody: \(poem[poemBody])")
+                        debugPrint("poemId: \(poem[poemId]), poemName: \(poem[poemName]), poetId: \(poem[poetId]), dynastyId: \(poem[dynastyId]), poemBody: \(poem[poemBody])")
                     }
                 case .poet:
                     for poet in try db.prepare(poetTable) {
-                        print("poetId: \(poet[poetId]), poetName: \(poet[poetName]), dynastyId: \(poet[dynastyId]), poetInfo: \(poet[poetInfo])")
+                        debugPrint("poetId: \(poet[poetId]), poetName: \(poet[poetName]), dynastyId: \(poet[dynastyId]), poetInfo: \(poet[poetInfo])")
+                    }
+                case .userPoem:
+                    for userPoem in try db.prepare(userPoemTable) {
+                        debugPrint("userPoemId: \(userPoem[userPoemId]), userPoemName: \(userPoem[userPoemName]), userPoemDate: \(userPoem[userPoemDate]), userPoemDynasty: \(userPoem[userPoemDynasty]), userPoemBody: \(userPoem[userPoemBody]), userPoemImageData: \(userPoem[userPoemImageData])")
                     }
                 }
             }
+            completion?()
         } catch {
             debugPrint(error)
         }
     }
     
     /// 读取数据到内存
-    class public func readData() {
+    // TODO: -@lyh 暂时保留旧版的读方法，待删除
+//    class public func readDataOld(completion: (() -> Void)? = nil) {
+//        do {
+//            if let db = PoeticTimeDao.database {
+//                for dynasty in try db.prepare(dynastyTable) {
+//                    let dynastyElement = Dynasty(dynastyId: dynasty[dynastyId], dynastyName: dynasty[dynastyName], dynastyInfo: dynasty[dynastyInfo])
+//                    if !dynastyData.contains(where: { dynasty in
+//                        return dynasty.dynastyId == dynastyElement.dynastyId
+//                    }) {
+//                        dynastyData.append(dynastyElement)
+//                    } else {
+//                        // 查找数组中特定唯一值的结构体的索引
+//                        if let index = dynastyData.firstIndex(where: { $0.dynastyId == dynasty[dynastyId] }) {
+//                            // 更新索引处的元素为新值
+//                            dynastyData[index] = Dynasty(dynastyId: dynasty[dynastyId], dynastyName: dynasty[dynastyName], dynastyInfo: dynasty[dynastyInfo])
+//                        }
+//                    }
+//                }
+//                for poem in try db.prepare(poemTable) {
+//                    let poemElement = Poem(poemId: poem[poemId], poemName: poem[poemName], poetId: poem[poetId], dynastyId: poem[dynastyId], poemBody: poem[poemBody])
+//                    if !poemData.contains(where: { poem in
+//                        return poem.poemId == poemElement.poemId
+//                    }) {
+//                        poemData.append(poemElement)
+//                    } else {
+//                        // 查找数组中特定唯一值的结构体的索引
+//                        if let index = poemData.firstIndex(where: { $0.poemId == poem[poemId] }) {
+//                            // 更新索引处的元素为新值
+//                            poemData[index] = Poem(poemId: poem[poemId], poemName: poem[poemName], poetId: poem[poetId], dynastyId: poem[dynastyId], poemBody: poem[poemBody])
+//                        }
+//                    }
+//                }
+//                for poet in try db.prepare(poetTable) {
+//                    let poetElement = Poet(poetId: poet[poetId], poetName: poet[poetName], dynastyId: poet[dynastyId], poetInfo: poet[poetInfo])
+//                    if !poetData.contains(where: { poet in
+//                        return poet.poetId == poetElement.poetId
+//                    }) {
+//                        poetData.append(poetElement)
+//                    } else {
+//                        // 查找数组中特定唯一值的结构体的索引
+//                        if let index = poetData.firstIndex(where: { $0.poetId == poet[poetId] }) {
+//                            // 更新索引处的元素为新值
+//                            poetData[index] = Poet(poetId: poet[poetId], poetName: poet[poetName], dynastyId: poet[dynastyId], poetInfo: poet[poetInfo])
+//                        }
+//                    }
+//                }
+//                for userPoem in try db.prepare(userPoemTable) {
+//                    let userPoemElement = UserPoem(userPoemId: userPoem[userPoemId], userPoemName: userPoem[userPoemName], userPoemDate: userPoem[userPoemDate], userPoemDynasty: userPoem[userPoemDynasty], userPoemBody: userPoem[userPoemBody], userPoemImageData: userPoem[userPoemImageData])
+//                    if !userPoemData.contains(where: { userPoem in
+//                        return userPoem.userPoemId == userPoemElement.userPoemId
+//                    }) {
+//                        userPoemData.append(userPoemElement)
+//                    } else {
+//                        // 查找数组中特定唯一值的结构体的索引
+//                        if let index = userPoemData.firstIndex(where: { $0.userPoemId == userPoem[userPoemId] }) {
+//                            // 更新索引处的元素为新值
+//                            userPoemData[index] = UserPoem(userPoemId: userPoem[userPoemId], userPoemName: userPoem[userPoemName], userPoemDate: userPoem[userPoemDate], userPoemDynasty: userPoem[userPoemDynasty], userPoemBody: userPoem[userPoemBody], userPoemImageData: userPoem[userPoemImageData])
+//                        }
+//                    }
+//                }
+//            }
+//            completion?()
+//        } catch {
+//            debugPrint(error)
+//        }
+//    }
+    
+    /// 读取数据到内存
+    class public func readData(completion: (() -> Void)? = nil) {
         do {
             if let db = PoeticTimeDao.database {
+                dynastyData.removeAll()
                 for dynasty in try db.prepare(dynastyTable) {
                     let dynastyElement = Dynasty(dynastyId: dynasty[dynastyId], dynastyName: dynasty[dynastyName], dynastyInfo: dynasty[dynastyInfo])
                     dynastyData.append(dynastyElement)
                 }
+                
+                poemData.removeAll()
                 for poem in try db.prepare(poemTable) {
                     let poemElement = Poem(poemId: poem[poemId], poemName: poem[poemName], poetId: poem[poetId], dynastyId: poem[dynastyId], poemBody: poem[poemBody])
                     poemData.append(poemElement)
                 }
+                poetData.removeAll()
                 for poet in try db.prepare(poetTable) {
                     let poetElement = Poet(poetId: poet[poetId], poetName: poet[poetName], dynastyId: poet[dynastyId], poetInfo: poet[poetInfo])
                     poetData.append(poetElement)
                 }
+                userPoemData.removeAll()
+                for userPoem in try db.prepare(userPoemTable) {
+                    let userPoemElement = UserPoem(userPoemId: userPoem[userPoemId], userPoemName: userPoem[userPoemName], userPoemDate: userPoem[userPoemDate], userPoemDynasty: userPoem[userPoemDynasty], userPoemBody: userPoem[userPoemBody], userPoemImageData: userPoem[userPoemImageData])
+                    userPoemData.append(userPoemElement)
+                }
             }
+            completion?()
         } catch {
             debugPrint(error)
         }
     }
     
     /// 插入元素
-    class public func insertElement(info: DBInfo) {
+    class public func insertElement(info: DBInfo, completion: (() -> Void)? = nil) {
         if let db = PoeticTimeDao.database {
             do {
                 switch info.tableType {
@@ -362,7 +500,12 @@ public class PoeticTimeDao: NSObject {
                     try db.run(poetTable.insert(poetId <- info.poetId, poetName <- info.poetName, dynastyId <- info.dynastyId, poetInfo <- info.poetInfo))
                 case .poem:
                     try db.run(poemTable.insert(poemId <- info.poemId, poemName <- info.poemName, poetId <- info.poetId, dynastyId <- info.dynastyId, poemBody <- info.poemBody))
+                case .userPoem:
+                    try db.run(userPoemTable.insert(userPoemId <- info.userPoemId, userPoemName <- info.userPoemName, userPoemDate <- info.userPoemDate, userPoemDynasty <- info.userPoemDynasty, userPoemBody <- info.userPoemBody, userPoemImageData <- info.userPoemImageData))
                 }
+                // 读取数据
+                readData()
+                completion?()
             } catch {
                 debugPrint(error)
             }
@@ -370,7 +513,7 @@ public class PoeticTimeDao: NSObject {
     }
     
     /// 更新元素(必须全部字段传入）
-    class public func updateElement(info: DBInfo) {
+    class public func updateElement(info: DBInfo, completion: (() -> Void)? = nil) {
         do {
             var updateId: String = ""
             switch info.tableType {
@@ -386,14 +529,20 @@ public class PoeticTimeDao: NSObject {
                 updateId = info.poemId
                 let updateElement = poemTable.filter(poemId == updateId)
                 try database.run(updateElement.update(poemId <- info.poemId, poemName <- info.poemName, poetId <- info.poetId, dynastyId <- info.dynastyId, poemBody <- info.poemBody))
+            case .userPoem:
+                updateId = info.userPoemId
+                let updateElement = userPoemTable.filter(userPoemId == updateId)
+                try database.run(updateElement.update(userPoemId <- info.userPoemId, userPoemName <- info.userPoemName, userPoemDate <- info.userPoemDate, userPoemDynasty <- info.userPoemDynasty, userPoemBody <- info.userPoemBody, userPoemImageData <- info.userPoemImageData))
             }
+            readData()
+            completion?()
         } catch {
             debugPrint(error)
         }
     }
     
     /// 删除元素
-    class public func deleteElement(info: DBInfo) {
+    class public func deleteElement(info: DBInfo, completion: (() -> Void)? = nil) {
         do {
             var deleteId: String = ""
             switch info.tableType {
@@ -409,25 +558,30 @@ public class PoeticTimeDao: NSObject {
                 deleteId = info.poemId
                 let deleteElement = poemTable.filter(poemId == deleteId)
                 try database.run(deleteElement.delete())
+            case .userPoem:
+                deleteId = info.userPoemId
+                let deleteElement = userPoemTable.filter(userPoemId == deleteId)
+                try database.run(deleteElement.delete())
             }
+            completion?()
         } catch {
             debugPrint(error)
-            print("123123")
         }
     }
     
     /// 清空数据库（慎用）
-    class public func deleteAll() {
+    class public func deleteAll(completion: (() -> Void)? = nil) {
         let info = DBInfo()
         // 遍历所有类型
         for type in TableType.allCases {
             info.tableType = type
             deleteAllWithTable(info: info)
         }
+        completion?()
     }
     
     /// 清空表（慎用）
-    class public func deleteAllWithTable(info: DBInfo) {
+    class public func deleteAllWithTable(info: DBInfo, completion: (() -> Void)? = nil) {
         do {
             if let db = PoeticTimeDao.database {
                 var delete: Delete?
@@ -438,10 +592,13 @@ public class PoeticTimeDao: NSObject {
                     delete = poemTable.delete()
                 case .poet:
                     delete = poetTable.delete()
+                case .userPoem:
+                    delete = userPoemTable.delete()
                 }
                 guard let delete = delete else { return }
                 try db.run(delete)
             }
+            completion?()
         } catch {
             debugPrint(error)
         }

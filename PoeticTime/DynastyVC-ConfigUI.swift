@@ -103,15 +103,42 @@ extension DynastyVC {
     // 配制infoView的子View
     func setInfoSubViewUI() {
         infoSubViews.append(dynastyStoryView)
-        let view2 = UIView(frame: viewInitRect)
-        view2.backgroundColor = .blue
-        infoSubViews.append(view2)
+        infoSubViews.append(poemUserTableView)
         infoSubViews.append(poemListCollectionView)
         for (index, view) in infoSubViews.enumerated() {
-            view.frame = CGRect(x: index * Int(Bounds.width), y: 0, width: Int(Bounds.width), height: Int(infoScrollView.frame.height))
+            view.frame = CGRect(x: index * Int(Bounds.width), y: 0, width: Int(Bounds.width), height: Int(infoScrollView.frame.height + 10))
             infoScrollView.addSubview(view)
         }
         setDynastyStoryViewUI()
+        setWriteButtonUI()
+    }
+    
+    // 配制个人作诗按钮UI
+    private func setWriteButtonUI() {
+        self.view.addSubview(poemWriteButton)
+        self.view.addSubview(poemWriteBackGroundImage)
+        self.view.addSubview(poemWriteLabel)
+        
+        poemWriteButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-46)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(36)
+            make.width.equalTo(190)
+        }
+        
+        poemWriteBackGroundImage.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-14)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(110)
+            make.width.equalTo(200)
+        }
+        
+        poemWriteLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-44)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(40)
+            make.width.equalTo(120)
+        }
     }
     
     // 配制朝代故事UI
