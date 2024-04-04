@@ -16,13 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        PoeticTimeDao.deleteAll()
         PoeticTimeDao.initDB()
         // TODO: -@lyh 待做成第一次打开执行
         // 初始化用户数据
         initUserData()
-        
         PoeticTimeDao.readData()
+        
+        // 第一次执行后要再执行一次，不然会报错
+//        PoeticTimeDao.deleteAll()
         // 开机网络诊断
         NetworkManager.shared.networkStatusChangeHandler = { isReach in
             isReachable = isReach

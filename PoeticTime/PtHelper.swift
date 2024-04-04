@@ -114,10 +114,10 @@ func getDateString(userPoemDate: Double) -> String {
 func moveAnimationWithTableView(tableView: UITableView) {
     let cells = tableView.visibleCells
     for i in 0..<cells.count {
-        let totalTime: TimeInterval = 1
+        let totalTime: TimeInterval = Double(cells.count) * 0.2
         let cell = tableView.visibleCells[i]
         cell.transform = CGAffineTransform(translationX: 0, y: 400)
-        UIView.animate(withDuration: 1, delay: TimeInterval(i) * (totalTime / Double(cells.count)), usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 1, delay: TimeInterval(i) * (totalTime / Double(cells.count)), usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             cell.transform = .identity
         }, completion: { finished in
             // 做点什么
