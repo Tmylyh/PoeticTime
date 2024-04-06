@@ -49,7 +49,6 @@
 		043D58A02BC01CF000DB5A11 /* UserVC-CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D589F2BC01CF000DB5A11 /* UserVC-CollectionView.swift */; };
 		0491CD3D2BC08C6700BE1D3E /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491CD3C2BC08C6700BE1D3E /* UserDefaultManager.swift */; };
 		0491CD3F2BC098AA00BE1D3E /* PtSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491CD3E2BC098AA00BE1D3E /* PtSettingVC.swift */; };
-		0491CD432BC124DD00BE1D3E /* response2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0491CD422BC124DD00BE1D3E /* response2.txt */; };
 		049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AD2BAA8B9C00E667FF /* AppDelegate.swift */; };
 		049820B02BAA8B9C00E667FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */; };
 		049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820B12BAA8B9C00E667FF /* HomeTabBarVC.swift */; };
@@ -115,7 +114,6 @@
 		043D589F2BC01CF000DB5A11 /* UserVC-CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserVC-CollectionView.swift"; sourceTree = "<group>"; };
 		0491CD3C2BC08C6700BE1D3E /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		0491CD3E2BC098AA00BE1D3E /* PtSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtSettingVC.swift; sourceTree = "<group>"; };
-		0491CD422BC124DD00BE1D3E /* response2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = response2.txt; sourceTree = "<group>"; };
 		049820AA2BAA8B9C00E667FF /* PoeticTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeticTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049820AD2BAA8B9C00E667FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049820AF2BAA8B9C00E667FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -221,7 +219,6 @@
 		043D4C902BBC108300DB5A11 /* PoemVC */ = {
 			isa = PBXGroup;
 			children = (
-				0491CD422BC124DD00BE1D3E /* response2.txt */,
 				043D4C8E2BBC107100DB5A11 /* PoemDetailVC.swift */,
 			);
 			name = PoemVC;
@@ -504,7 +501,6 @@
 				040439E42BB81AD50085A9DE /* poem.rtf in Resources */,
 				040439E52BB81AD50085A9DE /* dynasty.rtf in Resources */,
 				049820BD2BAA8B9E00E667FF /* LaunchScreen.storyboard in Resources */,
-				0491CD432BC124DD00BE1D3E /* response2.txt in Resources */,
 				049820BA2BAA8B9E00E667FF /* Assets.xcassets in Resources */,
 				040439EE2BB9C4990085A9DE /* soundAnimation.json in Resources */,
 				049820B52BAA8B9C00E667FF /* Main.storyboard in Resources */,

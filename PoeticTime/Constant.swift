@@ -102,7 +102,16 @@ let kBackKey = "abcdeff"
 let audioURL = "http://3c06e3d3.r5.cpolar.top"
 
 /// 朗读指定文本的请求URL
-let audioDetailURL = "http://6f56f1ef.r16.cpolar.top"
+let audioDetailURL = "http://b180903.r22.cpolar.top"
+
+/// 回答正确文本集
+let answerCorrectFeedBackText = "吾诗遇知音，甚妙。"
+
+/// 回答错误文本集
+let answerWrongFeedBackText = "诗中深意，汝尚未解。"
+/// 对应URL
+var correctAudioFileURL = URL(string: "")
+var wrongAudioFileURL = URL(string: "")
 
 /// 初始化用户诗词数据
 let initUserPoemName = "故人西辞黄鹤楼"

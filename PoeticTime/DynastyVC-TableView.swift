@@ -38,7 +38,8 @@ extension DynastyVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         ButtonAnimate(cell)
         let writePoemVC = PtWritePoemVC()
-        cell.hero.id = "writePoem\(indexPath.row)"
+        let uuid = "\(UUID())"
+        cell.hero.id = uuid
         writePoemVC.isFromInsert = false
         writePoemVC.userPoemName = userPoemCurrentData[indexPath.row].userPoemName
         writePoemVC.userPoemImageData = userPoemCurrentData[indexPath.row].userPoemImageData
@@ -48,7 +49,7 @@ extension DynastyVC: UITableViewDelegate, UITableViewDataSource {
         writePoemVC.userPoemDate = userPoemCurrentData[indexPath.row].userPoemDate
         writePoemVC.userName = userInfo.userName
         writePoemVC.reloadTableView = tableViewDataReload
-        writePoemVC.view.hero.id = "writePoem\(indexPath.row)"
+        writePoemVC.view.hero.id = uuid
         writePoemVC.hero.isEnabled = true
         writePoemVC.modalPresentationStyle = .overFullScreen
         present(writePoemVC, animated: true)

@@ -41,6 +41,9 @@ class PoetAnswerVC: UIViewController {
     // 需要答对次数
     var answerNeedRightCount = 10
     
+    // 播放器
+    var audioPlayer: AVAudioPlayer?
+    
     // 当前题目回答结果
     var currentCheck: Bool {
         get {
@@ -74,6 +77,12 @@ class PoetAnswerVC: UIViewController {
     
     // 取消录音文本
     var isCancelRecord: Bool = false
+    
+    // 指定文本音频文件的URL
+    let audioFileURL = FileManager.default.temporaryDirectory.appendingPathComponent("audio_text.wav")
+    
+    // 诗人语音持续播放计时器
+    var audioTimer: Timer?
     
     // 语音识别到的文本
     var soundText: String {
@@ -396,6 +405,7 @@ class PoetAnswerVC: UIViewController {
         setAnswerViewUI()
         getCurrentQuestion()
         setQuestionUI()
+        playPoetSound()
         // 判断网络状况
         if !isReachable {
             // 回主线程操作

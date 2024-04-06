@@ -12,6 +12,7 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
     
     // 按下识别按钮
     @objc func touchDownHandle() {
+        audioPlayer?.stop()
         // 轻量级震动
         lightFeedBack()
         do {
@@ -83,7 +84,7 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
         let audioSession = AVAudioSession.sharedInstance()
         
         // 设置了音频会话的类别为 .record，意味着这是一个用于录音的音频会话。mode 设置为 .measurement 表示此会话是用于测量的。options 中的 .duckOthers 表示当此音频会话激活时，其他音频会话会降低音量。
-        try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+        try audioSession.setCategory(.playAndRecord, mode: .measurement, options: .mixWithOthers)
         
         // 激活了音频会话，使其生效，并且选项 .notifyOthersOnDeactivation 表示在该音频会话被停用时，通知其他音频会话。
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)

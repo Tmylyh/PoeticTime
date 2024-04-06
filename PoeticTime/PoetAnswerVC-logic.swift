@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Alamofire
+import AVFoundation
 
-extension PoetAnswerVC {
+extension PoetAnswerVC: AVAudioPlayerDelegate {
     // 获取题目数据
     func getQuestionData() {
         // 定义分隔符集合
-        let separators = CharacterSet(charactersIn: "，。？")
+        let separators = CharacterSet(charactersIn: "，。？！")
         // 拿到诗词数据
         let infoData = poemData.filter { $0.poetId == poetId }
         for info in infoData {
@@ -38,16 +40,110 @@ extension PoetAnswerVC {
         }
     }
     
+    // 播放回答正确与否的语音反馈
+    func playAnswerFeedBack(isCorrect: Bool) {
+        var url = URL(string: "")
+        if isCorrect {
+            url = correctAudioFileURL
+        } else {
+            url = wrongAudioFileURL
+        }
+        // 创建音频播放器
+        do {
+            guard let url = url else { return }
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            
+            // 准备播放音频
+            audioPlayer?.prepareToPlay()
+            
+            // 设置代理
+            audioPlayer?.delegate = self
+            
+            // 播放音频
+            audioPlayer?.play()
+        } catch {
+            self.audioTimer?.invalidate()
+            debugPrint("无法创建音频播放器: \(error.localizedDescription)")
+        }
+    }
+    
     // 播放当前诗句语音
     func playPoetSound() {
-        // TODO: - @lyh 待写
+        audioTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(playPoetSoundAnimation), userInfo: nil, repeats: true)
+        // 传文本，请求文本
+        if isReachable {
+            requestTextAudio(text: currentHalfSentenceIndex == 0 ? self.poemAnswerTextField1.text ?? "" : self.poemAnswerTextField2.text ?? "")
+        } else {
+            audioTimer?.invalidate()
+        }
+    }
+    
+    // 请求具体文本音频
+    func requestTextAudio(text: String) {
+        let parameters: [String: Any] = [
+                "poet_id": poetId,
+                "text": text
+            ]
+        AF.request("\(audioDetailURL)/verse", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { [weak self] response in
+            guard let self = self else { return }
+                switch response.result {
+                case .success(let data):
+                    do {
+                        try data.write(to: self.audioFileURL)
+                        debugPrint("音频文件保存成功：\(self.audioFileURL.absoluteString)")
+                        // 创建音频播放器并播放
+                        self.createAndPlayAudioPlayer()
+                    } catch {
+                        self.audioTimer?.invalidate()
+                        debugPrint("保存音频文件失败：\(error)")
+                    }
+                case .failure(let error):
+                        self.audioTimer?.invalidate()
+                    debugPrint("POST 请求失败：\(error)")
+                    // 在这里处理失败的情况
+                }
+            }
+    }
+    
+    // 创建音频播放器并播放
+    func createAndPlayAudioPlayer() {
+        // 创建音频播放器
+        do {
+            
+            audioPlayer = try AVAudioPlayer(contentsOf: self.audioFileURL)
+            
+            // 准备播放音频
+            audioPlayer?.prepareToPlay()
+            
+            // 设置代理
+            audioPlayer?.delegate = self
+            
+            // 播放音频
+            audioPlayer?.play()
+        } catch {
+            self.audioTimer?.invalidate()
+            debugPrint("无法创建音频播放器: \(error.localizedDescription)")
+        }
+    }
+    
+    // 播放完成回调
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        audioTimer?.invalidate()
+        if flag {
+            debugPrint("音频播放完成")
+        } else {
+            debugPrint("音频播放失败")
+        }
+    }
+    
+    // 播放诗人语音动画
+    @objc func playPoetSoundAnimation() {
         poetSoundAnimationView.play()
     }
     
     // 抽取题目
     func getCurrentQuestion() {
-        playPoetSound()
-        // 生成一个介于0和99之间的随机整数
+        // 生成一个介于0和poems.count之间的随机整数
         var randomPoemIndex = Int(arc4random_uniform(UInt32(poems.count)))
         let sentenceCount = poems[randomPoemIndex].first?.value.count ?? 0
         let tmp = Int(sentenceCount / 2 - 1)
@@ -157,15 +253,18 @@ extension PoetAnswerVC {
             
             getCurrentQuestion()
             setQuestionUI()
+            playPoetSound()
             if answerRightCount == answerNeedRightCount {
                 showFinishView()
                 return
             }
+            playAnswerFeedBack(isCorrect: true)
             showCheckView(isCorrect: true)
             answerRightCount += 1
         } else {
             // 重量级震动
             weightFeedBack()
+            playAnswerFeedBack(isCorrect: false)
             showCheckView(isCorrect: false)
         }
     }

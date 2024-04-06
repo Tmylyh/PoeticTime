@@ -8,8 +8,9 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import AVFoundation
 
-class PoemDetailVC: UIViewController {
+class PoemDetailVC: UIViewController, AVAudioPlayerDelegate {
     
     let poemId: String = ""
     
@@ -24,12 +25,29 @@ class PoemDetailVC: UIViewController {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-
+    let audioFileURL = FileManager.default.temporaryDirectory.appendingPathComponent("audio_text.wav")
+    var audioPlayer: AVAudioPlayer?
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(imageView)
-        requestPoetAnswer()
-        print(FileManager.default.temporaryDirectory)
+        // 请求读取文件的权限
+//        requestPermission()
+
+        // 播放音频文件
+        playAudio()
+    }
+
+    func playAudio() {
+        do {
+            // 创建 AVAudioPlayer 实例
+            audioPlayer = try AVAudioPlayer(contentsOf: audioFileURL)
+            // 准备播放
+            audioPlayer?.prepareToPlay()
+            // 播放音频
+            audioPlayer?.play()
+        } catch {
+            print("Error playing audio: \(error.localizedDescription)")
+        }
     }
     
     
@@ -139,7 +157,6 @@ class PoemDetailVC: UIViewController {
                 // 排除ping的情况
                 if !String(data: courseJSONData, encoding: .utf8)!.contains("ping") {
                     var resultText = ""
-                    var resultMessage_id = ""
                     // 解析 JSON 数据
                     // 使用 SwiftyJSON 解析 Data 数据
                     let json = try? JSON(data: courseJSONData)
@@ -151,7 +168,6 @@ class PoemDetailVC: UIViewController {
                         let message_id = json["message_id"].stringValue
                         resultText = text.replacingOccurrences(of: kReturnKey, with: "")
                         resultText = text.replacingOccurrences(of: "\n", with: "")
-                        resultMessage_id = message_id.replacingOccurrences(of: kReturnKey, with: "")
                         self.translateText = resultText
                         print(resultText)
                         self.requestText2Image()

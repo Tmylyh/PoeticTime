@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         // 删表
 //        do {
-//            try PoeticTimeDao.database.run(PoeticTimeDao.userPoemTable.drop(ifExists: true))
+//            try PoeticTimeDao.database.run(PoeticTimeDao.poemTable.drop(ifExists: true))
 //            print("Table dropped successfully")
 //        } catch {
 //            print("Error dropping table: \(error)")

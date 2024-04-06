@@ -196,12 +196,8 @@ class UserVC: UIViewController {
         setUserViewUI()
         setListSubViewUI()
         setData()
-        if userPoemData.count == 0 {
-            tipsWriteView.isHidden = false
-        }
-        if starPoemData.count == 0 {
-            tipsStarView.isHidden = false
-        }
+        tipsWriteView.isHidden = userPoemData.count == 0 ? false : true
+        tipsStarView.isHidden = starPoemData.count == 0 ? false : true
     }
     
     // 重载当前VC
@@ -216,12 +212,8 @@ class UserVC: UIViewController {
         setData()
         tableViewDataReload()
         starPoemListCollectionView.reloadData()
-        if userPoemData.count == 0 {
-            tipsWriteView.isHidden = false
-        }
-        if starPoemData.count == 0 {
-            tipsStarView.isHidden = false
-        }
+        tipsWriteView.isHidden = userPoemData.count == 0 ? false : true
+        tipsStarView.isHidden = starPoemData.count == 0 ? false : true
     }
     
     // present设置页面

@@ -8,6 +8,7 @@
 import UIKit
 import Hero
 import SnapKit
+import Alamofire
 
 class PoetDetailVC: UIViewController {
     
@@ -193,6 +194,17 @@ class PoetDetailVC: UIViewController {
     @objc func dismissCurrentVC() {
         hero.dismissViewController()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        correctAudioFileURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(poetId)_correct_audio_text.wav")
+        wrongAudioFileURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(poetId)_wrong_audio_text.wav")
+        guard let correctAudioFileURL = correctAudioFileURL, let wrongAudioFileURL = wrongAudioFileURL else { return }
+        if !FileManager.default.fileExists(atPath: correctAudioFileURL.path) {
+            requestTextAudio(text: answerCorrectFeedBackText, url: correctAudioFileURL)
+            requestTextAudio(text: answerWrongFeedBackText, url: wrongAudioFileURL)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -201,6 +213,29 @@ class PoetDetailVC: UIViewController {
         if isReachable {
             clearRequest()
         }
+    }
+    
+    // 请求回答正确与否文本音频
+    func requestTextAudio(text: String, url: URL) {
+        let parameters: [String: Any] = [
+                "poet_id": poetId,
+                "text": text
+            ]
+        
+        AF.request("\(audioDetailURL)/verse", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
+                switch response.result {
+                case .success(let data):
+                    do {
+                        try data.write(to: url)
+                        debugPrint("音频文件保存成功：\(url.absoluteString)")
+                    } catch {
+                        debugPrint("保存音频文件失败：\(error)")
+                    }
+                case .failure(let error):
+                    debugPrint("POST 请求失败：\(error)")
+                    // 在这里处理失败的情况
+                }
+            }
     }
     
     // 配制UI
