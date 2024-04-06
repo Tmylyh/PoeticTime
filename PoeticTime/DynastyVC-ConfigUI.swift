@@ -31,10 +31,14 @@ extension DynastyVC {
     
     @objc func poetButtonTapped(sender: UIButton) {
         let poetDetailVC = PoetDetailVC()
+        let poet = poetData.filter { poet in
+            poet.poetName == tagWithPoet[sender.tag] ?? ""
+        }
+        poetDetailVC.poetId = poet.first?.poetId ?? "dumu"
+        poetDetailVC.poetName = tagWithPoet[sender.tag] ?? ""
         poetDetailVC.hero.isEnabled = true
         poetDetailVC.modalPresentationStyle = .overFullScreen
         poetDetailVC.heroModalAnimationType = .zoom
-        poetDetailVC.poetName = tagWithPoet[sender.tag] ?? ""
         present(poetDetailVC, animated: true)
     }
     

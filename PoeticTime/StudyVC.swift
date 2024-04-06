@@ -276,9 +276,10 @@ extension StudyVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColle
         if collectionView == self.collectionView {
             guard let cell = self.collectionView.cellForItem(at: indexPath) as? PtCardCollectionViewCell else { return }
             let dynastyVC = DynastyVC()
-            cell.hero.id = "StudyVC2DynastyVC\(indexPath.row)"
+            let uniqueUUID = "\(UUID())"
+            cell.hero.id = "\(uniqueUUID)"
             dynastyVC.hero.isEnabled = true
-            dynastyVC.view.hero.id = "StudyVC2DynastyVC\(indexPath.row)"
+            dynastyVC.view.hero.id = "\(uniqueUUID)"
             dynastyVC.modalPresentationStyle = .fullScreen
             dynastyVC.dynastyStoryData = dynastyData[indexPath.row]
             dynastyVC.animationText = animationText[indexPath.row]

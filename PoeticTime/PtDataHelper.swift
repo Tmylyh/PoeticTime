@@ -18,7 +18,7 @@ func initUserData() {
         // TODO: -@lyh 不同朝代的诗名，包括上面的照片
         info.userPoemName = initUserPoemName
         info.userPoemBody = initUserPoemBody
-        if let data = image?.jpegData(compressionQuality: 1.0) {
+        if let data = image?.pngData() {
             info.userPoemImageData = data
         }
         info.userPoemDynasty = dynastyName

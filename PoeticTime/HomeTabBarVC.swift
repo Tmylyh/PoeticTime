@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeTabBarVC: UITabBarController {
+class HomeTabBarVC: UITabBarController, UINavigationControllerDelegate {
     
     // 子视图控制器
     let studyVC = StudyVC()
@@ -26,6 +26,18 @@ class HomeTabBarVC: UITabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         guard let tabBar = tabBar as? PtTabBar else { return }
         tabBar.changeSelectTabBarTap(item.tag)
+        
+        // 执行动画
+        self.userVC.userPoemTableView.isHidden = true
+        if item.tag == 2 {
+            // 执行某个操作
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                guard let self = self else { return }
+                moveAnimationWithTableView(tableView: self.userVC.userPoemTableView)
+                self.userVC.userPoemTableView.isHidden = false
+            }
+            userVC.reloadCurrentVC()
+        }
     }
     
     // 配制tabbar

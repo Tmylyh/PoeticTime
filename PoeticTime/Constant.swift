@@ -21,6 +21,7 @@ struct Poem {
     let poetId: String
     let dynastyId: String
     let poemBody: String
+    let poemStar: Bool
 }
 
 // 诗人
@@ -41,13 +42,36 @@ struct UserPoem {
     let userPoemImageData: Data
 }
 
-// 总数据
+// 用户信息
+struct UserInfo: Codable {
+    let userName: String
+    let userIntro: String
+    let userImageData: Data
+}
+
+/// 总数据
 var dynastyData: [Dynasty] = []
 var poemData: [Poem] = []
 var poetData: [Poet] = []
 var userPoemData: [UserPoem] = []
+var userInfo: UserInfo = UserInfo(userName: "", userIntro: "", userImageData: Data())
 
-// 跳转动画文本
+/// 是否是第一次打开App
+var isFirstLaunch = true
+
+/// 用户数据key
+let kUserInfoKey = "PoeticTimeUserInfoKey"
+
+/// 默认用户名
+let initUserName = "诗小韵"
+
+/// 默认用户座右铭
+let initUserIntro = "点击这里，创建专属诗句座右铭"
+
+/// 默认用户头像
+let initUserImageName = "poetic_time_write_poem_image"
+
+/// 跳转动画文本
 let animationText: [String] = ["贞观之治四海宁             文化初兴气象新", "开元盛世歌繁华             万国衣冠拜冕旒", "安史之乱山河破             风雨飘摇度时艰", "末世衰微叹奈何             夕阳无限映江波", "庆历新政启新篇             文化昌盛耀九天", "偏安一隅保家国             临安城下思故国", "蒙古雄风扫欧亚             文化交融显华章", "永乐大典耀古今             海上丝绸扬国威", "康乾盛世百业兴             闭关锁国渐沉沦"]
 
 /// 初始化imageView的Rect
@@ -61,12 +85,13 @@ let kPtCardCollectionViewCell = "PtCardCollectionViewCell"
 let kPtDynastyCollectionViewCell = "PtDynastyCollectionViewCell"
 let kPtPoemCell = "PtPoemCell"
 let kDynastyUserPoemCell = "DynastyUserPoemCell"
+let kPtSettingCellID = "PtSettingCellID"
 
 /// UIBounds
 let Bounds = UIScreen.main.bounds
 
 /// chatVC的请求URL
-let chatURL = "http://4ed115f.r12.cpolar.top"
+let chatURL = "http://3e707a7a.r16.cpolar.top"
 
 /// 替换符
 /// 自定义替换换行符的序列，防止换行符导致json解析不出来
@@ -75,6 +100,9 @@ let kBackKey = "abcdeff"
 
 /// 朗读整首诗的请求URL
 let audioURL = "http://3c06e3d3.r5.cpolar.top"
+
+/// 朗读指定文本的请求URL
+let audioDetailURL = "http://6f56f1ef.r16.cpolar.top"
 
 /// 初始化用户诗词数据
 let initUserPoemName = "故人西辞黄鹤楼"

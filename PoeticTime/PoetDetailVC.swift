@@ -13,6 +13,8 @@ class PoetDetailVC: UIViewController {
     
     var poetName = ""
     
+    var poetId = ""
+    
     // 背景
     private lazy var backgroundImageView: UIImageView = {
         let backgroundImageView = UIImageView(frame: viewInitRect)
@@ -42,7 +44,11 @@ class PoetDetailVC: UIViewController {
     // 诗人头像
     lazy var poetImageView: UIImageView = {
         let poetImageView = UIImageView(frame: viewInitRect)
-        poetImageView.image = UIImage(named: "poetic_time_poet_image")
+        poetImageView.image = UIImage(named: "poetic_time_poet_image_\(poetId)")
+        poetImageView.layer.masksToBounds = true
+        poetImageView.layer.cornerRadius = 55
+        poetImageView.layer.borderWidth = 1
+        poetImageView.layer.borderColor = UIColor.black.cgColor
         poetImageView.backgroundColor = .clear
         return poetImageView
     }()

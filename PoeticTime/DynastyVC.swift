@@ -380,7 +380,7 @@ class DynastyVC: UIViewController {
         sender.hero.id = "writePoem"
         writePoemVC.isFromInsert = true
         let image = UIImage(named: "poetic_time_write_poem_image") ?? UIImage()
-        if let data = image.jpegData(compressionQuality: 1.0) {
+        if let data = image.pngData() {
             writePoemVC.userPoemImageData = data
         }
         writePoemVC.userPoemDynasty = dynastyStoryData.dynastyName

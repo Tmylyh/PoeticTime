@@ -69,7 +69,7 @@ class PoetPoemListVC: UIViewController {
                 debugPrint("poemListCollectionView被隐藏了")
                 return
             }
-            moveAnimationWithCollectionView(collectionView: self.poemListCollectionView)
+            moveAnimationWithCollectionView(collectionView: self.poemListCollectionView, translationY: 900)
             self.poemListCollectionView.isHidden = false
         }
     }
@@ -116,6 +116,7 @@ extension PoetPoemListVC: UICollectionViewDataSource, UICollectionViewDelegate, 
         cell.backgroundColor = .white
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 20
+        cell.poemId = poemsWithPoetData[indexPath.row].poemId
         var tmpText = ""
         // 字数少就纵向排
         if poemsWithPoetData[indexPath.row].poemName.count <= 3 {

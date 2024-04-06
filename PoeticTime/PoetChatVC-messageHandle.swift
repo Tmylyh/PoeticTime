@@ -309,7 +309,7 @@ extension PoetChatVC: MessagesDisplayDelegate {
             case currentUser.senderId:
                 avatarView.image = UIImage(named: "poetic_time_poet_image")
             case poetUser.senderId:
-                avatarView.image = UIImage(named: "poetic_time_poet_image")
+                avatarView.image = UIImage(named: "poetic_time_poet_image_\(poetId)") ?? UIImage(named: "poetic_time_poet_image_dumu")
             default:
                 break
             }

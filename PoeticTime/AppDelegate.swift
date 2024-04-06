@@ -16,14 +16,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        PoeticTimeDao.initDB()
-        // TODO: -@lyh 待做成第一次打开执行
-        // 初始化用户数据
-        initUserData()
+        // 建立连接
+        PoeticTimeDao.connectDB()
+        // 第一次打开执行
+        // 下面这行是测试时需要每次初始化数据才打开的
+//        UserDefaults.standard.setValue(false,forKey: "isNoFirstLaunchPoeticTime")
+        if !UserDefaults.standard.bool(forKey: "isNoFirstLaunchPoeticTime") && isFirstLaunch {
+            // 建表、初始化诗词数据
+            PoeticTimeDao.initDB()
+            // 初始化用户数据
+            initUserData()
+            initUserInfoData()
+            isFirstLaunch = false
+            UserDefaults.standard.setValue(true,forKey: "isNoFirstLaunchPoeticTime")
+        }
         PoeticTimeDao.readData()
-        
-        // 第一次执行后要再执行一次，不然会报错
-//        PoeticTimeDao.deleteAll()
+        readUserInfoData()
+
         // 开机网络诊断
         NetworkManager.shared.networkStatusChangeHandler = { isReach in
             isReachable = isReach
@@ -42,8 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let info = DBInfo()
         info.tableType = .userPoem
 //        info.userPoemId = "xiangtangmingyue"
-//        info.userPoemName = "想唐明月"
-//        info.userPoemBody = "今天惹唐明月生气了，是我不好"
+//        info.userPoemName = "想唐朝明月"
+//        info.userPoemBody = "今天惹唐朝明月生气了"
 //        info.userPoemDynasty = "盛唐"
 //        info.userPoemDate = Date().timeIntervalSince1970
 //        PoeticTimeDao.insertElement(info: info)

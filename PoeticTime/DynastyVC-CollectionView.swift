@@ -17,6 +17,7 @@ extension DynastyVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
         cell.backgroundColor = .white
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 20
+        cell.poemId = poemWithDynastyData[indexPath.row].poemId
         var tmpText = ""
         if poemWithDynastyData[indexPath.row].poemName.count <= 3 {
             tmpText = verticalText(text: poemWithDynastyData[indexPath.row].poemName)

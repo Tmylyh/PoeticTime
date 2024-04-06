@@ -16,6 +16,9 @@ class DynastyUserPoemCell: UITableViewCell {
     var userPoemDate: Double = 0
     // 朝代
     var userPoemDynasty = ""
+    
+    // 是否来自个人页面
+    var isFromUserVC: Bool = false
 
     // 诗名Label
     lazy var poemLabel: UILabel = {
@@ -51,7 +54,11 @@ class DynastyUserPoemCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         backgroundColor = .clear
-        contentView.backgroundColor = .white
+        if isFromUserVC {
+            contentView.backgroundColor = "#D8F0EC".pt_argbColor
+        } else {
+            contentView.backgroundColor = .white            
+        }
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = 25
         // 内边距

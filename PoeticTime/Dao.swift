@@ -24,12 +24,10 @@ public class DBInfo {
     var poemId = ""
     var poemName = ""
     var poemBody = ""
+    var poemStar: Bool = false
     var dynastyId = ""
     var dynastyName = ""
     var dynastyInfo = ""
-    // TODO: -@lyh 存沙盒
-//    var userName = ""
-//    var userInfo = ""
     var userPoemId = ""
     var userPoemName = ""
     var userPoemDate: Double = 0
@@ -47,12 +45,13 @@ public class DBInfo {
     }
     
     /// 诗词数据的初始化方法
-    init(poemId: String, poemName: String, poetId: String, dynastyId: String, poemBody: String) {
+    init(poemId: String, poemName: String, poetId: String, dynastyId: String, poemBody: String, poemStar: Bool) {
         self.poemId = poemId
         self.poemName = poemName
         self.poetId = poetId
         self.dynastyId = dynastyId
         self.poemBody = poemBody
+        self.poemStar = poemStar
         self.tableType = .poem
     }
     
@@ -96,6 +95,7 @@ public class PoeticTimeDao: NSObject {
     static let poemId = Expression<String>("poemId")
     static let poemName = Expression<String>("poemName")
     static let poemBody = Expression<String>("poemBody")
+    static let poemStar = Expression<Bool>("poemStar")
     
     // 朝代表
     static let dynastyTable = Table("dynastyTable")
@@ -146,6 +146,7 @@ public class PoeticTimeDao: NSObject {
                     poemTable.column(poetId)
                     poemTable.column(dynastyId)
                     poemTable.column(poemBody)
+                    poemTable.column(poemStar)
                     poemTable.foreignKey(dynastyId, references: dynastyTable, dynastyId)
                     poemTable.foreignKey(poetId, references: poetTable, poetId)
                 }
@@ -158,7 +159,6 @@ public class PoeticTimeDao: NSObject {
             debugPrint(error)
         }
     }
-    
     
     // 建诗人表
     class private func createPoetTable() {
@@ -263,7 +263,7 @@ public class PoeticTimeDao: NSObject {
                 }
             }
         } catch {
-            print("Error reading or inserting RTF data: \(error)")
+            debugPrint("Error reading or inserting RTF data: \(error)")
         }
     }
     
@@ -303,7 +303,7 @@ public class PoeticTimeDao: NSObject {
                 }
             }
         } catch {
-            print("Error reading or inserting RTF data: \(error)")
+            debugPrint("Error reading or inserting RTF data: \(error)")
         }
     }
     
@@ -328,6 +328,7 @@ public class PoeticTimeDao: NSObject {
                 let poetId = PoeticTimeDao.poetId
                 let dynastyId = PoeticTimeDao.dynastyId
                 let poemBody = PoeticTimeDao.poemBody
+                let poemStar = PoeticTimeDao.poemStar
                 try db.transaction {
                     for row in rows {
                         let components = row.components(separatedBy: ",,")
@@ -337,7 +338,8 @@ public class PoeticTimeDao: NSObject {
                             let string3 = components[2].trimmingCharacters(in: .whitespacesAndNewlines)
                             let string4 = components[3].trimmingCharacters(in: .whitespacesAndNewlines)
                             let string5 = components[4].trimmingCharacters(in: .whitespacesAndNewlines)
-                            try db.run(poemTable.insert(poemId <- string1, poemName <- string2, poetId <- string3, dynastyId <- string4, poemBody <- string5))
+                            let string6 = false
+                            try db.run(poemTable.insert(poemId <- string1, poemName <- string2, poetId <- string3, dynastyId <- string4, poemBody <- string5, poemStar <- string6))
                         } else {
                             print("Invalid format for row: \(row)")
                         }
@@ -345,14 +347,12 @@ public class PoeticTimeDao: NSObject {
                 }
             }
         } catch {
-            print("Error reading or inserting RTF data: \(error)")
+            debugPrint("Error reading or inserting RTF data: \(error)")
         }
     }
     
     /// 初始化数据
     class public func initDB(completion: (() -> Void)? = nil) {
-        // 建立连接
-        PoeticTimeDao.connectDB()
         // 建表
         PoeticTimeDao.createTableIfNotExist()
         initDynastyDB()
@@ -371,7 +371,7 @@ public class PoeticTimeDao: NSObject {
                     }
                 case .poem:
                     for poem in try db.prepare(poemTable) {
-                        debugPrint("poemId: \(poem[poemId]), poemName: \(poem[poemName]), poetId: \(poem[poetId]), dynastyId: \(poem[dynastyId]), poemBody: \(poem[poemBody])")
+                        debugPrint("poemId: \(poem[poemId]), poemName: \(poem[poemName]), poetId: \(poem[poetId]), dynastyId: \(poem[dynastyId]), poemBody: \(poem[poemBody]), poemStar: \(poem[poemStar])")
                     }
                 case .poet:
                     for poet in try db.prepare(poetTable) {
@@ -469,18 +469,23 @@ public class PoeticTimeDao: NSObject {
                 
                 poemData.removeAll()
                 for poem in try db.prepare(poemTable) {
-                    let poemElement = Poem(poemId: poem[poemId], poemName: poem[poemName], poetId: poem[poetId], dynastyId: poem[dynastyId], poemBody: poem[poemBody])
+                    let poemElement = Poem(poemId: poem[poemId], poemName: poem[poemName], poetId: poem[poetId], dynastyId: poem[dynastyId], poemBody: poem[poemBody], poemStar: poem[poemStar])
                     poemData.append(poemElement)
                 }
+                
                 poetData.removeAll()
                 for poet in try db.prepare(poetTable) {
                     let poetElement = Poet(poetId: poet[poetId], poetName: poet[poetName], dynastyId: poet[dynastyId], poetInfo: poet[poetInfo])
                     poetData.append(poetElement)
                 }
+                
                 userPoemData.removeAll()
                 for userPoem in try db.prepare(userPoemTable) {
                     let userPoemElement = UserPoem(userPoemId: userPoem[userPoemId], userPoemName: userPoem[userPoemName], userPoemDate: userPoem[userPoemDate], userPoemDynasty: userPoem[userPoemDynasty], userPoemBody: userPoem[userPoemBody], userPoemImageData: userPoem[userPoemImageData])
                     userPoemData.append(userPoemElement)
+                }
+                userPoemData.sort { userPoem1, userPoem2 in
+                    return userPoem1.userPoemDynasty < userPoem2.userPoemDynasty
                 }
             }
             completion?()
@@ -499,7 +504,7 @@ public class PoeticTimeDao: NSObject {
                 case .poet:
                     try db.run(poetTable.insert(poetId <- info.poetId, poetName <- info.poetName, dynastyId <- info.dynastyId, poetInfo <- info.poetInfo))
                 case .poem:
-                    try db.run(poemTable.insert(poemId <- info.poemId, poemName <- info.poemName, poetId <- info.poetId, dynastyId <- info.dynastyId, poemBody <- info.poemBody))
+                    try db.run(poemTable.insert(poemId <- info.poemId, poemName <- info.poemName, poetId <- info.poetId, dynastyId <- info.dynastyId, poemBody <- info.poemBody, poemStar <- info.poemStar))
                 case .userPoem:
                     try db.run(userPoemTable.insert(userPoemId <- info.userPoemId, userPoemName <- info.userPoemName, userPoemDate <- info.userPoemDate, userPoemDynasty <- info.userPoemDynasty, userPoemBody <- info.userPoemBody, userPoemImageData <- info.userPoemImageData))
                 }
@@ -528,7 +533,7 @@ public class PoeticTimeDao: NSObject {
             case .poem:
                 updateId = info.poemId
                 let updateElement = poemTable.filter(poemId == updateId)
-                try database.run(updateElement.update(poemId <- info.poemId, poemName <- info.poemName, poetId <- info.poetId, dynastyId <- info.dynastyId, poemBody <- info.poemBody))
+                try database.run(updateElement.update(poemId <- info.poemId, poemName <- info.poemName, poetId <- info.poetId, dynastyId <- info.dynastyId, poemBody <- info.poemBody, poemStar <- info.poemStar))
             case .userPoem:
                 updateId = info.userPoemId
                 let updateElement = userPoemTable.filter(userPoemId == updateId)
