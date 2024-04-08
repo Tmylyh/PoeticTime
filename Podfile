@@ -14,4 +14,5 @@ target 'PoeticTime' do
   pod 'MessageKit'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Alamofire'
+  pod 'MBProgressHUD', '~> 1.2.0'
 end

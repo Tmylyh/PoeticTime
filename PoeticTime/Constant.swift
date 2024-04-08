@@ -91,7 +91,7 @@ let kPtSettingCellID = "PtSettingCellID"
 let Bounds = UIScreen.main.bounds
 
 /// chatVC的请求URL
-let chatURL = "http://3e707a7a.r16.cpolar.top"
+let chatURL = "http://29060917.r21.cpolar.top"
 
 /// 替换符
 /// 自定义替换换行符的序列，防止换行符导致json解析不出来
@@ -99,10 +99,13 @@ let kReturnKey = "abcdefg"
 let kBackKey = "abcdeff"
 
 /// 朗读整首诗的请求URL
-let audioURL = "http://3c06e3d3.r5.cpolar.top"
+let audioURL = "http://3d77682e.r18.cpolar.top"
 
 /// 朗读指定文本的请求URL
-let audioDetailURL = "http://b180903.r22.cpolar.top"
+let audioDetailURL = "http://527abd42.r27.cpolar.top"
+
+/// 文生图请求URL
+let text2ImageURL = "http://19285cde.r25.cpolar.top"
 
 /// 回答正确文本集
 let answerCorrectFeedBackText = "吾诗遇知音，甚妙。"

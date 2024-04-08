@@ -117,6 +117,10 @@ extension PoetPoemListVC: UICollectionViewDataSource, UICollectionViewDelegate, 
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 20
         cell.poemId = poemsWithPoetData[indexPath.row].poemId
+        cell.changeStarStatusCompletion = { [weak self] isStar in
+            guard let self = self else { return }
+            self.poemsWithPoetData[indexPath.row] = Poem(poemId: self.poemsWithPoetData[indexPath.row].poemId, poemName: self.poemsWithPoetData[indexPath.row].poemName, poetId: self.poemsWithPoetData[indexPath.row].poetId, dynastyId: self.poemsWithPoetData[indexPath.row].dynastyId, poemBody: self.poemsWithPoetData[indexPath.row].poemBody, poemStar: isStar)
+        }
         var tmpText = ""
         // 字数少就纵向排
         if poemsWithPoetData[indexPath.row].poemName.count <= 3 {
@@ -138,7 +142,31 @@ extension PoetPoemListVC: UICollectionViewDataSource, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        guard let animationView = collectionView.cellForItem(at: indexPath) else { return }
-        ButtonAnimate(animationView)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? PtPoemCell else { return }
+        ButtonAnimate(cell)
+        let poemDetailVC = PoemDetailVC()
+        poemDetailVC.poemId = poemsWithPoetData[indexPath.row].poemId
+        poemDetailVC.poemName = poemsWithPoetData[indexPath.row].poemName
+        poemDetailVC.poemBody = poemsWithPoetData[indexPath.row].poemBody
+        poemDetailVC.isStar = poemsWithPoetData[indexPath.row].poemStar
+        poemDetailVC.poetId = poetId
+        poemDetailVC.dynastyId = poemsWithPoetData[indexPath.row].dynastyId
+        poemDetailVC.changeStarStatus = { [weak self] isStar in
+            guard let self = self else { return }
+            self.poemsWithPoetData[indexPath.row] = Poem(poemId: self.poemsWithPoetData[indexPath.row].poemId, poemName: self.poemsWithPoetData[indexPath.row].poemName, poetId: self.poemsWithPoetData[indexPath.row].poetId, dynastyId: self.poemsWithPoetData[indexPath.row].dynastyId, poemBody: self.poemsWithPoetData[indexPath.row].poemBody, poemStar: isStar)
+            let star = isStar ? "is" : "no"
+            // 修改UI
+            cell.starButton.setImage(UIImage(named: "poetic_time_poem_card_\(star)_star_image"), for: .normal)
+        }
+        let poet = poetData.filter { $0.poetId == poemsWithPoetData[indexPath.row].poetId }
+        let dynasty = dynastyData.filter { $0.dynastyId == poemsWithPoetData[indexPath.row].dynastyId }
+        poemDetailVC.poetName = poet.first?.poetName ?? ""
+        poemDetailVC.dynastyName = dynasty.first?.dynastyName ?? ""
+        let uuid = "\(UUID())"
+        cell.hero.id = uuid
+        poemDetailVC.view.hero.id = uuid
+        poemDetailVC.hero.isEnabled = true
+        poemDetailVC.modalPresentationStyle = .overFullScreen
+        present(poemDetailVC, animated: true)
     }
 }

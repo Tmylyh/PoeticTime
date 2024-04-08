@@ -83,9 +83,9 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
         // 配置应用程序的音频会话
         let audioSession = AVAudioSession.sharedInstance()
         
-        // 设置了音频会话的类别为 .record，意味着这是一个用于录音的音频会话。mode 设置为 .measurement 表示此会话是用于测量的。options 中的 .duckOthers 表示当此音频会话激活时，其他音频会话会降低音量。
-        try audioSession.setCategory(.playAndRecord, mode: .measurement, options: .mixWithOthers)
-        
+        // 设置了音频会话的类别为 .record，意味着这是一个用于录音的音频会话。mode 设置为 .spokenAudio 表示此会话是可被打断。options 中的 .duckOthers 表示当此音频会话激活时，其他音频会话会降低音量。
+        try audioSession.setCategory(.playAndRecord, mode: .spokenAudio, options: .interruptSpokenAudioAndMixWithOthers)
+        try audioSession.overrideOutputAudioPort(.speaker)
         // 激活了音频会话，使其生效，并且选项 .notifyOthersOnDeactivation 表示在该音频会话被停用时，通知其他音频会话。
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         

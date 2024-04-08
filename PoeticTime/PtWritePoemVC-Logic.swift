@@ -121,11 +121,17 @@ extension PtWritePoemVC {
     
     // dimiss当前View
     @objc func dismissCurrentVC() {
+        request?.cancel()
         if isChanged {
             // 重量级震动
             weightFeedBack()
             changeAllButtonState()
             unSaveAlertView.isHidden = false
+            unSaveAlertView.alertText = "当前修改未保存，是否继续退出?"
+            unSaveAlertView.confirmText = "继续退出?"
+            unSaveAlertView.updateAlertUI()
+            unSaveAlertView.confirmHandle = self.confirmHandle
+            unSaveAlertView.cancelHandle = self.cancelHandle
         } else {
             hero.dismissViewController { [weak self] in
                 guard let self = self else { return }

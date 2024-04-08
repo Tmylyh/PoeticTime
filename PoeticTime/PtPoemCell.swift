@@ -25,6 +25,9 @@ class PtPoemCell: UICollectionViewCell {
         }
     }
     
+    // 改变收藏状态后执行闭包
+    var changeStarStatusCompletion: ((Bool) -> Void)?
+    
     // 诗词名
     var poemText: String {
         get {
@@ -132,5 +135,6 @@ class PtPoemCell: UICollectionViewCell {
         // 存入数据库
         let info = DBInfo(poemId: poemData[index].poemId, poemName: poemData[index].poemName, poetId: poemData[index].poetId, dynastyId: poemData[index].dynastyId, poemBody: poemData[index].poemBody, poemStar: poemData[index].poemStar)
         PoeticTimeDao.updateElement(info: info)
+        changeStarStatusCompletion?(poemData[index].poemStar)
     }
 }

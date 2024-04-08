@@ -135,12 +135,6 @@ class PoetChatVC: MessagesViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        // 关闭页面，取消请求
-        request?.cancel()
-    }
-    
     // 配制UI
     func setChatVCUI() {
         view.addSubview(tapView)
@@ -178,6 +172,8 @@ class PoetChatVC: MessagesViewController {
     @objc func dismissCurrentVC() {
         self.inputAccessoryView?.removeFromSuperview()
         hero.dismissViewController()
+        // 关闭页面，取消请求
+        request?.cancel()
     }
 }
 

@@ -206,8 +206,8 @@
             filePath = "PoeticTime/PoetAnswerVC-logic.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
             landmarkName = "commitAnswer()"
             landmarkType = "7">
          </BreakpointContent>
@@ -445,8 +445,8 @@
             filePath = "PoeticTime/PtAlertView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "cancelButtonTap()"
             landmarkType = "7">
          </BreakpointContent>
@@ -461,8 +461,8 @@
             filePath = "PoeticTime/PtHelper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "moveAnimationWithTableView(tableView:translationX:translationY:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -527,7 +527,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "221"
             endingLineNumber = "221"
-            landmarkName = "reloadCurrentVC()"
+            landmarkName = "presentSettingVC(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -543,7 +543,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "248"
             endingLineNumber = "248"
-            landmarkName = "saveData()"
+            landmarkName = "hideKeyboard()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -559,7 +559,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "220"
             endingLineNumber = "220"
-            landmarkName = "reloadCurrentVC()"
+            landmarkName = "presentSettingVC(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -607,23 +607,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "204"
             endingLineNumber = "204"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3E1CD8E8-EF83-4EAC-87AE-77C9B9FF11CC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PoeticTime/PoemDetailVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "requestPoetAnswer()"
+            landmarkName = "reloadCurrentVC()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -637,8 +621,8 @@
             filePath = "PoeticTime/PtPoemCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "changeStarState(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -653,8 +637,8 @@
             filePath = "PoeticTime/PtPoemCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "changeStarState(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -912,6 +896,38 @@
             startingLineNumber = "26"
             endingLineNumber = "26"
             landmarkName = "touchDownHandle()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D1B8846C-2CAD-4BE5-AAEF-824934D2942D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PoeticTime/PoetDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "908110A9-391B-41A6-80BC-A5B2A83053DA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PoeticTime/PtWritePoemVC-AIText2Image.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "changeAIImageHandle(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

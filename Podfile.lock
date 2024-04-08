@@ -6,6 +6,7 @@ PODS:
     - InputBarAccessoryView/Core (= 5.5.0)
   - InputBarAccessoryView/Core (5.5.0)
   - lottie-ios (4.2.0)
+  - MBProgressHUD (1.2.0)
   - MessageKit (3.8.0):
     - InputBarAccessoryView (~> 5.5.0)
   - SnapKit (5.6.0)
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - DBSphereTagCloudSwift
   - Hero
   - lottie-ios
+  - MBProgressHUD (~> 1.2.0)
   - MessageKit
   - SnapKit
   - SQLite.swift (~> 0.14.0)
@@ -31,6 +33,7 @@ SPEC REPOS:
     - Hero
     - InputBarAccessoryView
     - lottie-ios
+    - MBProgressHUD
     - MessageKit
     - SnapKit
     - SQLite.swift
@@ -42,11 +45,12 @@ SPEC CHECKSUMS:
   Hero: c69009dbc9e2f0472e081adc644dba05fcedae72
   InputBarAccessoryView: 1d7b0a672b36e370f01f264b3907ef39d03328e3
   lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MessageKit: a1ba0c69ebead94029867853eb44dd05b9b3f453
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SQLite.swift: 2992550ebf3c5b268bf4352603e3df87d2a4ed72
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 682ea222f7c5a8fb8d88714125068ce6f89b0100
+PODFILE CHECKSUM: 7b57c514b622cb7aaa8735a98d0953abf749ee85
 
 COCOAPODS: 1.11.3

@@ -13,7 +13,7 @@ extension PoetAnswerVC: AVAudioPlayerDelegate {
     // 获取题目数据
     func getQuestionData() {
         // 定义分隔符集合
-        let separators = CharacterSet(charactersIn: "，。？！")
+        let separators = CharacterSet(charactersIn: "，。？！；")
         // 拿到诗词数据
         let infoData = poemData.filter { $0.poetId == poetId }
         for info in infoData {
@@ -202,6 +202,8 @@ extension PoetAnswerVC: AVAudioPlayerDelegate {
             poemAnswerTextField1.text = ""
             poemAnswerTextField2.text = poems[currentPoemIndex].first?.value[currentSentenceIndex][currentHalfSentenceIndex] ?? ""
         }
+        // 更新诗名
+        poemNameLabel.text = "——《\(String(describing: poems[currentPoemIndex].keys.first ?? ""))》"
     }
     
     // 检验答案是否正确
@@ -322,5 +324,6 @@ extension PoetAnswerVC: AVAudioPlayerDelegate {
     // dimiss当前View
     @objc func dismissCurrentVC() {
         hero.dismissViewController()
+        audioPlayer?.stop()
     }
 }

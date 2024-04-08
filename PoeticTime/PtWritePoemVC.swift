@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class PtWritePoemVC: UIViewController {
     
@@ -35,6 +36,21 @@ class PtWritePoemVC: UIViewController {
     
     // 更新外部tableView
     lazy var reloadTableView: () -> Void = {}
+    
+    // 翻译后的文本
+    var translateText = ""
+    
+    // 进度条实例子
+    let progress = Progress(totalUnitCount: 100)
+    
+    // 进度条进度
+    var processCount = 0
+    
+    // 计时器
+    var timer: Timer?
+    
+    // 网络请求
+    var request: DataRequest?
     
     // 返回按钮
     lazy var backButton: UIButton = {
@@ -66,7 +82,8 @@ class PtWritePoemVC: UIViewController {
     lazy var poemImageView: UIImageView = {
         let poemImageView = UIImageView(frame: viewInitRect)
         poemImageView.image = UIImage(named: "poetic_time_write_poem_image")
-        poemImageView.contentMode = .scaleAspectFit
+        poemImageView.contentMode = .scaleAspectFill
+        poemImageView.layer.masksToBounds = true
         return poemImageView
     }()
     
@@ -151,6 +168,16 @@ class PtWritePoemVC: UIViewController {
         return changeImageButton
     }()
     
+    // 更换AI图片按钮
+    lazy var changeAIImageButton: UIButton = {
+        let changeAIImageButton = UIButton()
+        changeAIImageButton.backgroundColor = .white
+        changeAIImageButton.setImage(UIImage(named: "poetic_time_write_poem_change_AI_image_image"), for: .normal)
+        changeAIImageButton.layer.cornerRadius = 20
+        changeAIImageButton.addTarget(self, action: #selector(changeAIImageHandle), for: .touchUpInside)
+        return changeAIImageButton
+    }()
+    
     // 保存按钮
     lazy var saveDataButton: UIButton = {
         let saveDataButton = UIButton()
@@ -171,7 +198,7 @@ class PtWritePoemVC: UIViewController {
         unSaveAlertView.layer.borderWidth = 2
         unSaveAlertView.alertText = "当前修改未保存，是否继续退出？"
         unSaveAlertView.cancelText = "取消"
-        unSaveAlertView.confirmText = "确认退出"
+        unSaveAlertView.confirmText = "确认退出？"
         unSaveAlertView.cancelHandle = cancelHandle
         unSaveAlertView.confirmHandle = confirmHandle
         return unSaveAlertView
@@ -215,18 +242,10 @@ class PtWritePoemVC: UIViewController {
         }
         // 赋予图片
         poemImageView.image = UIImage(data: userPoemImageData)
-    }
-    
-    // 选择照片
-    @objc func changeImageHandle(sender: UIButton) {
-        ButtonAnimate(sender)
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .photoLibrary
-        present(picker, animated: true, completion: nil)
+        
     }
 }
-
+    
 extension PtWritePoemVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         

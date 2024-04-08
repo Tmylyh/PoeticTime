@@ -22,6 +22,13 @@ class PtAlertView: UIView {
     // 确认操作
     public lazy var confirmHandle: () -> Void = {}
     
+    // 更新UI操作
+    public func updateAlertUI() {
+        alertLabel.text = alertText
+        cancelButton.setTitle(cancelText, for: .normal)
+        confirmButton.setTitle(confirmText, for: .normal)
+    }
+    
     // 文本
     private lazy var alertLabel: UILabel = {
         let alertLabel = UILabel()

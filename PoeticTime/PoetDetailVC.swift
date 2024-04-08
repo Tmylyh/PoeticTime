@@ -182,6 +182,7 @@ class PoetDetailVC: UIViewController {
         let poet = poetData.filter { $0.poetName == poetName }
         guard let poetId = poet.first?.poetId else { return }
         let poetChatVC = PoetChatVC(poetId: poetId)
+        poetChatVC.currentMessage = "你是谁"
         poetChatVC.poetName = poetName
         poetChatVC.view.hero.id = "poetChat"
         poetChatVC.hero.isEnabled = true

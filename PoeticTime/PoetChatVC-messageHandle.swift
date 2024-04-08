@@ -60,7 +60,7 @@ extension PoetChatVC: MessagesDataSource, MessagesLayoutDelegate {
                     case let .success(data):
                         debugPrint(data)
                         // 数据处理
-                        var courseJSONDatas = self.dataHandle(result: data)
+                        var courseJSONDatas = dataHandle(result: data)
                         if !courseJSONDatas.isEmpty {
                             if courseJSONDatas.first!.count == 0 {
                                 courseJSONDatas.removeFirst()
@@ -152,7 +152,7 @@ extension PoetChatVC: MessagesDataSource, MessagesLayoutDelegate {
             }
             
             // data数据处理
-            let courseJSONDatas = self.dataHandle(result: result)
+            let courseJSONDatas = dataHandle(result: result)
             // 处理一个返回多个json的情况
             for courseJSONData in courseJSONDatas {
                 // 排除ping的情况
@@ -198,40 +198,6 @@ extension PoetChatVC: MessagesDataSource, MessagesLayoutDelegate {
         }
         // 启动请求任务
         task.resume()
-    }
-    
-    // 数据处理
-    func dataHandle(result: Data) -> [Data] {
-        var result2Strings: [String] = []
-        var courseJSONDatas: [Data] = []
-        // 将结果转string进行处理
-        guard let tmp = String(data: result, encoding: .utf8) else { return [] }
-        let replacedStr = tmp.replacingOccurrences(of: "data: ", with: "=")
-        result2Strings = replacedStr.components(separatedBy: "=")
-        for i in result2Strings {
-            var result2String = i
-            // 取最后一个右大括号之前的内容
-            if let range = result2String.range(of: "}", options: .backwards) {
-                result2String = String(result2String[...range.lowerBound])
-            }
-            
-            // 取第一个左大括号之后的内容
-            if let range = result2String.range(of: "{") {
-                result2String = String(result2String[range.lowerBound...])
-            }
-            
-            // 得到替换回车后的字符串
-            var newComment = result2String.replacingOccurrences(of: "\n", with: kReturnKey)
-            
-            // 得到替换回退后的字符串
-            newComment = result2String.replacingOccurrences(of: "\r", with: kBackKey)
-            debugPrint(newComment)
-            
-            // 待解析的data
-            let courseJSONData = newComment.data(using: .utf8)!
-            courseJSONDatas.append(courseJSONData)
-        }
-        return courseJSONDatas
     }
     
     // 新增信息
@@ -307,7 +273,7 @@ extension PoetChatVC: MessagesDisplayDelegate {
             // 根据消息的发送者设置头像
             switch message.sender.senderId {
             case currentUser.senderId:
-                avatarView.image = UIImage(named: "poetic_time_poet_image")
+                avatarView.image = UIImage(data: userInfo.userImageData)
             case poetUser.senderId:
                 avatarView.image = UIImage(named: "poetic_time_poet_image_\(poetId)") ?? UIImage(named: "poetic_time_poet_image_dumu")
             default:

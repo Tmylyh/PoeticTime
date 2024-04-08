@@ -32,6 +32,7 @@ extension PtWritePoemVC {
         writeView.addSubview(writePoemAuthorLabel)
         writeView.addSubview(writePoemTextView)
         view.addSubview(changeImageButton)
+        view.addSubview(changeAIImageButton)
         view.addSubview(saveDataButton)
         view.addSubview(unSaveAlertView)
         view.addSubview(deleteButton)
@@ -99,13 +100,19 @@ extension PtWritePoemVC {
         }
         
         changeImageButton.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(110)
+            make.left.equalToSuperview().offset(88)
+            make.height.width.equalTo(61)
+            make.top.equalTo(poemContentView.snp.bottom).offset(44)
+        }
+        
+        changeAIImageButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             make.height.width.equalTo(61)
             make.top.equalTo(poemContentView.snp.bottom).offset(44)
         }
         
         saveDataButton.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-110)
+            make.right.equalToSuperview().offset(-88)
             make.height.width.equalTo(61)
             make.top.equalTo(poemContentView.snp.bottom).offset(44)
         }
