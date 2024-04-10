@@ -30,6 +30,16 @@ func verticalText(text: String) -> String {
     return vText
 }
 
+/// 获取枚举类型
+func getDynastyType(name: String) -> DynastyType {
+    for dynastyType in DynastyType.allCases {
+        if name == dynastyType.rawValue {
+            return dynastyType
+        }
+    }
+    return .beisong
+}
+
 /// 清理历史对话
 func clearRequest() {
     // 1. 准备请求的 URL

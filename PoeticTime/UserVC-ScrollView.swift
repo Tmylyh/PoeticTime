@@ -25,9 +25,9 @@ extension UserVC: UIScrollViewDelegate {
     // 清除点击效果
     func clearSelected() {
         userPoemButton.setTitleColor("#B0B0B0".pt_argbColor, for: .normal)
-        userPoemButton.backgroundColor = .clear
+        userPoemButton.backgroundColor = .white
         starPoemButton.setTitleColor("#B0B0B0".pt_argbColor, for: .normal)
-        starPoemButton.backgroundColor = .clear
+        starPoemButton.backgroundColor = .white
     }
     
     // pageControl点击后的联动
@@ -38,7 +38,7 @@ extension UserVC: UIScrollViewDelegate {
         guard let viewWithTag = self.view.viewWithTag(currentPage + 1) as? UIButton else { return }
         clearSelected()
         viewWithTag.setTitleColor(.white, for: .normal)
-        viewWithTag.backgroundColor = "#258780".pt_argbColor
+        viewWithTag.backgroundColor = "#000000".pt_argbColor
         
         if currentPage == 0 {
             starPoemListCollectionView.isHidden = true

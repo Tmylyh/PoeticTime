@@ -20,10 +20,10 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
             recordTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(playRecordAnimation), userInfo: nil, repeats: true)
             poetRecordAnimationView.isHidden = false
             poemAnswerSoundButton.setTitle(nil, for: [])
-            poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_recording_back_image"), for: [])
+            poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_recording_\(currentDynasty.rawValue)_back_image"), for: [])
             viewBecomeBigger(poemAnswerSoundButton)
         } catch {
-            self.poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_rocord_net_error_image"), for: .normal)
+            self.poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_rocord_net_error_\(currentDynasty.rawValue)_image"), for: .normal)
         }
     }
     
@@ -36,7 +36,7 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
             maskView.isHidden = false
         } else {
             poemAnswerSoundButton.setTitle(nil, for: [])
-            poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_recording_back_image"), for: [])
+            poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_recording_back_\(currentDynasty.rawValue)_image"), for: [])
             poetRecordAnimationView.isHidden = false
             maskView.isHidden = true
         }
@@ -65,7 +65,7 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
         recordTimer?.invalidate()
         viewResetSize(poemAnswerSoundButton)
         poemAnswerSoundButton.setTitle(nil, for: [])
-        poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_record_image"), for: [])
+        poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_record_\(currentDynasty.rawValue)_image"), for: [])
     }
     
     // 播放录音动画
@@ -149,10 +149,10 @@ extension PoetAnswerVC: SFSpeechRecognizerDelegate {
     public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
             poemAnswerSoundButton.isEnabled = true
-            poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_record_image"), for: [])
+            poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_record_\(currentDynasty.rawValue)_image"), for: [])
         } else {
             poemAnswerSoundButton.isEnabled = false
-            self.poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_rocord_net_error_image"), for: .disabled)
+            self.poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_rocord_net_error_\(currentDynasty.rawValue)_image"), for: .disabled)
         }
     }
     

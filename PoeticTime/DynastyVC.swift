@@ -72,8 +72,9 @@ class DynastyVC: UIViewController {
     // 动画手写字体的背景
     lazy var animationBackgroundView: UIImageView = {
         let animationBackgroundView = UIImageView(frame: viewInitRect)
-        animationBackgroundView.image = UIImage(named: "poetic_time_dynasty_animation_background_image")
+        animationBackgroundView.image = UIImage(named: "poetic_time_dynasty_animation_\(currentDynasty.rawValue)_background_image")
         animationBackgroundView.backgroundColor = "#D8F0EC".pt_argbColor
+        animationBackgroundView.contentMode = .scaleAspectFill
         animationBackgroundView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissAnimationHandle))
         animationBackgroundView.addGestureRecognizer(tap)
@@ -121,7 +122,6 @@ class DynastyVC: UIViewController {
     // 朝代背景
     lazy var dynastyStoryButton: UIButton = {
         let dynastyStoryButton = UIButton()
-        dynastyStoryButton.backgroundColor = "#7EB5B1".pt_argbColor
         dynastyStoryButton.setTitle("诗史纪元", for: .normal)
         dynastyStoryButton.isSelected = true
         dynastyStoryButton.titleLabel?.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 20)
@@ -134,7 +134,6 @@ class DynastyVC: UIViewController {
     // 个人作诗
     lazy var diyPoemButton: UIButton = {
         let diyPoemButton = UIButton()
-        diyPoemButton.backgroundColor = "#7EB5B1".pt_argbColor
         diyPoemButton.setTitle("笔下生花", for: .normal)
         diyPoemButton.titleLabel?.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 20)
         diyPoemButton.setTitleColor(.white, for: .normal)
@@ -146,7 +145,6 @@ class DynastyVC: UIViewController {
     // 诗词列表
     lazy var poemListButton: UIButton = {
         let poemListButton = UIButton()
-        poemListButton.backgroundColor = "#7EB5B1".pt_argbColor
         poemListButton.setTitle("华章荟萃", for: .normal)
         poemListButton.titleLabel?.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 20)
         poemListButton.setTitleColor(.white, for: .normal)
@@ -158,7 +156,7 @@ class DynastyVC: UIViewController {
     // infoView的页面切换控制器
     lazy var stackButtonView: UIStackView = {
         let stackButtonView = UIStackView()
-        stackButtonView.backgroundColor = "7EB5B1".pt_argbColor
+        stackButtonView.backgroundColor = colorData["DynastyVC_stackButtonView_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         stackButtonView.axis = .horizontal
         stackButtonView.spacing = 2
         stackButtonView.addArrangedSubview(dynastyStoryButton)
@@ -191,7 +189,7 @@ class DynastyVC: UIViewController {
     // 诗史纪元
     lazy var dynastyStoryView: UIImageView = {
         let dynastyStoryView = UIImageView(frame: viewInitRect)
-        dynastyStoryView.image = UIImage(named: "poetic_time_dynasty_story_image")
+        dynastyStoryView.image = UIImage(named: "poetic_time_dynasty_\(currentDynasty.rawValue)_story_image")
         dynastyStoryView.contentMode = .scaleAspectFill
         return dynastyStoryView
     }()
@@ -265,7 +263,7 @@ class DynastyVC: UIViewController {
     // 笔下生花
     lazy var poemUserTableView: UITableView = {
         let poemUserTableView = UITableView(frame: CGRect(x: 0, y: 88, width: view.bounds.width, height: Bounds.height - 80))
-        poemUserTableView.backgroundColor = "#7EB5B1".pt_argbColor
+        poemUserTableView.backgroundColor =  colorData["DynastyVC_stackButtonView_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         // 去掉cell 之间的横线
         poemUserTableView.separatorStyle = .none
         poemUserTableView.showsVerticalScrollIndicator = false
@@ -312,7 +310,7 @@ class DynastyVC: UIViewController {
     lazy var poemListCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let poemListCollectionView = UICollectionView(frame: CGRect(x: 0, y: 88, width: view.bounds.width, height: Bounds.height - 88), collectionViewLayout: layout)
-        poemListCollectionView.backgroundColor = "#7EB5B1".pt_argbColor
+        poemListCollectionView.backgroundColor = colorData["DynastyVC_stackButtonView_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         poemListCollectionView.delegate = self
         poemListCollectionView.dataSource = self
         poemListCollectionView.contentInset = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
@@ -324,7 +322,7 @@ class DynastyVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = "#0E3036".pt_argbColor
+        view.backgroundColor = colorData["DynastyVC_background_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         sphereView = DBSphereView(frame: CGRect(x: Int(Bounds.width) / 2 - sphereRaius, y: statusBarHeight + 8, width: sphereRaius * 2, height: sphereRaius * 2))
     }
     

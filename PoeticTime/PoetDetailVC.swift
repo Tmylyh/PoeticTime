@@ -19,7 +19,7 @@ class PoetDetailVC: UIViewController {
     // 背景
     private lazy var backgroundImageView: UIImageView = {
         let backgroundImageView = UIImageView(frame: viewInitRect)
-        backgroundImageView.image = UIImage(named: "poetic_time_study_background")
+        backgroundImageView.image = UIImage(named: "poetic_time_study_\(currentDynasty.rawValue)_background")
         backgroundImageView.contentMode = .scaleAspectFit
         return backgroundImageView
     }()
@@ -62,7 +62,7 @@ class PoetDetailVC: UIViewController {
         // 不能选中
         poetTextView.isSelectable = false
         poetTextView.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 16)
-        poetTextView.backgroundColor = "#7EB5B1".pt_argbColor
+        poetTextView.backgroundColor = colorData["DynastyVC_poetTextView_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         poetTextView.layer.masksToBounds = true
         poetTextView.layer.cornerRadius = 20
         poetTextView.textColor = .white
@@ -75,7 +75,7 @@ class PoetDetailVC: UIViewController {
     // 作品列表按钮
     lazy var poemListButton: UIButton = {
         let poemListButton = UIButton()
-        poemListButton.setImage(UIImage(named: "poetic_time_poet_poem_list_button_image"), for: .normal)
+        poemListButton.setImage(UIImage(named: "poetic_time_poet_poem_list_\(currentDynasty.rawValue)_button_image"), for: .normal)
         poemListButton.imageView?.contentMode = .scaleAspectFit
         poemListButton.imageView?.layer.borderColor = UIColor.black.cgColor
         poemListButton.imageView?.layer.borderWidth = 1
@@ -98,7 +98,7 @@ class PoetDetailVC: UIViewController {
     // 对诗按钮
     lazy var answerButton: UIButton = {
         let answerButton = UIButton()
-        answerButton.setImage(UIImage(named: "poetic_time_poet_answer_button_image"), for: .normal)
+        answerButton.setImage(UIImage(named: "poetic_time_poet_answer_\(currentDynasty.rawValue)_button_image"), for: .normal)
         answerButton.imageView?.contentMode = .scaleAspectFit
         answerButton.imageView?.layer.borderColor = UIColor.black.cgColor
         answerButton.imageView?.layer.borderWidth = 1
@@ -114,6 +114,9 @@ class PoetDetailVC: UIViewController {
         let answerLabel = UILabel()
         answerLabel.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 32)
         answerLabel.text = "斗\n诗"
+        if currentDynasty.rawValue == "yuandai" || currentDynasty.rawValue == "shengtang" {
+            answerLabel.textColor = .white
+        }
         answerLabel.numberOfLines = 0
         return answerLabel
     }()
@@ -121,7 +124,7 @@ class PoetDetailVC: UIViewController {
     // 聊天按钮
     lazy var chatButton: UIButton = {
         let chatButton = UIButton()
-        chatButton.setImage(UIImage(named: "poetic_time_poet_chat_button_image"), for: .normal)
+        chatButton.setImage(UIImage(named: "poetic_time_poet_chat_\(currentDynasty.rawValue)_button_image"), for: .normal)
         chatButton.imageView?.contentMode = .scaleAspectFit
         chatButton.imageView?.layer.borderColor = UIColor.black.cgColor
         chatButton.imageView?.layer.borderWidth = 1
@@ -137,6 +140,9 @@ class PoetDetailVC: UIViewController {
         let chatLabel = UILabel()
         chatLabel.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 32)
         chatLabel.text = "茶\n叙"
+        if currentDynasty.rawValue == "yuandai" || currentDynasty.rawValue == "shengtang" {
+            chatLabel.textColor = .white
+        }
         chatLabel.numberOfLines = 0
         return chatLabel
     }()

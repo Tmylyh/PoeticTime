@@ -47,6 +47,10 @@
 		043D589C2BC0190500DB5A11 /* PtWritePoemVC-TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D589B2BC0190500DB5A11 /* PtWritePoemVC-TextField.swift */; };
 		043D589E2BC0197900DB5A11 /* PtWritePoemVC-Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D589D2BC0197900DB5A11 /* PtWritePoemVC-Logic.swift */; };
 		043D58A02BC01CF000DB5A11 /* UserVC-CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D589F2BC01CF000DB5A11 /* UserVC-CollectionView.swift */; };
+		0442755E2BC5D04600363B94 /* answerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442755D2BC5D04600363B94 /* answerView.swift */; };
+		044275602BC65F5B00363B94 /* PoemPanoramicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442755F2BC65F5B00363B94 /* PoemPanoramicVC.swift */; };
+		044275622BC6621D00363B94 /* PoemDetailVC-Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044275612BC6621D00363B94 /* PoemDetailVC-Request.swift */; };
+		044275642BC67DE200363B94 /* ColorConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044275632BC67DE200363B94 /* ColorConstant.swift */; };
 		0491CD3D2BC08C6700BE1D3E /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491CD3C2BC08C6700BE1D3E /* UserDefaultManager.swift */; };
 		0491CD3F2BC098AA00BE1D3E /* PtSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491CD3E2BC098AA00BE1D3E /* PtSettingVC.swift */; };
 		049820AE2BAA8B9C00E667FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820AD2BAA8B9C00E667FF /* AppDelegate.swift */; };
@@ -59,7 +63,6 @@
 		049820C52BAAB79100E667FF /* StudyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820C42BAAB79100E667FF /* StudyVC.swift */; };
 		049820C72BAAB7A500E667FF /* ScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820C62BAAB7A500E667FF /* ScanVC.swift */; };
 		049820C92BAAB7F900E667FF /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049820C82BAAB7F900E667FF /* UserVC.swift */; };
-		049820CE2BAAC1D000E667FF /* MyImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 049820CD2BAAC1D000E667FF /* MyImageClassifier.mlmodel */; };
 		04982CB92BAEE2C600E667FF /* PtTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04982CB82BAEE2C600E667FF /* PtTabBar.swift */; };
 		04982CBB2BAEF11A00E667FF /* PtHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04982CBA2BAEF11A00E667FF /* PtHelper.swift */; };
 		04982CBE2BAF022A00E667FF /* PtCardDetailLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04982CBD2BAF022A00E667FF /* PtCardDetailLayout.swift */; };
@@ -71,6 +74,8 @@
 		04B59CE12BBACB6A00E160F1 /* PtChatCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B59CE02BBACB6A00E160F1 /* PtChatCustomCell.swift */; };
 		04C09F2C2BC202B800EB4EE3 /* PoemDetailVC-ConfigUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C09F2B2BC202B800EB4EE3 /* PoemDetailVC-ConfigUI.swift */; };
 		04C09F2E2BC2FCC700EB4EE3 /* PtWritePoemVC-AIText2Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C09F2D2BC2FCC700EB4EE3 /* PtWritePoemVC-AIText2Image.swift */; };
+		04C6AA0E2BC5184C006FA1DB /* PtARMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6AA0D2BC5184C006FA1DB /* PtARMenuVC.swift */; };
+		04C6AA222BC557C3006FA1DB /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C6AA212BC557C3006FA1DB /* art.scnassets */; };
 		7F832B079A236992070EE8F5 /* Pods_PoeticTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8D22F5E73180CD34DCEA11 /* Pods_PoeticTime.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +119,10 @@
 		043D589B2BC0190500DB5A11 /* PtWritePoemVC-TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PtWritePoemVC-TextField.swift"; sourceTree = "<group>"; };
 		043D589D2BC0197900DB5A11 /* PtWritePoemVC-Logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PtWritePoemVC-Logic.swift"; sourceTree = "<group>"; };
 		043D589F2BC01CF000DB5A11 /* UserVC-CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserVC-CollectionView.swift"; sourceTree = "<group>"; };
+		0442755D2BC5D04600363B94 /* answerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = answerView.swift; sourceTree = "<group>"; };
+		0442755F2BC65F5B00363B94 /* PoemPanoramicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemPanoramicVC.swift; sourceTree = "<group>"; };
+		044275612BC6621D00363B94 /* PoemDetailVC-Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoemDetailVC-Request.swift"; sourceTree = "<group>"; };
+		044275632BC67DE200363B94 /* ColorConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstant.swift; sourceTree = "<group>"; };
 		0491CD3C2BC08C6700BE1D3E /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		0491CD3E2BC098AA00BE1D3E /* PtSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtSettingVC.swift; sourceTree = "<group>"; };
 		049820AA2BAA8B9C00E667FF /* PoeticTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeticTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +137,6 @@
 		049820C42BAAB79100E667FF /* StudyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyVC.swift; sourceTree = "<group>"; };
 		049820C62BAAB7A500E667FF /* ScanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVC.swift; sourceTree = "<group>"; };
 		049820C82BAAB7F900E667FF /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
-		049820CD2BAAC1D000E667FF /* MyImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MyImageClassifier.mlmodel; sourceTree = "<group>"; };
 		04982CB82BAEE2C600E667FF /* PtTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtTabBar.swift; sourceTree = "<group>"; };
 		04982CBA2BAEF11A00E667FF /* PtHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtHelper.swift; sourceTree = "<group>"; };
 		04982CBD2BAF022A00E667FF /* PtCardDetailLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtCardDetailLayout.swift; sourceTree = "<group>"; };
@@ -140,6 +148,8 @@
 		04B59CE02BBACB6A00E160F1 /* PtChatCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtChatCustomCell.swift; sourceTree = "<group>"; };
 		04C09F2B2BC202B800EB4EE3 /* PoemDetailVC-ConfigUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoemDetailVC-ConfigUI.swift"; sourceTree = "<group>"; };
 		04C09F2D2BC2FCC700EB4EE3 /* PtWritePoemVC-AIText2Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PtWritePoemVC-AIText2Image.swift"; sourceTree = "<group>"; };
+		04C6AA0D2BC5184C006FA1DB /* PtARMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtARMenuVC.swift; sourceTree = "<group>"; };
+		04C6AA212BC557C3006FA1DB /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		04EEEF122BB15D0B00DFDFAF /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		576CF5919F1D8F498260AD24 /* Pods-PoeticTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeticTime.debug.xcconfig"; path = "Target Support Files/Pods-PoeticTime/Pods-PoeticTime.debug.xcconfig"; sourceTree = "<group>"; };
 		7C8D22F5E73180CD34DCEA11 /* Pods_PoeticTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PoeticTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				040439CF2BB7E6D00085A9DE /* Constant.swift */,
+				044275632BC67DE200363B94 /* ColorConstant.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -224,6 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				043D4C8E2BBC107100DB5A11 /* PoemDetailVC.swift */,
+				044275612BC6621D00363B94 /* PoemDetailVC-Request.swift */,
+				0442755F2BC65F5B00363B94 /* PoemPanoramicVC.swift */,
 				04C09F2B2BC202B800EB4EE3 /* PoemDetailVC-ConfigUI.swift */,
 			);
 			name = PoemVC;
@@ -342,6 +355,8 @@
 			isa = PBXGroup;
 			children = (
 				049820C62BAAB7A500E667FF /* ScanVC.swift */,
+				04C6AA0D2BC5184C006FA1DB /* PtARMenuVC.swift */,
+				0442755D2BC5D04600363B94 /* answerView.swift */,
 			);
 			name = Scan;
 			sourceTree = "<group>";
@@ -361,7 +376,7 @@
 		049820CF2BAAC1D300E667FF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				049820CD2BAAC1D000E667FF /* MyImageClassifier.mlmodel */,
+				04C6AA212BC557C3006FA1DB /* art.scnassets */,
 				040439E22BB81AD50085A9DE /* dynasty.rtf */,
 				040439E92BB8430E0085A9DE /* poet.rtf */,
 				040439E12BB81AD50085A9DE /* poem.rtf */,
@@ -501,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				040439CC2BB6AAB30085A9DE /* PangMenZhengDaoCuShuTi-2.ttf in Resources */,
+				04C6AA222BC557C3006FA1DB /* art.scnassets in Resources */,
 				040439EA2BB8430E0085A9DE /* poet.rtf in Resources */,
 				04042DD32BB51BC10085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf in Resources */,
 				04042DCC2BB4F6040085A9DE /* SanJiBangKaiJianTi.ttf in Resources */,
@@ -569,20 +585,24 @@
 				04B59CE12BBACB6A00E160F1 /* PtChatCustomCell.swift in Sources */,
 				040439D92BB805E80085A9DE /* DynastyVC-ConfigUI.swift in Sources */,
 				04042DD22BB51BB90085A9DE /* YuWeiShuFaXingShuJianTi-1.ttf in Sources */,
+				04C6AA0E2BC5184C006FA1DB /* PtARMenuVC.swift in Sources */,
 				04042DCA2BB4F5CE0085A9DE /* SanJiBangKaiJianTi.ttf in Sources */,
 				049820C92BAAB7F900E667FF /* UserVC.swift in Sources */,
 				043D589C2BC0190500DB5A11 /* PtWritePoemVC-TextField.swift in Sources */,
+				044275642BC67DE200363B94 /* ColorConstant.swift in Sources */,
 				04982CBE2BAF022A00E667FF /* PtCardDetailLayout.swift in Sources */,
 				043D58982BC0184700DB5A11 /* UserVC-TableView.swift in Sources */,
 				040439EC2BB932D80085A9DE /* PoetAnswerVC.swift in Sources */,
 				04982CC02BAF03F900E667FF /* PtCardCollectionViewCell.swift in Sources */,
 				043D4C8F2BBC107100DB5A11 /* PoemDetailVC.swift in Sources */,
 				0491CD3D2BC08C6700BE1D3E /* UserDefaultManager.swift in Sources */,
+				044275602BC65F5B00363B94 /* PoemPanoramicVC.swift in Sources */,
 				04982CBB2BAEF11A00E667FF /* PtHelper.swift in Sources */,
 				04042DCE2BB4F93F0085A9DE /* DynastyVC.swift in Sources */,
 				040439DB2BB806EA0085A9DE /* DynastyVC-ScrollView.swift in Sources */,
 				043D588D2BBF165500DB5A11 /* PtAlertView.swift in Sources */,
 				043D58812BBD2F4200DB5A11 /* DynastyVC-TableView.swift in Sources */,
+				0442755E2BC5D04600363B94 /* answerView.swift in Sources */,
 				049820B22BAA8B9C00E667FF /* HomeTabBarVC.swift in Sources */,
 				043D58832BBD2FAF00DB5A11 /* DynastyUserPoemCell.swift in Sources */,
 				040439BD2BB640CE0085A9DE /* Dao.swift in Sources */,
@@ -613,8 +633,8 @@
 				04982CC42BB009CD00E667FF /* PtDynastyCollectionViewCell.swift in Sources */,
 				040439E82BB834300085A9DE /* PoetDetailVC.swift in Sources */,
 				043D4C882BBB302800DB5A11 /* PoetChatVC-messageHandle.swift in Sources */,
+				044275622BC6621D00363B94 /* PoemDetailVC-Request.swift in Sources */,
 				043D587F2BBC9A7C00DB5A11 /* PoetAnswerVC-configUI.swift in Sources */,
-				049820CE2BAAC1D000E667FF /* MyImageClassifier.mlmodel in Sources */,
 				0491CD3F2BC098AA00BE1D3E /* PtSettingVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

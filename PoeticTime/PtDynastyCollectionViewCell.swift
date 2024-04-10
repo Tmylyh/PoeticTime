@@ -23,7 +23,7 @@ class PtDynastyCollectionViewCell: UICollectionViewCell {
     /// 活跃的cell颜色
     public func changeActiveColor() {
         backColorView.backgroundColor = "E8EEE5".pt_argbColor
-        contentColorView.backgroundColor = "72A3A0".pt_argbColor
+        contentColorView.backgroundColor = colorData["StudyVC_separateLeftLine_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
     }
     
     /// 重置

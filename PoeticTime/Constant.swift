@@ -56,6 +56,23 @@ var poetData: [Poet] = []
 var userPoemData: [UserPoem] = []
 var userInfo: UserInfo = UserInfo(userName: "", userIntro: "", userImageData: Data())
 
+
+// 朝代枚举
+enum DynastyType: String, CaseIterable {
+    case chutang
+    case shengtang
+    case zhongtang
+    case wantang
+    case beisong
+    case nansong
+    case yuandai
+    case mingdai
+    case qingdai
+}
+
+/// 当前选中朝代，用于适配颜色，颜色名定义规则 类名+空间名+朝代+color
+var currentDynasty: DynastyType = .beisong
+
 /// 是否是第一次打开App
 var isFirstLaunch = true
 
@@ -91,7 +108,7 @@ let kPtSettingCellID = "PtSettingCellID"
 let Bounds = UIScreen.main.bounds
 
 /// chatVC的请求URL
-let chatURL = "http://29060917.r21.cpolar.top"
+let chatURL = "http://dialogue.vip.cpolar.cn"
 
 /// 替换符
 /// 自定义替换换行符的序列，防止换行符导致json解析不出来
@@ -99,13 +116,16 @@ let kReturnKey = "abcdefg"
 let kBackKey = "abcdeff"
 
 /// 朗读整首诗的请求URL
-let audioURL = "http://3d77682e.r18.cpolar.top"
+let audioURL = "http://audiopoem.vip.cpolar.cn"
 
 /// 朗读指定文本的请求URL
-let audioDetailURL = "http://527abd42.r27.cpolar.top"
+let audioDetailURL = "http://sound.vip.cpolar.cn"
 
 /// 文生图请求URL
-let text2ImageURL = "http://19285cde.r25.cpolar.top"
+let text2ImageURL = "http://txt2img.vip.cpolar.cn"
+
+/// 全景图请求URL
+let panoramicImageURL = "http://txt2img.vip.cpolar.cn"
 
 /// 回答正确文本集
 let answerCorrectFeedBackText = "吾诗遇知音，甚妙。"

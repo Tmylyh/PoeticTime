@@ -19,12 +19,15 @@ class StudyVC: UIViewController {
     // 朝代诗风描述
     public var dynastyDescription = ""
     
+    // 圆的layer
+    var shapeLayer = CAShapeLayer()
+    
     // 朝代label
     private lazy var dynastyLabel: UILabel = {
         let dynastyLabel = UILabel()
         dynastyLabel.text = "[公元\(dynastyStartTime)-\(dynastyEndTime)年] \(dynastyName)"
         dynastyLabel.font = UIFont(name: ZiTi.pmzd.rawValue, size: 32)
-        dynastyLabel.textColor = "#27827C".pt_argbColor
+        dynastyLabel.textColor = colorData["StudyVC_dynastyLabel_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         return dynastyLabel
     }()
     
@@ -33,13 +36,14 @@ class StudyVC: UIViewController {
         let dynastyDescriptionLabel = UILabel()
         dynastyDescriptionLabel.text = dynastyDescription
         dynastyDescriptionLabel.font = UIFont(name: ZiTi.pmzd.rawValue, size: 22)
-        dynastyDescriptionLabel.textColor = "#175450".pt_argbColor
+        dynastyDescriptionLabel.textColor = colorData["StudyVC_dynastyDescriptionLabel_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         return dynastyDescriptionLabel
     }()
     
     private lazy var dynastyDescriptionBackground: UIView = {
         let dynastyDescriptionBackground = UIView(frame: viewInitRect)
-        dynastyDescriptionBackground.backgroundColor = "#A7C4C2".pt_argbColor
+        dynastyDescriptionBackground.alpha = 0.4
+        dynastyDescriptionBackground.backgroundColor = colorData["StudyVC_dynastyDescriptionBackground_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         return dynastyDescriptionBackground
     }()
     
@@ -49,7 +53,7 @@ class StudyVC: UIViewController {
     // 背景
     private lazy var backgroundImageView: UIImageView = {
         let backgroundImageView = UIImageView(frame: viewInitRect)
-        backgroundImageView.image = UIImage(named: "poetic_time_study_background")
+        backgroundImageView.image = UIImage(named: "poetic_time_study_\(currentDynasty.rawValue)_background")
         backgroundImageView.contentMode = .scaleAspectFit
         return backgroundImageView
     }()
@@ -78,7 +82,7 @@ class StudyVC: UIViewController {
     // 分隔线
     private lazy var separateLeftLine: UIView = {
         let separateLeftLine = UIView(frame: viewInitRect)
-        separateLeftLine.backgroundColor = "#72A3A0".pt_argbColor
+        separateLeftLine.backgroundColor = colorData["StudyVC_separateLeftLine_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         return separateLeftLine
     }()
     
@@ -89,7 +93,7 @@ class StudyVC: UIViewController {
     
     private lazy var separateRightLine: UIView = {
         let separateRightLine = UIView(frame: viewInitRect)
-        separateRightLine.backgroundColor = "#72A3A0".pt_argbColor
+        separateRightLine.backgroundColor = colorData["StudyVC_separateLeftLine_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         return separateRightLine
     }()
     
@@ -154,9 +158,9 @@ class StudyVC: UIViewController {
         }
         
         dynastyDescriptionBackground.snp.makeConstraints { make in
-            make.top.equalTo(dynastyLabel.snp.bottom).offset(24)
+            make.top.equalTo(dynastyLabel.snp.bottom).offset(30)
             make.centerX.equalToSuperview()
-            make.height.equalTo(16)
+            make.height.equalTo(10)
             make.width.equalTo(240)
         }
         
@@ -207,12 +211,12 @@ class StudyVC: UIViewController {
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: centerX, y: centerY), radius: radius, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)// clockwise顺时针绘制
 
         // 创建 CAShapeLayer
-        let shapeLayer = CAShapeLayer()
+        shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath.cgPath
 
         // 设置填充颜色和边框颜色
         shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.strokeColor = "#72A3A0".pt_argbColor?.cgColor
+        shapeLayer.strokeColor =  colorData["StudyVC_separateLeftLine_\(currentDynasty.rawValue)_color1"]?.pt_argbColor?.cgColor
         shapeLayer.lineWidth = 2
 
         // 将 CAShapeLayer 添加到 separateCircle 的 layer 上
@@ -228,12 +232,28 @@ class StudyVC: UIViewController {
         // 更新 dynastyLabel 的文本内容
         self.dynastyLabel.text = "[公元\(self.dynastyStartTime)-\(self.dynastyEndTime)年] \(self.dynastyName)"
         self.dynastyDescriptionLabel.text = dynastyDescription
+        // 更新朝代
+        currentDynasty = getDynastyType(name: dynastyData[index].dynastyId)
+        // 更新颜色和图片
+        updateColorAndImage()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         setCircle()
+    }
+    
+    // 更新颜色和图片
+    func updateColorAndImage() {
+        // 更新背景
+        backgroundImageView.image = UIImage(named: "poetic_time_study_\(currentDynasty.rawValue)_background")
+        dynastyLabel.textColor = colorData["StudyVC_dynastyLabel_\(currentDynasty.rawValue)_color1"]!.pt_argbColor
+        dynastyDescriptionLabel.textColor = colorData["StudyVC_dynastyDescriptionLabel_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
+        separateLeftLine.backgroundColor = colorData["StudyVC_separateLeftLine_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
+        separateRightLine.backgroundColor = colorData["StudyVC_separateLeftLine_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
+        shapeLayer.strokeColor =  colorData["StudyVC_separateLeftLine_\(currentDynasty.rawValue)_color1"]?.pt_argbColor?.cgColor
+        dynastyDescriptionBackground.backgroundColor = colorData["StudyVC_dynastyDescriptionBackground_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
     }
 }
 

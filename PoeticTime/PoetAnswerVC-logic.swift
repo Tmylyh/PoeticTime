@@ -84,7 +84,7 @@ extension PoetAnswerVC: AVAudioPlayerDelegate {
                 "poet_id": poetId,
                 "text": text
             ]
-        AF.request("\(audioDetailURL)/verse", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { [weak self] response in
+        request = AF.request("\(audioDetailURL)/verse", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { [weak self] response in
             guard let self = self else { return }
                 switch response.result {
                 case .success(let data):
@@ -246,6 +246,7 @@ extension PoetAnswerVC: AVAudioPlayerDelegate {
     
     // 点击下一题提交答案
     @objc func commitAnswer() {
+        audioPlayer?.stop()
         if answerRightCount + 1 == answerNeedRightCount {
             nextQuestionButton.setTitle("提交", for: .normal)
         }
@@ -325,5 +326,6 @@ extension PoetAnswerVC: AVAudioPlayerDelegate {
     @objc func dismissCurrentVC() {
         hero.dismissViewController()
         audioPlayer?.stop()
+        request?.cancel()
     }
 }

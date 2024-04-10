@@ -29,6 +29,14 @@ class UserVC: UIViewController {
         }
     }
     
+    // 背景
+    lazy var backgroundImageView: UIImageView = {
+        let backgroundImageView = UIImageView(frame: viewInitRect)
+        backgroundImageView.image = UIImage(named: "poetic_time_user_back_ground_image")
+        backgroundImageView.contentMode = .scaleAspectFit
+        return backgroundImageView
+    }()
+    
     // 设置按钮
     lazy var settingButton: UIButton = {
         let settingButton = UIButton()
@@ -92,13 +100,13 @@ class UserVC: UIViewController {
         userPoemButton.setTitle("吾诗札", for: .normal)
         userPoemButton.setTitleColor(.white, for: .normal)
         userPoemButton.titleLabel?.font = .systemFont(ofSize: 12)
-        userPoemButton.backgroundColor = "#258780".pt_argbColor
+        userPoemButton.backgroundColor = "#000000".pt_argbColor
         userPoemButton.layer.cornerRadius = 16
         userPoemButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
         userPoemButton.layer.masksToBounds = true
         userPoemButton.layer.borderWidth = 1
         userPoemButton.tag = 1
-        userPoemButton.layer.borderColor = "#258780".pt_argbColor?.cgColor
+        userPoemButton.layer.borderColor = UIColor.black.cgColor
         userPoemButton.addTarget(self, action: #selector(changeInfoView), for: .touchUpInside)
         return userPoemButton
     }()
@@ -109,13 +117,13 @@ class UserVC: UIViewController {
         starPoemButton.setTitle("藏诗筒", for: .normal)
         starPoemButton.setTitleColor("#B0B0B0".pt_argbColor, for: .normal)
         starPoemButton.titleLabel?.font = .systemFont(ofSize: 12)
-        starPoemButton.backgroundColor = .clear
+        starPoemButton.backgroundColor = .white
         starPoemButton.layer.cornerRadius = 16
         starPoemButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         starPoemButton.layer.masksToBounds = true
         starPoemButton.layer.borderWidth = 1
         starPoemButton.tag = 2
-        starPoemButton.layer.borderColor = "#258780".pt_argbColor?.cgColor
+        starPoemButton.layer.borderColor = UIColor.black.cgColor
         starPoemButton.addTarget(self, action: #selector(changeInfoView), for: .touchUpInside)
         return starPoemButton
     }()
@@ -123,7 +131,7 @@ class UserVC: UIViewController {
     // 滑动ScrollView
     lazy var listScrollView: UIScrollView = {
         let listScrollView = UIScrollView(frame: CGRect(x: 0, y: 300, width: Int(Bounds.width), height: Int(Bounds.height - 300)))
-        listScrollView.backgroundColor = .white
+        listScrollView.backgroundColor = .clear
         // 使用页面控制器
         listScrollView.isPagingEnabled = true
         
@@ -144,7 +152,7 @@ class UserVC: UIViewController {
     // 个人诗词TableView
     lazy var userPoemTableView: UITableView = {
         let userPoemTableView = UITableView(frame: viewInitRect)
-        userPoemTableView.backgroundColor = .white
+        userPoemTableView.backgroundColor = .clear
         // 去掉cell 之间的横线
         userPoemTableView.separatorStyle = .none
         userPoemTableView.showsVerticalScrollIndicator = false
@@ -159,7 +167,7 @@ class UserVC: UIViewController {
     lazy var starPoemListCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let starPoemListCollectionView = UICollectionView(frame: viewInitRect, collectionViewLayout: layout)
-        starPoemListCollectionView.backgroundColor = .white
+        starPoemListCollectionView.backgroundColor = .clear
         starPoemListCollectionView.delegate = self
         starPoemListCollectionView.dataSource = self
         starPoemListCollectionView.contentInset = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)

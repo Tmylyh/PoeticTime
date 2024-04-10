@@ -13,7 +13,8 @@ extension UserVC {
     func setUserViewUI() {
         // 上面多了一个navigationBar
         navigationController?.navigationBar.isUserInteractionEnabled = false
-        view.backgroundColor = "#D8F0EC".pt_argbColor
+        view.backgroundColor = "#ADADAD".pt_argbColor
+        view.addSubview(backgroundImageView)
         view.addSubview(backTapView)
         view.addSubview(userImageView)
         view.addSubview(userName)
@@ -22,6 +23,10 @@ extension UserVC {
         view.addSubview(userPoemButton)
         view.addSubview(starPoemButton)
         view.addSubview(listScrollView)
+        
+        backgroundImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         backTapView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

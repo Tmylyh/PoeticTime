@@ -81,7 +81,7 @@ extension PoetChatVC: MessagesDataSource, MessagesLayoutDelegate {
                                     resultText = text.replacingOccurrences(of: kReturnKey, with: "\n")
                                     resultMessage_id = message_id.replacingOccurrences(of: kReturnKey, with: "\n")
                                 } else {
-                                    debugPrint("解析 JSON 数据失败")
+                                    debugPrint("解析 对话流JSON 数据失败")
                                     return
                                 }
                                 // 是否是同一个流
@@ -171,7 +171,7 @@ extension PoetChatVC: MessagesDataSource, MessagesLayoutDelegate {
                         resultText = text.replacingOccurrences(of: kReturnKey, with: "\n")
                         resultMessage_id = message_id.replacingOccurrences(of: kReturnKey, with: "\n")
                     } else {
-                        debugPrint("解析 JSON 数据失败")
+                        debugPrint("解析 对话JSON 数据失败")
                     }
                     
                     // 是否是同一个流

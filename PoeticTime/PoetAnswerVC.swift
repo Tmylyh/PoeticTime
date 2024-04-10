@@ -8,6 +8,7 @@
 import UIKit
 import Lottie
 import Speech
+import Alamofire
 
 class PoetAnswerVC: UIViewController {
     
@@ -78,6 +79,9 @@ class PoetAnswerVC: UIViewController {
     // 取消录音文本
     var isCancelRecord: Bool = false
     
+    // 音频请求
+    var request: DataRequest?
+    
     // 指定文本音频文件的URL
     let audioFileURL = FileManager.default.temporaryDirectory.appendingPathComponent("audio_text.wav")
     
@@ -108,7 +112,7 @@ class PoetAnswerVC: UIViewController {
     // 背景图
     lazy var backgroundImageView: UIImageView = {
         let backgroundImageView = UIImageView(frame: viewInitRect)
-        backgroundImageView.image = UIImage(named: "poetic_time_poet_answer_background_image")
+        backgroundImageView.image = UIImage(named: "poetic_time_study_\(currentDynasty.rawValue)_background")
         backgroundImageView.contentMode = .scaleAspectFit
         return backgroundImageView
     }()
@@ -174,14 +178,14 @@ class PoetAnswerVC: UIViewController {
     // 需要答题的句子标记1
     lazy var answerSentenceTag1: UIView = {
         let answerSentenceTag1 = UIView(frame: viewInitRect)
-        answerSentenceTag1.backgroundColor = "#7EB5B1".pt_argbColor
+        answerSentenceTag1.backgroundColor = colorData["DynastyVC_poetTextView_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         return answerSentenceTag1
     }()
     
     // 需要答题的句子标记2
     lazy var answerSentenceTag2: UIView = {
         let answerSentenceTag2 = UIView(frame: viewInitRect)
-        answerSentenceTag2.backgroundColor = "#7EB5B1".pt_argbColor
+        answerSentenceTag2.backgroundColor = colorData["DynastyVC_poetTextView_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         return answerSentenceTag2
     }()
     
@@ -211,7 +215,7 @@ class PoetAnswerVC: UIViewController {
     // 下一题按钮
     lazy var nextQuestionButton: UIButton = {
         let nextQuestionButton = UIButton()
-        nextQuestionButton.backgroundColor = "#7EB5B1".pt_argbColor
+        nextQuestionButton.backgroundColor = colorData["DynastyVC_poetTextView_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         nextQuestionButton.layer.cornerRadius = 16
         nextQuestionButton.setTitle("下一题", for: .normal)
         nextQuestionButton.setTitleColor(.white, for: .normal)
@@ -277,7 +281,7 @@ class PoetAnswerVC: UIViewController {
     // 语音回答按钮
     lazy var poemAnswerSoundButton: PoetRecordButton = {
         let poemAnswerSoundButton = PoetRecordButton()
-        poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_record_image"), for: .normal)
+        poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_record_\(currentDynasty.rawValue)_image"), for: .normal)
         poemAnswerSoundButton.isEnabled = false
         poemAnswerSoundButton.moveCompletion = moveHandle
         poemAnswerSoundButton.setTitleColor(.black, for: .normal)
@@ -409,8 +413,9 @@ class PoetAnswerVC: UIViewController {
         // 判断网络状况
         if !isReachable {
             // 回主线程操作
-            OperationQueue.main.addOperation {
-                self.poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_rocord_net_error_image"), for: .normal)
+            OperationQueue.main.addOperation { [weak self] in
+                guard let self = self else { return }
+                self.poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_rocord_net_error_\(currentDynasty.rawValue)_image"), for: .normal)
             }
         }
     }
@@ -431,7 +436,7 @@ class PoetAnswerVC: UIViewController {
                     
                 case .denied, .restricted, .notDetermined:
                     self.poemAnswerSoundButton.isEnabled = false
-                    self.poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_rocord_net_error_image"), for: .disabled)
+                    self.poemAnswerSoundButton.setImage(UIImage(named: "poetic_time_poet_rocord_net_error_\(currentDynasty.rawValue)_image"), for: .disabled)
                     
                 default:
                     self.poemAnswerSoundButton.isEnabled = false

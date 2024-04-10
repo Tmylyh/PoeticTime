@@ -41,7 +41,7 @@ class PoetPoemListVC: UIViewController {
     lazy var poemListCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let poemListCollectionView = UICollectionView(frame: CGRect(x: 0, y: 88, width: view.bounds.width, height: Bounds.height - 88), collectionViewLayout: layout)
-        poemListCollectionView.backgroundColor = "#7EB5B1".pt_argbColor
+        poemListCollectionView.backgroundColor = colorData["DynastyVC_poetTextView_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         poemListCollectionView.isHidden = true
         poemListCollectionView.delegate = self
         poemListCollectionView.dataSource = self
@@ -78,7 +78,7 @@ class PoetPoemListVC: UIViewController {
     
     // 配制UI
     func setPoemListViewUI() {
-        view.backgroundColor = "#7EB5B1".pt_argbColor
+        view.backgroundColor = colorData["DynastyVC_poetTextView_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
         view.addSubview(backButton)
         view.addSubview(poetLabel)
         view.addSubview(poemListCollectionView)

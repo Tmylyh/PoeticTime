@@ -51,7 +51,7 @@ class PtTabBar: UITabBar {
     // 扫描tab的Label
     private lazy var tabBarScanItemLabel: UILabel = {
         let tabBarScanItemLabel = UILabel()
-        tabBarScanItemLabel.text = "寻踪"
+        tabBarScanItemLabel.text = "斗诗"
         tabBarScanItemLabel.font = UIFont(name: ZiTi.pmzd.rawValue, size: 22)
         tabBarScanItemLabel.textAlignment = .center
         return tabBarScanItemLabel
@@ -103,23 +103,23 @@ class PtTabBar: UITabBar {
         resetImageAndLabelColor()
         if tag == 0 {
             tabBarStudyItemImageView.image = UIImage(named: "poetic_time_study_select_tab_bar")
-            tabBarStudyItemLabel.textColor = "#67CEC8".pt_argbColor
+            tabBarStudyItemLabel.textColor = .black
         } else if tag == 1 {
             tabBarScanItemImageView.image = UIImage(named: "poetic_time_scan_select_tab_bar")
-            tabBarScanItemLabel.textColor = "#67CEC8".pt_argbColor
+            tabBarScanItemLabel.textColor = .black
         } else if tag == 2 {
             tabBarUserItemImageView.image = UIImage(named: "poetic_time_user_select_tab_bar")
-            tabBarUserItemLabel.textColor = "#67CEC8".pt_argbColor
+            tabBarUserItemLabel.textColor = .black
         }
     }
     
     func resetImageAndLabelColor() {
         tabBarStudyItemImageView.image = UIImage(named: "poetic_time_study_tab_bar")
-        tabBarStudyItemLabel.textColor = .black
+        tabBarStudyItemLabel.textColor = "#CECECE".pt_argbColor
         tabBarScanItemImageView.image = UIImage(named: "poetic_time_scan_tab_bar")
-        tabBarScanItemLabel.textColor = .black
+        tabBarScanItemLabel.textColor = "#CECECE".pt_argbColor
         tabBarUserItemImageView.image = UIImage(named: "poetic_time_user_tab_bar")
-        tabBarUserItemLabel.textColor = .black
+        tabBarUserItemLabel.textColor = "#CECECE".pt_argbColor
     }
     
     override func layoutSubviews() {

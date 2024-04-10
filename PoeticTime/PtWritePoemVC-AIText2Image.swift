@@ -94,7 +94,7 @@ extension PtWritePoemVC {
                         debugPrint(resultText)
                         self.requestText2Image(completion: completion)
                     } else {
-                        debugPrint("解析 JSON 数据失败")
+                        debugPrint("解析 翻译JSON 数据失败")
                     }
                 }
             }
@@ -218,6 +218,18 @@ extension PtWritePoemVC {
                 guard let self = self else { return }
                 return self.unSaveAlertView.isHidden = true
             }
+        } else {
+            // 请求and进度条
+            let hud = MBProgressHUD.showAdded(to: self.flipContentView, animated: true)
+            hud.mode = .determinateHorizontalBar
+            hud.label.text = "生成图片中，请稍候"
+            hud.label.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 16)
+            let progress = self.requestAIImage {
+                DispatchQueue.main.async {
+                    hud.hide(animated: true)
+                }
+            }
+            hud.progressObject = progress
         }
     }
 }

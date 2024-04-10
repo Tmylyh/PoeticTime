@@ -55,7 +55,7 @@ class DynastyUserPoemCell: UITableViewCell {
         super.layoutSubviews()
         backgroundColor = .clear
         if isFromUserVC {
-            contentView.backgroundColor = "#D8F0EC".pt_argbColor
+            contentView.backgroundColor = .white
         } else {
             contentView.backgroundColor = .white            
         }

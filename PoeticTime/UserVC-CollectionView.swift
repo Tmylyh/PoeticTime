@@ -14,7 +14,7 @@ extension UserVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kPtPoemCell, for: indexPath) as! PtPoemCell
-        cell.backgroundColor = "#D8F0EC".pt_argbColor
+        cell.backgroundColor = .white
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 20
         cell.changeStarStatusCompletion = { [weak self] isStar in

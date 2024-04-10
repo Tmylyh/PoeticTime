@@ -16,7 +16,7 @@ extension DynastyVC {
             let btn = UIButton(type: UIButton.ButtonType.system)
             let poetName = poetWithDynastyData[i % poetWithDynastyData.count].poetName
             btn.setTitle("\(poetName)", for: .normal)
-            btn.setTitleColor("#72F2DD".pt_argbColor, for: .normal)
+            btn.setTitleColor(colorData["DynastyVC_sphereView_\(currentDynasty.rawValue)_color1"]?.pt_argbColor, for: .normal)
             btn.titleLabel?.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 24)
             btn.frame = CGRect(x: 0, y: 0, width: 100, height: 24)
             btn.tag = i

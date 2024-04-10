@@ -26,7 +26,7 @@ class BezierText: UIView {
         pathLayer.isGeometryFlipped = true
         pathLayer.fillColor = UIColor.clear.cgColor
         pathLayer.lineWidth = 0.8
-        pathLayer.strokeColor = UIColor.black.cgColor
+        pathLayer.strokeColor = UIColor.white.cgColor
 
         self.layer.addSublayer(pathLayer)
     }
@@ -59,7 +59,7 @@ class BezierText: UIView {
         // CATransaction原子性管理动画的执行，要么全部完成，要么全部取消
         CATransaction.setCompletionBlock {
             // 在这里处理动画完成后的逻辑
-            self.pathLayer.fillColor = UIColor.black.cgColor
+            self.pathLayer.fillColor = UIColor.white.cgColor
             // dismiss页面
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissAnimationHandle))
             self.addGestureRecognizer(tapGesture)
