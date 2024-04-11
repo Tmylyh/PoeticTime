@@ -286,8 +286,8 @@
             filePath = "PoeticTime/DynastyVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "402"
+            endingLineNumber = "402"
             landmarkName = "tableViewDataReload()"
             landmarkType = "7">
             <Locations>
@@ -509,8 +509,8 @@
             filePath = "PoeticTime/DynastyVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>

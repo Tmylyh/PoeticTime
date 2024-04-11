@@ -43,15 +43,28 @@ extension DynastyVC: UIScrollViewDelegate {
         poemWriteLabel.isHidden = true
         poemWriteBackGroundImage.isHidden = true
         poemWriteButton.isHidden = true
-        if currentPage == 1 {
-            // tableView动画
-            moveAnimationWithTableView(tableView: poemUserTableView)
+        if currentPage == 0 {
+            poemUserTableView.isHidden = true
+        }
+        else if currentPage == 1 {
+            poemListCollectionView.isHidden = true
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                // tableView动画
+                moveAnimationWithTableView(tableView: self.poemUserTableView)
+                self.poemUserTableView.isHidden = false
+            }
             poemWriteLabel.isHidden = false
             poemWriteBackGroundImage.isHidden = false
             poemWriteButton.isHidden = false
         } else if currentPage == 2 {
-            // collectionView动画
-            moveAnimationWithCollectionView(collectionView: poemListCollectionView)
+            poemUserTableView.isHidden = true
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                // collectionView动画
+                moveAnimationWithCollectionView(collectionView: self.poemListCollectionView)
+                self.poemListCollectionView.isHidden = false
+            }
         }
         // 滑动回顶部
         // 溢出判断

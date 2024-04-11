@@ -186,6 +186,13 @@ class DynastyVC: UIViewController {
         return infoScrollView
     }()
     
+    // 背景
+    lazy var backInfoView: UIView = {
+        let backInfoView = UIView(frame: viewInitRect)
+        backInfoView.backgroundColor = colorData["DynastyVC_stackButtonView_\(currentDynasty.rawValue)_color1"]?.pt_argbColor
+        return backInfoView
+    }()
+    
     // 诗史纪元
     lazy var dynastyStoryView: UIImageView = {
         let dynastyStoryView = UIImageView(frame: viewInitRect)

@@ -47,6 +47,7 @@ extension DynastyVC {
         stackButtonView.addSubview(seperateStackLine1)
         stackButtonView.addSubview(seperateStackLine2)
         self.view.addSubview(stackButtonView)
+        self.view.addSubview(backInfoView)
         self.view.addSubview(infoScrollView)
         self.view.addSubview(backButton)
         self.view.addSubview(tagLabel)
@@ -85,6 +86,11 @@ extension DynastyVC {
             make.top.equalToSuperview().offset(sphereRaius * 2 + statusBarHeight + 32)
             make.height.equalTo(44)
             make.width.equalToSuperview()
+        }
+        
+        backInfoView.snp.makeConstraints { make in
+            make.top.equalTo(stackButtonView.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
         }
         
         infoScrollView.snp.makeConstraints { make in
