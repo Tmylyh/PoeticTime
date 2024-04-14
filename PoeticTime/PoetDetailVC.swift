@@ -20,7 +20,7 @@ class PoetDetailVC: UIViewController {
     private lazy var backgroundImageView: UIImageView = {
         let backgroundImageView = UIImageView(frame: viewInitRect)
         backgroundImageView.image = UIImage(named: "poetic_time_study_\(currentDynasty.rawValue)_background")
-        backgroundImageView.contentMode = .scaleAspectFit
+        backgroundImageView.contentMode = .scaleAspectFill
         return backgroundImageView
     }()
     
@@ -113,7 +113,7 @@ class PoetDetailVC: UIViewController {
     lazy var answerLabel: UILabel = {
         let answerLabel = UILabel()
         answerLabel.font = UIFont(name: ZiTi.sjbkjt.rawValue, size: 32)
-        answerLabel.text = "斗\n诗"
+        answerLabel.text = "对\n诗"
         if currentDynasty.rawValue == "yuandai" || currentDynasty.rawValue == "shengtang" {
             answerLabel.textColor = .white
         }

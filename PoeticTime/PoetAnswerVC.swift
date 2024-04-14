@@ -113,7 +113,7 @@ class PoetAnswerVC: UIViewController {
     lazy var backgroundImageView: UIImageView = {
         let backgroundImageView = UIImageView(frame: viewInitRect)
         backgroundImageView.image = UIImage(named: "poetic_time_study_\(currentDynasty.rawValue)_background")
-        backgroundImageView.contentMode = .scaleAspectFit
+        backgroundImageView.contentMode = .scaleAspectFill
         return backgroundImageView
     }()
     

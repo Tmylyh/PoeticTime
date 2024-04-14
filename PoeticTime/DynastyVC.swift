@@ -295,7 +295,7 @@ class DynastyVC: UIViewController {
     // 作诗按钮背景图
     lazy var poemWriteBackGroundImage: UIImageView = {
         let poemWriteBackGroundImage = UIImageView(frame: viewInitRect)
-        poemWriteBackGroundImage.image = UIImage(named: "poetic_time_dynasty_write_button_background_image")
+        poemWriteBackGroundImage.image = UIImage(named: "poetic_time_dynasty_write_button_background_\(currentDynasty.rawValue)_image")
         poemWriteBackGroundImage.contentMode = .scaleAspectFit
         poemWriteBackGroundImage.isHidden = true
         return poemWriteBackGroundImage

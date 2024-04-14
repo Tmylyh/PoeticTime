@@ -7,14 +7,14 @@
 
 import UIKit
 
-// 朝代
+/// 朝代
 struct Dynasty {
     let dynastyId: String
     let dynastyName: String
     let dynastyInfo: String
 }
 
-// 诗词
+/// 诗词
 struct Poem {
     let poemId: String
     let poemName: String
@@ -24,7 +24,7 @@ struct Poem {
     let poemStar: Bool
 }
 
-// 诗人
+/// 诗人
 struct Poet {
     let poetId: String
     let poetName: String

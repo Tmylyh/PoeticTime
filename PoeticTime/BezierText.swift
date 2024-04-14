@@ -1,8 +1,8 @@
 //
 //  BezierText.swift
-//  渐隐字体 BezierText
+//  PoeticTime
 //
-//  Created by Mengduan on 2023/11/2.
+//  Created by 李跃行 on 2024/3/30.
 //
 
 import UIKit

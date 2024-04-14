@@ -787,13 +787,18 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3QQ3H2NRD9;
+				DEVELOPMENT_TEAM = YAJ74PJU3F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PoeticTime/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "诗韵时光机";
+				INFOPLIST_KEY_NSCameraUsageDescription = "将使用你的摄像头进行扫描";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "将使用你的麦克风";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "将从你的相册选取照片";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "将使用你的语音识别功能";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -801,12 +806,15 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.TMYLYH.PoeticTime;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TMYLYH.PoeticTime1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/mac/Desktop/PoeticTime/PoeticTime/Header.h;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -818,13 +826,18 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3QQ3H2NRD9;
+				DEVELOPMENT_TEAM = YAJ74PJU3F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PoeticTime/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "诗韵时光机";
+				INFOPLIST_KEY_NSCameraUsageDescription = "将使用你的摄像头进行扫描";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "将使用你的麦克风";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "将从你的相册选取照片";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "将使用你的语音识别功能";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -832,12 +845,15 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.TMYLYH.PoeticTime;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TMYLYH.PoeticTime1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/mac/Desktop/PoeticTime/PoeticTime/Header.h;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

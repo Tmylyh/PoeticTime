@@ -156,6 +156,11 @@ extension PoemDetailVC {
         let minutes = Int(currentTime) / 60
         let seconds = Int(currentTime) % 60
         currentTimeLabel.text = String(format: "%02d:%02d", minutes, seconds)
+        if durationLabel.text == currentTimeLabel.text {
+            // 获取系统提供的图标
+            let image = UIImage(systemName: "play.circle", withConfiguration: imageConfiguration)
+            playPauseButton.setImage(image, for: .normal)
+        }
     }
 
     // 处理字符串,第偶数个符号后面加换行符

@@ -51,7 +51,7 @@ class PtTabBar: UITabBar {
     // 扫描tab的Label
     private lazy var tabBarScanItemLabel: UILabel = {
         let tabBarScanItemLabel = UILabel()
-        tabBarScanItemLabel.text = "对诗"
+        tabBarScanItemLabel.text = "斗诗"
         tabBarScanItemLabel.font = UIFont(name: ZiTi.pmzd.rawValue, size: 22)
         tabBarScanItemLabel.textAlignment = .center
         return tabBarScanItemLabel

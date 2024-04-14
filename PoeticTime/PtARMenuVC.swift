@@ -329,11 +329,11 @@ class PtARMenuVC: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     // 验证游戏结果
     func invalidateResult(answer: String) {
         questionView.isHidden = true
-        if answer == "床前明月光" && countdownSeconds >= 0 {
+        if answer == "床前明月光" && countdownSeconds > 0 {
             finishAlertView.alertText = "挑战成功"
             finishAlertView.updateAlertUI()
             finishAlertView.isHidden = false
-        } else if answer == "将进酒"  && countdownSeconds >= 0 {
+        } else if answer == "将进酒"  && countdownSeconds > 0 {
             finishAlertView.alertText = "挑战成功"
             finishAlertView.updateAlertUI()
             finishModal1()
